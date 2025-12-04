@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEP Sandbox Engine - Professional Game Development</title>
+    <title>MEP Sandbox Engine | Professional 3D Dev</title>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4250792589739491"
+     crossorigin="anonymous"></script>
+
     <style>
         * {
             margin: 0;
@@ -12,39 +16,47 @@
         }
 
         :root {
-            --primary: #00d4ff;
-            --secondary: #7b2ff7;
-            --dark: #0a0e27;
-            --darker: #050711;
-            --light: #ffffff;
-            --gray: #a0a0a0;
-            --success: #00ff88;
-            --warning: #ffaa00;
-            --code-bg: #1a1d35;
+            --bg-deep: #050505;
+            --bg-surface: #111111;
+            --bg-elevated: #1a1a1a;
+            --accent: #ffffff;
+            --text-main: #ffffff;
+            --text-dim: #888888;
+            --border: #333333;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--darker);
-            color: var(--light);
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
         }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--accent);
+        }
+
+        h1 { font-size: 3.5rem; line-height: 1.1; }
+        h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+        p { color: var(--text-dim); font-size: 1.05rem; }
 
         /* Navigation */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 14, 39, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
             z-index: 1000;
-            border-bottom: 2px solid var(--primary);
-            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
         }
 
         nav .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 1rem 2rem;
             display: flex;
@@ -52,134 +64,117 @@
             align-items: center;
         }
 
-        nav .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 1px solid var(--accent);
+            padding: 0.25rem 0.75rem;
         }
 
         nav ul {
-            list-style: none;
             display: flex;
             gap: 2rem;
+            list-style: none;
         }
 
         nav a {
-            color: var(--light);
+            color: var(--text-dim);
             text-decoration: none;
-            transition: color 0.3s;
+            font-size: 0.9rem;
             font-weight: 500;
+            transition: color 0.3s;
         }
 
         nav a:hover {
-            color: var(--primary);
+            color: var(--accent);
         }
 
         /* Hero Section */
         .hero {
-            margin-top: 80px;
-            padding: 4rem 2rem;
+            padding: 180px 20px 100px;
             text-align: center;
-            background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
-            top: -200px;
-            right: -200px;
-            animation: pulse 4s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.2); opacity: 0.8; }
+            background: radial-gradient(circle at center, #222222 0%, #050505 60%);
+            border-bottom: 1px solid var(--border);
         }
 
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            margin-bottom: 1.5rem;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
         }
 
         .btn {
             display: inline-block;
+            background: var(--accent);
+            color: var(--bg-deep);
             padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--light);
+            font-weight: 600;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.4);
+            border-radius: 4px;
+            transition: all 0.3s ease;
         }
 
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.6);
+            background: #cccccc;
+            transform: translateY(-2px);
         }
 
-        /* Tabs */
-        .tabs-container {
-            max-width: 1400px;
-            margin: 3rem auto;
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            background: var(--bg-elevated);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 0 2rem;
+        }
+
+        /* Tabs System */
+        .tabs-container {
+            margin-top: 4rem;
         }
 
         .tabs {
             display: flex;
+            justify-content: center;
             gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
         }
 
         .tab-btn {
-            padding: 1rem 2rem;
-            background: var(--code-bg);
-            border: 2px solid transparent;
-            color: var(--gray);
-            cursor: pointer;
-            border-radius: 10px;
+            background: none;
+            border: none;
+            color: var(--text-dim);
             font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .tab-btn:hover {
-            border-color: var(--primary);
-            color: var(--light);
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s;
         }
 
         .tab-btn.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--light);
-            border-color: transparent;
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
         }
 
         .tab-content {
             display: none;
-            background: var(--code-bg);
-            padding: 3rem;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            animation: fadeIn 0.5s;
+            animation: fadeIn 0.4s ease;
         }
 
         .tab-content.active {
@@ -187,956 +182,289 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Content Styling */
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-
-        h3 {
-            font-size: 1.8rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: var(--secondary);
-        }
-
-        h4 {
-            font-size: 1.3rem;
-            margin-top: 1.5rem;
-            margin-bottom: 0.8rem;
-            color: var(--success);
-        }
-
-        p {
-            margin-bottom: 1rem;
-            color: var(--gray);
-        }
-
-        ul, ol {
-            margin-left: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-            color: var(--gray);
-        }
-
-        code {
-            background: var(--darker);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            color: var(--primary);
-            font-family: 'Courier New', monospace;
-        }
-
-        pre {
-            background: var(--darker);
-            padding: 1.5rem;
-            border-radius: 10px;
-            overflow-x: auto;
-            margin: 1rem 0;
-            border-left: 4px solid var(--primary);
-        }
-
-        pre code {
-            background: none;
-            padding: 0;
-            color: var(--success);
-        }
-
+        /* Grid Layouts */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin: 2rem 0;
         }
 
-        .feature-card {
-            background: var(--darker);
+        .card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
             padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            transition: transform 0.3s, border-color 0.3s;
+            transition: border-color 0.3s;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
+        .card:hover {
+            border-color: var(--accent);
         }
 
-        .feature-card h3 {
-            margin-top: 0;
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
         }
 
+        /* Code Blocks */
+        pre {
+            background: var(--bg-elevated);
+            padding: 1.5rem;
+            border-left: 2px solid var(--accent);
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        code {
+            color: #d4d4d4;
+        }
+
+        /* Tech Specs Table */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 2rem 0;
+            margin-top: 2rem;
         }
 
-        table th, table td {
-            padding: 1rem;
+        th, td {
             text-align: left;
-            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
         }
 
-        table th {
-            background: var(--darker);
-            color: var(--primary);
-            font-weight: bold;
+        th {
+            color: var(--text-dim);
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
         }
 
-        table tr:hover {
-            background: rgba(0, 212, 255, 0.05);
+        /* Download Section */
+        .download-area {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            padding: 3rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .meta-tag {
+            display: inline-block;
+            background: var(--bg-elevated);
+            padding: 0.25rem 0.75rem;
+            font-size: 0.8rem;
+            margin: 0 0.5rem;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
         }
 
         /* Footer */
         footer {
-            background: var(--darker);
-            padding: 3rem 2rem;
+            margin-top: 6rem;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border);
             text-align: center;
-            border-top: 2px solid var(--primary);
-            margin-top: 4rem;
         }
 
-        footer .discord-link {
+        .discord-btn {
+            color: var(--text-main);
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: #5865F2;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            margin-top: 1rem;
-            transition: transform 0.3s;
-        }
-
-        footer .discord-link:hover {
-            transform: scale(1.05);
-        }
-
-        .highlight {
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        .success {
-            color: var(--success);
-        }
-
-        .warning {
-            color: var(--warning);
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--darker);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 6px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary);
+            gap: 10px;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
+
     <nav>
         <div class="container">
-            <div class="logo">🎮 MEP Sandbox Engine</div>
+            <div class="logo">MEP Sandbox</div>
             <ul>
-                <li><a href="#overview">Overview</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#documentation">Docs</a></li>
-                <li><a href="#download">Download</a></li>
-                <li><a href="https://discord.gg/BsUQUFYBmN" target="_blank">Discord</a></li>
+                <li><a href="#" onclick="openTab('overview-tab')">Engine</a></li>
+                <li><a href="#" onclick="openTab('features-tab')">Features</a></li>
+                <li><a href="#" onclick="openTab('api-tab')">Documentation</a></li>
+                <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/raw/main/MicahEngineStudio_v1.3.rar" class="highlight">Download v1.3</a></li>
             </ul>
         </div>
     </nav>
 
     <section class="hero">
-        <h1>MEP Sandbox Engine v1.1</h1>
-        <p>Professional Roblox-Inspired Game Development Platform</p>
-        <a href="#download" class="btn">Download Now</a>
+        <div class="container">
+            <h1>Micah Engine Studio v1.3</h1>
+            <p>A professional, standalone 3D development environment. Built with Python and OpenGL for precision, performance, and complete creative control.</p>
+            <div class="cta-group">
+                <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/raw/main/MicahEngineStudio_v1.3.rar" class="btn">Download Studio (v1.3)</a>
+                <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn btn-outline">Join Discord</a>
+            </div>
+            <div style="margin-top: 2rem;">
+                <span class="meta-tag">Windows 10/11</span>
+                <span class="meta-tag">Standalone EXE</span>
+                <span class="meta-tag">OpenGL 3.3+</span>
+            </div>
+        </div>
     </section>
 
-    <div class="tabs-container" id="overview">
+    <div class="container tabs-container">
         <div class="tabs">
             <button class="tab-btn active" onclick="openTab('overview-tab')">Overview</button>
-            <button class="tab-btn" onclick="openTab('features-tab')">Features</button>
-            <button class="tab-btn" onclick="openTab('quickstart-tab')">Quick Start</button>
-            <button class="tab-btn" onclick="openTab('meplua-tab')">MEPLua Language</button>
-            <button class="tab-btn" onclick="openTab('api-tab')">API Reference</button>
-            <button class="tab-btn" onclick="openTab('examples-tab')">Examples</button>
+            <button class="tab-btn" onclick="openTab('features-tab')">System Features</button>
+            <button class="tab-btn" onclick="openTab('meplua-tab')">MEPLua Scripting</button>
             <button class="tab-btn" onclick="openTab('download-tab')">Download</button>
         </div>
 
-        <!-- Overview Tab -->
         <div id="overview-tab" class="tab-content active">
-            <h2>🌟 Welcome to MEP Sandbox Engine</h2>
-            <p>MEP Sandbox Engine is a professional 3D game development platform inspired by Roblox Studio, featuring a powerful visual editor and the MEPLua scripting language.</p>
-            
             <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>🎨 Visual Editor</h3>
-                    <p>Roblox-style interface with Explorer, Properties, 3D Viewport, and MEPIDE script editor.</p>
+                <div class="card">
+                    <h3>High-Fidelity Interface</h3>
+                    <p>A modern docking layout featuring a centralized viewport, hierarchy Explorer, and a real-time Properties Inspector. Designed for efficiency.</p>
                 </div>
-                <div class="feature-card">
-                    <h3>🧱 50+ Object Types</h3>
-                    <p>Parts, Models, Humanoids, Scripts, Motors, Values, GUI elements, and more!</p>
+                <div class="card">
+                    <h3>Smart Gizmos</h3>
+                    <p>Precision transformation tools. Move, Rotate, and Scale with RGB-coded axis locking and global/local space snapping support.</p>
                 </div>
-                <div class="feature-card">
-                    <h3>📜 MEPLua Scripting</h3>
-                    <p>Full Lua runtime with game object API, events, and lifecycle callbacks.</p>
+                <div class="card">
+                    <h3>Asset Pipeline</h3>
+                    <p>Full support for OBJ Import/Export. Create primitives or import custom meshes. Save scenes to JSON with full state persistence.</p>
                 </div>
-                <div class="feature-card">
-                    <h3>🎮 Ready to Ship</h3>
-                    <p>Standalone EXE - no Python or dependencies required for end users!</p>
+                <div class="card">
+                    <h3>MEPLua Integration</h3>
+                    <p>Built-in IDE with syntax highlighting. Write logic using the MEPLua standard—a fast, lightweight implementation of Lua tailored for game logic.</p>
                 </div>
             </div>
+        </div>
 
-            <h3>What Can You Build?</h3>
-            <ul>
-                <li><span class="success">✅</span> Tycoon games with droppers and conveyors</li>
-                <li><span class="success">✅</span> Obby/parkour courses with kill bricks</li>
-                <li><span class="success">✅</span> Character controllers and rigs</li>
-                <li><span class="success">✅</span> Interactive worlds with scripts</li>
-                <li><span class="success">✅</span> Prototypes and game mechanics</li>
-            </ul>
-
-            <h3>System Requirements</h3>
+        <div id="features-tab" class="tab-content">
+            <h2>Core Architecture</h2>
+            <p>MEP Sandbox Engine removes the bloat, offering a streamlined environment for prototyping and game creation.</p>
+            
             <table>
                 <tr>
                     <th>Component</th>
-                    <th>Minimum</th>
-                    <th>Recommended</th>
+                    <th>Specification</th>
                 </tr>
                 <tr>
-                    <td>OS</td>
-                    <td>Windows 10</td>
-                    <td>Windows 11</td>
+                    <td>Rendering</td>
+                    <td>OpenGL 3.3 Core Profile with Wireframe & Ambient controls</td>
                 </tr>
                 <tr>
-                    <td>RAM</td>
-                    <td>4 GB</td>
-                    <td>8 GB</td>
+                    <td>Scripting</td>
+                    <td>MEPLua (Lua 5.x compatible) with threaded execution</td>
                 </tr>
                 <tr>
-                    <td>GPU</td>
-                    <td>OpenGL 3.3+</td>
-                    <td>Dedicated GPU</td>
+                    <td>Physics/Transform</td>
+                    <td>Vector3 math, Euler rotation, Raycasting support</td>
                 </tr>
                 <tr>
-                    <td>Storage</td>
-                    <td>500 MB</td>
-                    <td>1 GB</td>
+                    <td>File Format</td>
+                    <td>.JSON Scene files, .OBJ Model export</td>
+                </tr>
+                <tr>
+                    <td>Structure</td>
+                    <td>Parent-Child hierarchy (Explorer) with Grouping</td>
                 </tr>
             </table>
-        </div>
 
-        <!-- Features Tab -->
-        <div id="features-tab" class="tab-content">
-            <h2>✨ Core Features</h2>
-
-            <h3>🎯 Transform Tools</h3>
-            <ul>
-                <li><span class="highlight">Move Gizmo</span> - Red/Green/Blue arrows for X/Y/Z translation</li>
-                <li><span class="highlight">Rotate Gizmo</span> - RGB rings for rotation</li>
-                <li><span class="highlight">Scale Gizmo</span> - RGB squares for scaling</li>
-                <li>Live property updates while dragging</li>
-            </ul>
-
-            <h3>👥 Multi-Selection & Grouping</h3>
-            <ul>
-                <li><span class="highlight">Ctrl+Click</span> - Add to selection</li>
-                <li><span class="highlight">Shift+Click</span> - Range select</li>
-                <li><span class="success">Group as Model</span> - Combine parts into container</li>
-                <li><span class="success">Group as Rig</span> - Auto-create character with Humanoid + Motor6D joints</li>
-            </ul>
-
-            <h3>🔧 Advanced Properties</h3>
-            <ul>
-                <li>50+ properties per object type</li>
-                <li>Position, Rotation, Scale, Size</li>
-                <li>Color picker with RGB support</li>
-                <li>Transparency, Material, Physics settings</li>
-                <li>Lock, Visibility toggles</li>
-            </ul>
-
-            <h3>📝 MEPIDE Script Editor</h3>
-            <ul>
-                <li>Syntax highlighting for Lua</li>
-                <li>Multiple script tabs</li>
-                <li>Double-click scripts to open</li>
-                <li>Run/Stop controls</li>
-                <li>Output console with errors</li>
-            </ul>
-
-            <h3>🎮 Object Types (50+)</h3>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h4>Parts & Shapes</h4>
-                    <p>Part, Sphere, Cylinder, Wedge, CornerWedge, MeshPart</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Gameplay</h4>
-                    <p>Model, Humanoid, Tool, Accessory, SpawnLocation</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Scripting</h4>
-                    <p>Script, LocalScript, ModuleScript</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Rigging</h4>
-                    <p>Motor6D, Weld, Attachment</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Physics</h4>
-                    <p>BodyVelocity, BodyPosition, BodyGyro, Explosion</p>
-                </div>
-                <div class="feature-card">
-                    <h4>Values</h4>
-                    <p>BoolValue, IntValue, NumberValue, StringValue, Vector3Value</p>
-                </div>
+            <br>
+            <div class="card">
+                <h3>Prefabs & Object Types</h3>
+                <p>Instantly spawn Parts, Spheres, Wedges, SpawnLocations, and Cameras. Utilize <strong>Group as Model</strong> and <strong>Group as Rig</strong> for complex character creation.</p>
             </div>
         </div>
 
-        <!-- Quick Start Tab -->
-        <div id="quickstart-tab" class="tab-content">
-            <h2>🚀 Quick Start Guide</h2>
-
-            <h3>Installation (Simple!)</h3>
-            <ol>
-                <li>Extract <code>MicahEngineStudio_v1.1_Release.zip</code></li>
-                <li>Run <code>MicahEngineStudio.exe</code></li>
-                <li>Start creating!</li>
-            </ol>
-
-            <h3>Create Your First Part</h3>
-            <ol>
-                <li>Launch the engine</li>
-                <li>Right-click <span class="highlight">Workspace</span> in Explorer</li>
-                <li>Select <span class="highlight">Insert Object → Parts → Part</span></li>
-                <li>Click the part to select it</li>
-                <li>Use gizmos to move/rotate/scale</li>
-            </ol>
-
-            <h3>Your First Script</h3>
-            <ol>
-                <li>Right-click your Part → <span class="highlight">Insert Object → Scripting → Script</span></li>
-                <li>Double-click the Script in Explorer</li>
-                <li>Write this code:</li>
-            </ol>
-
-<pre><code>-- Spinning, color-changing part
-local rotation = 0
-
-function on_start()
-    print("Hello from MEPLua!")
-end
-
-function on_update(dt)
-    rotation = rotation + (45 * dt)
-    script.Parent.Rotation = Vector3.new(0, rotation, 0)
-end</code></pre>
-
-            <ol start="4">
-                <li>Click <span class="success">Play ▶️</span></li>
-                <li>Watch your part spin!</li>
-            </ol>
-
-            <h3>Camera Controls</h3>
-            <table>
-                <tr>
-                    <th>Action</th>
-                    <th>Control</th>
-                </tr>
-                <tr>
-                    <td>Move</td>
-                    <td><code>W A S D</code></td>
-                </tr>
-                <tr>
-                    <td>Up/Down</td>
-                    <td><code>E</code> / <code>Q</code></td>
-                </tr>
-                <tr>
-                    <td>Orbit</td>
-                    <td>Right-click + drag</td>
-                </tr>
-                <tr>
-                    <td>Pan</td>
-                    <td>Middle-click + drag</td>
-                </tr>
-                <tr>
-                    <td>Zoom</td>
-                    <td>Mouse wheel</td>
-                </tr>
-                <tr>
-                    <td>Frame selection</td>
-                    <td><code>F</code></td>
-                </tr>
-            </table>
-        </div>
-
-        <!-- MEPLua Language Tab -->
         <div id="meplua-tab" class="tab-content">
-            <h2>📜 MEPLua Scripting Language</h2>
+            <h2>MEPLua API</h2>
+            <p>Control every aspect of your world using standard Lua syntax. Attach scripts to any object.</p>
 
-            <p>MEPLua is a Lua-based scripting language designed for game development in MEP Sandbox Engine. It provides a familiar API for Roblox developers while adding unique features.</p>
-
-            <h3>Script Lifecycle</h3>
-
-            <h4>on_start()</h4>
-            <p>Called <span class="highlight">once</span> when Play is pressed. Use for initialization:</p>
-<pre><code>function on_start()
-    print("Game started!")
-    script.Parent.Color = Color3.new(1, 0, 0)
-end</code></pre>
-
-            <h4>on_update(dt)</h4>
-            <p>Called <span class="highlight">every frame</span> (~60 FPS). <code>dt</code> = delta time in seconds:</p>
-<pre><code>local rotation = 0
-
-function on_update(dt)
-    rotation = rotation + (90 * dt)  -- 90° per second
-    script.Parent.Rotation = Vector3.new(0, rotation, 0)
-end</code></pre>
-
-            <h3>Core Globals</h3>
-            <table>
-                <tr>
-                    <th>Global</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td><code>script</code></td>
-                    <td>The script object itself</td>
-                </tr>
-                <tr>
-                    <td><code>script.Parent</code></td>
-                    <td>Object containing this script</td>
-                </tr>
-                <tr>
-                    <td><code>workspace</code></td>
-                    <td>Root game world</td>
-                </tr>
-                <tr>
-                    <td><code>print(...)</code></td>
-                    <td>Output to console</td>
-                </tr>
-                <tr>
-                    <td><code>wait(sec)</code></td>
-                    <td>Pause execution</td>
-                </tr>
-                <tr>
-                    <td><code>tick()</code></td>
-                    <td>Current time in seconds</td>
-                </tr>
-            </table>
-
-            <h3>Creating Objects</h3>
-<pre><code>function on_start()
-    -- Create a new part
-    local part = Instance.new("Part")
-    part.Name = "MyPart"
-    part.Position = Vector3.new(0, 10, 0)
-    part.Size = Vector3.new(2, 2, 2)
-    part.Color = Color3.fromRGB(255, 100, 200)
-    part.Parent = workspace
-end</code></pre>
-
-            <h3>Events</h3>
-
-            <h4>Part.Touched</h4>
-<pre><code>function on_start()
-    local part = script.Parent
-    
-    part.Touched:Connect(function(otherPart)
-        print("Touched by: " .. otherPart.Name)
-        
-        local humanoid = otherPart.Parent:FindFirstChild("Humanoid")
-        if humanoid then
-            humanoid.Health = humanoid.Health - 10
-        end
-    end)
-end</code></pre>
-
-            <h4>Humanoid.Died</h4>
-<pre><code>humanoid.Died:Connect(function()
-    print(humanoid.Parent.Name .. " died!")
-end)</code></pre>
-
-            <h3>Math Types</h3>
-
-            <h4>Vector3</h4>
-<pre><code>-- Create vector
-local vec = Vector3.new(10, 5, -3)
-
--- Access components
-print(vec.X, vec.Y, vec.Z)
-
--- Math operations
-local sum = vec1 + vec2
-local scaled = vec * 5
-
--- Properties
-print(vec.Magnitude)  -- Length
-print(vec.Unit)       -- Normalized</code></pre>
-
-            <h4>Color3</h4>
-<pre><code>-- From 0-1 range
-local red = Color3.new(1, 0, 0)
-
--- From 0-255 range
-local blue = Color3.fromRGB(0, 0, 255)
-
--- From HSV
-local rainbow = Color3.fromHSV(0.5, 1, 1)</code></pre>
-        </div>
-
-        <!-- API Reference Tab -->
-        <div id="api-tab" class="tab-content">
-            <h2>📚 API Reference</h2>
-
-            <h3>Instance Methods</h3>
-            <table>
-                <tr>
-                    <th>Method</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td><code>Instance.new(className)</code></td>
-                    <td>Create new instance</td>
-                </tr>
-                <tr>
-                    <td><code>obj:Destroy()</code></td>
-                    <td>Delete instance</td>
-                </tr>
-                <tr>
-                    <td><code>obj:Clone()</code></td>
-                    <td>Copy instance</td>
-                </tr>
-                <tr>
-                    <td><code>obj:FindFirstChild(name)</code></td>
-                    <td>Find child by name</td>
-                </tr>
-                <tr>
-                    <td><code>obj:GetChildren()</code></td>
-                    <td>Array of all children</td>
-                </tr>
-                <tr>
-                    <td><code>obj:IsA(className)</code></td>
-                    <td>Check instance type</td>
-                </tr>
-            </table>
-
-            <h3>BasePart Properties</h3>
-            <table>
-                <tr>
-                    <th>Property</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td><code>Position</code></td>
-                    <td>Vector3</td>
-                    <td>World position</td>
-                </tr>
-                <tr>
-                    <td><code>Rotation</code></td>
-                    <td>Vector3</td>
-                    <td>Euler angles (degrees)</td>
-                </tr>
-                <tr>
-                    <td><code>Size</code></td>
-                    <td>Vector3</td>
-                    <td>Dimensions</td>
-                </tr>
-                <tr>
-                    <td><code>Color</code></td>
-                    <td>Color3</td>
-                    <td>RGB color</td>
-                </tr>
-                <tr>
-                    <td><code>Transparency</code></td>
-                    <td>number</td>
-                    <td>0-1 (0=opaque)</td>
-                </tr>
-                <tr>
-                    <td><code>Anchored</code></td>
-                    <td>bool</td>
-                    <td>Fixed in place</td>
-                </tr>
-                <tr>
-                    <td><code>CanCollide</code></td>
-                    <td>bool</td>
-                    <td>Solid to others</td>
-                </tr>
-                <tr>
-                    <td><code>Locked</code></td>
-                    <td>bool</td>
-                    <td>Lock in studio</td>
-                </tr>
-                <tr>
-                    <td><code>Visible</code></td>
-                    <td>bool</td>
-                    <td>Visibility</td>
-                </tr>
-            </table>
-
-            <h3>Humanoid Properties</h3>
-            <table>
-                <tr>
-                    <th>Property</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td><code>Health</code></td>
-                    <td>number</td>
-                    <td>Current HP</td>
-                </tr>
-                <tr>
-                    <td><code>MaxHealth</code></td>
-                    <td>number</td>
-                    <td>Maximum HP</td>
-                </tr>
-                <tr>
-                    <td><code>WalkSpeed</code></td>
-                    <td>number</td>
-                    <td>Studs per second</td>
-                </tr>
-                <tr>
-                    <td><code>JumpPower</code></td>
-                    <td>number</td>
-                    <td>Jump strength</td>
-                </tr>
-            </table>
-
-            <h3>Math Functions</h3>
-            <table>
-                <tr>
-                    <th>Function</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td><code>math.random()</code></td>
-                    <td>Random 0-1</td>
-                </tr>
-                <tr>
-                    <td><code>math.random(max)</code></td>
-                    <td>Random 1-max</td>
-                </tr>
-                <tr>
-                    <td><code>math.random(min, max)</code></td>
-                    <td>Random min-max</td>
-                </tr>
-                <tr>
-                    <td><code>math.floor(x)</code></td>
-                    <td>Round down</td>
-                </tr>
-                <tr>
-                    <td><code>math.ceil(x)</code></td>
-                    <td>Round up</td>
-                </tr>
-                <tr>
-                    <td><code>math.abs(x)</code></td>
-                    <td>Absolute value</td>
-                </tr>
-                <tr>
-                    <td><code>math.sqrt(x)</code></td>
-                    <td>Square root</td>
-                </tr>
-                <tr>
-                    <td><code>math.sin/cos/tan(rad)</code></td>
-                    <td>Trigonometry</td>
-                </tr>
-            </table>
-
-            <h3>Common Events</h3>
-            <table>
-                <tr>
-                    <th>Event</th>
-                    <th>Object</th>
-                    <th>Fires When</th>
-                </tr>
-                <tr>
-                    <td><code>Touched</code></td>
-                    <td>BasePart</td>
-                    <td>Another part touches</td>
-                </tr>
-                <tr>
-                    <td><code>Died</code></td>
-                    <td>Humanoid</td>
-                    <td>Health reaches 0</td>
-                </tr>
-                <tr>
-                    <td><code>HealthChanged</code></td>
-                    <td>Humanoid</td>
-                    <td>Health changes</td>
-                </tr>
-            </table>
-        </div>
-
-        <!-- Examples Tab -->
-        <div id="examples-tab" class="tab-content">
-            <h2>💡 Code Examples</h2>
-
-            <h3>Kill Brick</h3>
-            <p>Instant-death obstacle:</p>
-<pre><code>local killBrick = script.Parent
-
+            <h3>The Lifecycle</h3>
+            <pre><code>-- on_start() runs once when the game loads
 function on_start()
-    killBrick.Color = Color3.fromRGB(255, 0, 0)
-    killBrick.Touched:Connect(onTouched)
+    print("Engine Initialized")
+    script.Parent.Color = Color3.new(1, 1, 1) -- Set to White
 end
 
-function onTouched(hit)
-    local humanoid = hit.Parent:FindFirstChild("Humanoid")
+-- on_update(dt) runs every frame
+function on_update(dt)
+    -- Rotate object on Y axis
+    local currentRot = script.Parent.Rotation
+    script.Parent.Rotation = Vector3.new(currentRot.X, currentRot.Y + (45 * dt), currentRot.Z)
+end</code></pre>
+
+            <h3>Interactive Events</h3>
+            <pre><code>-- Handle physics collisions
+script.Parent.Touched:Connect(function(otherPart)
+    print("Collision Detected with: " .. otherPart.Name)
+    
+    local humanoid = otherPart.Parent:FindFirstChild("Humanoid")
     if humanoid then
-        humanoid.Health = 0
-        print(hit.Parent.Name .. " eliminated!")
+        humanoid.Health = 0 -- Eliminate player
     end
-end</code></pre>
-
-            <h3>Tycoon Dropper</h3>
-            <p>Spawn parts at intervals:</p>
-<pre><code>local dropper = script.Parent
-local dropRate = 2  -- seconds
-local timer = 0
-
-function on_update(dt)
-    timer = timer + dt
-    
-    if timer >= dropRate then
-        timer = 0
-        spawnPart()
-    end
-end
-
-function spawnPart()
-    local part = Instance.new("Part")
-    part.Name = "DroppedPart"
-    part.Size = Vector3.new(1, 1, 1)
-    part.Color = Color3.fromRGB(255, 215, 0)
-    part.Position = dropper.Position + Vector3.new(0, -2, 0)
-    part.Parent = workspace
-    print("Dropped a part!")
-end</code></pre>
-
-            <h3>Damage Zone</h3>
-            <p>Continuous damage over time:</p>
-<pre><code>local damageZone = script.Parent
-local damagePerSecond = 25
-local playersInZone = {}
-
-function on_start()
-    damageZone.Touched:Connect(function(hit)
-        local humanoid = hit.Parent:FindFirstChild("Humanoid")
-        if humanoid then
-            playersInZone[humanoid] = true
-        end
-    end)
-end
-
-function on_update(dt)
-    for humanoid, _ in pairs(playersInZone) do
-        if humanoid.Health > 0 then
-            humanoid.Health = humanoid.Health - (damagePerSecond * dt)
-        else
-            playersInZone[humanoid] = nil
-        end
-    end
-end</code></pre>
-
-            <h3>Teleporter</h3>
-            <p>Transport between locations:</p>
-<pre><code>local entrance = script.Parent
-local exitPosition = Vector3.new(50, 5, 50)
-
-function on_start()
-    entrance.Color = Color3.fromRGB(255, 200, 0)
-    entrance.Touched:Connect(onTouched)
-end
-
-function onTouched(hit)
-    if hit.Parent:FindFirstChild("HumanoidRootPart") then
-        local rootPart = hit.Parent.HumanoidRootPart
-        rootPart.Position = exitPosition
-        print("Teleported " .. hit.Parent.Name)
-    end
-end</code></pre>
-
-            <h3>Healing Zone</h3>
-            <p>Restore health:</p>
-<pre><code>local healZone = script.Parent
-local healPerSecond = 20
-
-function on_start()
-    healZone.Color = Color3.fromRGB(0, 255, 100)
-    healZone.Touched:Connect(onTouched)
-end
-
-function onTouched(hit)
-    local humanoid = hit.Parent:FindFirstChild("Humanoid")
-    
-    if humanoid and humanoid.Health < humanoid.MaxHealth then
-        humanoid.Health = math.min(
-            humanoid.Health + healPerSecond,
-            humanoid.MaxHealth
-        )
-    end
-end</code></pre>
-
-            <h3>Spinning Part</h3>
-            <p>Continuous rotation:</p>
-<pre><code>local part = script.Parent
-local rotationSpeed = 90  -- degrees per second
-local rotation = 0
-
-function on_update(dt)
-    rotation = rotation + (rotationSpeed * dt)
-    part.Rotation = Vector3.new(0, rotation, 0)
-end</code></pre>
-
-            <h3>Color Cycle</h3>
-            <p>Rainbow effect:</p>
-<pre><code>local part = script.Parent
-local hue = 0
-
-function on_update(dt)
-    hue = hue + (0.2 * dt)  -- Cycle through colors
-    if hue > 1 then hue = 0 end
-    
-    part.Color = Color3.fromHSV(hue, 1, 1)
-end</code></pre>
+end)</code></pre>
         </div>
 
-        <!-- Download Tab -->
         <div id="download-tab" class="tab-content">
-            <h2 id="download">📥 Download MEP Sandbox Engine v1.1</h2>
-
-            <div class="feature-card" style="max-width: 800px; margin: 2rem auto;">
-                <h3>🎮 MicahEngineStudio v1.1 - Complete Package</h3>
-                <p><span class="highlight">Size:</span> 18.1 MB</p>
-                <p><span class="highlight">Platform:</span> Windows 10/11 (64-bit)</p>
-                <p><span class="highlight">Release Date:</span> December 2025</p>
+            <div class="download-area">
+                <h2>Get Started</h2>
+                <p style="margin-bottom: 2rem;">Download the complete studio package. Includes the launcher, engine, and default assets.</p>
                 
-                <h4>What's Included:</h4>
-                <ul>
-                    <li><span class="success">✅</span> Standalone EXE (no Python needed)</li>
-                    <li><span class="success">✅</span> All dependencies bundled</li>
-                    <li><span class="success">✅</span> Complete documentation</li>
-                    <li><span class="success">✅</span> MEPLua scripting guide</li>
-                    <li><span class="success">✅</span> Example projects</li>
-                </ul>
-
-                <div style="text-align: center; margin-top: 2rem;">
-                    <a href="MicahEngineStudio_v1.1_Release.zip" class="btn" download>
-                        📦 Download v1.1 (18.1 MB)
-                    </a>
-                </div>
-
-                <h4 style="margin-top: 2rem;">Installation:</h4>
-                <ol>
-                    <li>Download the ZIP file</li>
-                    <li>Extract to any folder</li>
-                    <li>Run <code>MicahEngineStudio.exe</code></li>
-                    <li>Start creating!</li>
-                </ol>
-            </div>
-
-            <h3>📚 Additional Resources</h3>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h4>📖 Documentation</h4>
-                    <p>Complete guides, tutorials, and API reference included in the download.</p>
-                </div>
-                <div class="feature-card">
-                    <h4>💬 Community</h4>
-                    <p>Join our Discord for support, examples, and to share your creations!</p>
-                </div>
-                <div class="feature-card">
-                    <h4>🔧 Source Code</h4>
-                    <p>Build from source instructions included for developers.</p>
+                <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/raw/main/MicahEngineStudio_v1.3.rar" class="btn" style="font-size: 1.2rem; padding: 1.5rem 3rem;">
+                    ⬇️ Download v1.3 (.RAR)
+                </a>
+                
+                <div style="margin-top: 2rem; text-align: left; max-width: 500px; margin-left: auto; margin-right: auto;">
+                    <h4>Installation Instructions:</h4>
+                    <ol style="color: var(--text-dim); margin-left: 1.5rem; margin-top: 1rem;">
+                        <li>Download the <strong>MicahEngineStudio_v1.3.rar</strong> file.</li>
+                        <li>Extract the RAR file (you need WinRAR or 7-Zip).</li>
+                        <li>Run <strong>MicahEngineStudio.exe</strong> inside the folder.</li>
+                        <li>No external dependencies required.</li>
+                    </ol>
                 </div>
             </div>
-
-            <h3>🔄 What's New in v1.1</h3>
-            <ul>
-                <li><span class="success">✅</span> Multi-selection (Ctrl+Click)</li>
-                <li><span class="success">✅</span> Group as Model / Group as Rig</li>
-                <li><span class="success">✅</span> 50+ properties exposed</li>
-                <li><span class="success">✅</span> Color picker fixed</li>
-                <li><span class="success">✅</span> MEPIDE script editor</li>
-                <li><span class="success">✅</span> Transform gizmos</li>
-                <li><span class="success">✅</span> Script double-click to open</li>
-            </ul>
         </div>
     </div>
 
     <footer>
-        <h2>🎮 MEP Sandbox Engine</h2>
-        <p>Professional game development for everyone</p>
-        
-        <a href="https://discord.gg/BsUQUFYBmN" class="discord-link" target="_blank">
-            <svg width="24" height="24" viewBox="0 0 71 55" fill="currentColor">
-                <path d="M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.41542C45.5603 0.39851 45.468 0.440769 45.4204 0.525289C44.7963 1.6353 44.105 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.905 3.0581 26.1886 1.6353 25.5617 0.525289C25.5141 0.443589 25.4218 0.40133 25.3294 0.41542C20.2584 1.2888 15.4057 2.8186 10.8776 4.8978C10.8384 4.9147 10.8048 4.9429 10.7825 4.9795C1.57795 18.7309 -0.943561 32.1443 0.293408 45.3914C0.299005 45.4562 0.335386 45.5182 0.385761 45.5576C6.45866 50.0174 12.3413 52.7249 18.1147 54.5195C18.2071 54.5477 18.305 54.5139 18.3638 54.4378C19.7295 52.5728 20.9469 50.6063 21.9907 48.5383C22.0523 48.4172 21.9935 48.2735 21.8676 48.2256C19.9366 47.4931 18.0979 46.6 16.3292 45.5858C16.1893 45.5041 16.1781 45.304 16.3068 45.2082C16.679 44.9293 17.0513 44.6391 17.4067 44.3461C17.471 44.2926 17.5606 44.2813 17.6362 44.3151C29.2558 49.6202 41.8354 49.6202 53.3179 44.3151C53.3935 44.2785 53.4831 44.2898 53.5502 44.3433C53.9057 44.6363 54.2779 44.9293 54.6529 45.2082C54.7816 45.304 54.7732 45.5041 54.6333 45.5858C52.8646 46.6197 51.0259 47.4931 49.0921 48.2228C48.9662 48.2707 48.9102 48.4172 48.9718 48.5383C50.038 50.6034 51.2554 52.5699 52.5959 54.435C52.6519 54.5139 52.7526 54.5477 52.845 54.5195C58.6464 52.7249 64.529 50.0174 70.6019 45.5576C70.6551 45.5182 70.6887 45.459 70.6943 45.3942C72.1747 30.0791 68.2147 16.7757 60.1968 4.9823C60.1772 4.9429 60.1437 4.9147 60.1045 4.8978ZM23.7259 37.3253C20.2276 37.3253 17.3451 34.1136 17.3451 30.1693C17.3451 26.225 20.1717 23.0133 23.7259 23.0133C27.308 23.0133 30.1626 26.2532 30.1066 30.1693C30.1066 34.1136 27.28 37.3253 23.7259 37.3253ZM47.3178 37.3253C43.8196 37.3253 40.9371 34.1136 40.9371 30.1693C40.9371 26.225 43.7636 23.0133 47.3178 23.0133C50.9 23.0133 53.7545 26.2532 53.6986 30.1693C53.6986 34.1136 50.9 37.3253 47.3178 37.3253Z"/>
-            </svg>
-            Join Discord Community
-        </a>
+        <div class="container">
+            <p>© 2025 FugthChat | MEP Sandbox Engine</p>
+            
+            <div style="margin-top: 1rem; font-size: 0.9rem;">
+                <a href="#" style="color: #888; text-decoration: none;">Privacy Policy</a> | 
+                <a href="#" style="color: #888; text-decoration: none;">Terms of Service</a>
+            </div>
 
-        <p style="margin-top: 2rem; color: var(--gray);">
-            © 2025 MEP Sandbox Engine · Version 1.1.0<br>
-            Made with ❤️ for game developers
-        </p>
+            <br>
+            <a href="https://discord.gg/BsUQUFYBmN" class="discord-btn">
+                Join the Discord Community
+            </a>
+        </div>
     </footer>
 
     <script>
         function openTab(tabId) {
-            // Hide all tabs
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
+            // Hide all contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
 
-            // Remove active from all buttons
+            // Deactivate all buttons
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
 
-            // Show selected tab
+            // Activate specific tab and button
             document.getElementById(tabId).classList.add('active');
-
-            // Highlight button
-            event.target.classList.add('active');
-
-            // Smooth scroll to tabs
-            document.querySelector('.tabs-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Highlight the navigation or tab button that was clicked
+            const eventButtons = Array.from(document.querySelectorAll('.tab-btn'));
+            const targetBtn = eventButtons.find(btn => btn.getAttribute('onclick').includes(tabId));
+            if(targetBtn) targetBtn.classList.add('active');
         }
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
     </script>
 </body>
 </html>
