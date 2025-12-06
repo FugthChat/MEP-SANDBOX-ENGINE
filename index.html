@@ -1,1482 +1,587 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEP Sandbox Engine | Professional 3D Development Platform</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MEP Sandbox Engine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "uhb9ql845d");
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4250792589739491" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111;
+      --border: #222;
+      --text: #fff;
+      --muted: #888;
+      --accent: #fff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
     
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4250792589739491" crossorigin="anonymous"></script>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --white: #ffffff;
-            --black: #000000;
-            --gray-50: #fafafa;
-            --gray-100: #f5f5f5;
-            --gray-200: #e5e5e5;
-            --gray-300: #d4d4d4;
-            --gray-400: #a3a3a3;
-            --gray-500: #737373;
-            --gray-600: #525252;
-            --gray-700: #404040;
-            --gray-800: #262626;
-            --gray-900: #171717;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
-            background: var(--white);
-            color: var(--black);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--white);
-            border-bottom: 1px solid var(--gray-200);
-            z-index: 9999;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 32px;
-            height: 72px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--black);
-            letter-spacing: -0.02em;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 48px;
-            align-items: center;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--gray-600);
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 600;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--black);
-        }
-
-        .login-btn {
-            background: var(--black);
-            color: var(--white);
-            border: none;
-            padding: 12px 28px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 15px;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-
-        .login-btn:hover {
-            background: var(--gray-800);
-        }
-
-        .user-display {
-            display: none;
-            align-items: center;
-            gap: 16px;
-            font-size: 14px;
-        }
-
-        .logout-link {
-            color: var(--black);
-            cursor: pointer;
-            text-decoration: underline;
-            font-weight: 600;
-        }
-
-        /* Modal */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: 12px;
-            padding: 48px;
-            max-width: 480px;
-            width: 90%;
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: transparent;
-            border: none;
-            color: var(--gray-500);
-            font-size: 28px;
-            cursor: pointer;
-        }
-
-        .modal-header h2 {
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 32px;
-            text-align: center;
-        }
-
-        .auth-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 32px;
-            background: var(--gray-100);
-            padding: 4px;
-            border-radius: 8px;
-        }
-
-        .auth-tab {
-            flex: 1;
-            background: transparent;
-            border: none;
-            padding: 12px;
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--gray-600);
-            cursor: pointer;
-            border-radius: 6px;
-            transition: all 0.2s;
-        }
-
-        .auth-tab.active {
-            color: var(--black);
-            background: var(--white);
-        }
-
-        .auth-form {
-            display: none;
-        }
-
-        .auth-form.active {
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 14px 16px;
-            border: 2px solid var(--gray-200);
-            border-radius: 6px;
-            font-size: 15px;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--black);
-        }
-
-        .form-button {
-            width: 100%;
-            background: var(--black);
-            color: var(--white);
-            border: none;
-            padding: 16px;
-            border-radius: 6px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .form-button:hover {
-            background: var(--gray-800);
-        }
-
-        .form-error {
-            display: none;
-            background: #fee;
-            color: #c00;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-        }
-
-        .form-error.active {
-            display: block;
-        }
-
-        /* Hero */
-        .hero {
-            padding: 180px 32px 120px;
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            font-size: 80px;
-            line-height: 1.1;
-            font-weight: 900;
-            letter-spacing: -0.03em;
-            margin-bottom: 24px;
-        }
-
-        .hero-subtitle {
-            font-size: 24px;
-            color: var(--gray-600);
-            margin-bottom: 48px;
-        }
-
-        .btn {
-            padding: 16px 36px;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.2s;
-            cursor: pointer;
-            border: 2px solid var(--black);
-        }
-
-        .btn-primary {
-            background: var(--black);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background: var(--gray-800);
-        }
-
-        .btn-primary:disabled {
-            background: var(--gray-300);
-            border-color: var(--gray-300);
-            cursor: not-allowed;
-        }
-
-        .btn-secondary {
-            background: var(--white);
-            color: var(--black);
-        }
-
-        .btn-secondary:hover {
-            background: var(--gray-100);
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-
-        /* Section */
-        .section {
-            max-width: 1400px;
-            margin: 120px auto;
-            padding: 0 32px;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .section-title {
-            font-size: 56px;
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            margin-bottom: 16px;
-        }
-
-        .section-subtitle {
-            font-size: 20px;
-            color: var(--gray-600);
-        }
-
-        /* Roadmap */
-        .roadmap-wrapper {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 32px;
-            margin-top: 48px;
-        }
-
-        .roadmap-column {
-            border: 2px solid var(--gray-200);
-            border-radius: 14px;
-            padding: 28px;
-            background: var(--white);
-        }
-
-        .roadmap-column h3 {
-            font-size: 18px;
-            font-weight: 800;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .roadmap-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .roadmap-card {
-            border: 2px solid var(--gray-200);
-            border-radius: 12px;
-            padding: 18px;
-            background: var(--gray-50);
-            transition: border-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .roadmap-card:hover {
-            border-color: var(--black);
-            transform: translateY(-2px);
-        }
-
-        .roadmap-card .meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 12px;
-            margin-bottom: 8px;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--gray-600);
-        }
-
-        .roadmap-card h4 {
-            font-size: 18px;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .roadmap-card p {
-            color: var(--gray-700);
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        .roadmap-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .roadmap-chip {
-            padding: 6px 10px;
-            border-radius: 20px;
-            border: 1px solid var(--gray-300);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: var(--gray-700);
-        }
-
-        .roadmap-card[data-state="done"] {
-            background: var(--white);
-            border-color: var(--black);
-        }
-
-        .roadmap-card[data-state="now"] {
-            background: var(--gray-900);
-            border-color: var(--black);
-            color: var(--white);
-        }
-
-        .roadmap-card[data-state="now"] p,
-        .roadmap-card[data-state="now"] .meta,
-        .roadmap-card[data-state="now"] .roadmap-chip {
-            color: var(--white);
-            border-color: var(--white);
-        }
-
-        .roadmap-card[data-state="next"] {
-            background: var(--gray-100);
-        }
-
-        /* Profile */
-        .profile-bar {
-            margin: 32px 0;
-            padding: 20px;
-            border: 2px solid var(--gray-200);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background: var(--gray-50);
-        }
-
-        .profile-avatar {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            border: 2px solid var(--gray-300);
-            object-fit: cover;
-            background: var(--white);
-        }
-
-        .profile-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .profile-meta strong {
-            font-size: 18px;
-        }
-
-        .profile-edit {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-left: auto;
-            align-items: center;
-        }
-
-        .profile-input {
-            padding: 10px 12px;
-            border: 1px solid var(--gray-300);
-            border-radius: 8px;
-            font-size: 14px;
-            min-width: 180px;
-        }
-
-        .profile-button {
-            background: var(--black);
-            color: var(--white);
-            border: none;
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .profile-button:hover {
-            background: var(--gray-800);
-        }
-
-        .profile-hint {
-            font-size: 12px;
-            color: var(--gray-600);
-        }
-
-        /* Community Guidelines */
-        .guidelines-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-            margin-top: 60px;
-        }
-
-        .guideline-card {
-            background: var(--white);
-            border: 2px solid var(--gray-200);
-            border-radius: 12px;
-            padding: 40px;
-            transition: all 0.3s;
-        }
-
-        .guideline-card:hover {
-            border-color: var(--black);
-        }
-
-        .guideline-icon {
-            font-size: 48px;
-            display: block;
-            margin-bottom: 20px;
-        }
-
-        .guideline-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .guideline-text {
-            color: var(--gray-600);
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        /* Stats */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            padding: 80px 0;
-            border-top: 1px solid var(--gray-200);
-            border-bottom: 1px solid var(--gray-200);
-            margin: 80px 0;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 56px;
-            font-weight: 900;
-            display: block;
-            letter-spacing: -0.02em;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: var(--gray-600);
-            margin-top: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 600;
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--gray-200);
-            padding: 80px 32px 40px;
-            margin-top: 120px;
-            background: var(--gray-50);
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr repeat(3, 1fr);
-            gap: 60px;
-            margin-bottom: 60px;
-        }
-
-        .footer-brand {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .footer-logo {
-            font-size: 24px;
-            font-weight: 800;
-        }
-
-        .footer-description {
-            color: var(--gray-600);
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        .footer-section h4 {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: var(--gray-600);
-            text-decoration: none;
-            font-size: 15px;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: var(--black);
-        }
-
-        .footer-bottom {
-            padding-top: 40px;
-            border-top: 1px solid var(--gray-200);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .footer-copyright {
-            color: var(--gray-500);
-            font-size: 14px;
-        }
-
-        .footer-legal {
-            display: flex;
-            gap: 24px;
-        }
-
-        .footer-legal a {
-            color: var(--gray-600);
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .footer-legal a:hover {
-            color: var(--black);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 48px;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .roadmap-line {
-                left: 20px;
-            }
-
-            .roadmap-dot {
-                left: 20px;
-            }
-
-            .roadmap-item,
-            .roadmap-item:nth-child(even) {
-                flex-direction: column;
-                padding-left: 60px;
-            }
-
-            .roadmap-content {
-                margin-left: 0;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10,10,10,0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    
+    /* Auth Button */
+    .auth-btn {
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.85rem;
+      transition: opacity 0.2s;
+    }
+    .auth-btn:hover { opacity: 0.9; }
+    
+    /* Main Content */
+    main {
+      padding-top: 80px;
+    }
+    
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: -2px;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      padding: 0.75rem 2rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: border-color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--muted); }
+    
+    /* Stats Section */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      padding: 2rem;
+      margin-bottom: 4rem;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    
+    /* Profile Section */
+    .profile-section {
+      max-width: 600px;
+      margin: 0 auto 4rem;
+      padding: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: none;
+    }
+    .profile-section.active { display: block; }
+    .profile-section h3 {
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+    }
+    .profile-row {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+    .avatar-preview {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--border);
+      overflow: hidden;
+    }
+    .avatar-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .profile-fields {
+      flex: 1;
+    }
+    .profile-fields label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .profile-fields input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.75rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .avatar-presets {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    .avatar-preset {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.2s;
+      overflow: hidden;
+      background: var(--border);
+    }
+    .avatar-preset:hover, .avatar-preset.selected {
+      border-color: var(--text);
+    }
+    .avatar-preset img {
+      width: 100%;
+      height: 100%;
+    }
+    .save-profile {
+      margin-top: 1rem;
+      width: 100%;
+    }
+    
+    /* Roadmap Section */
+    .roadmap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    .roadmap h2 {
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2rem;
+    }
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    @media (max-width: 900px) {
+      .roadmap-grid { grid-template-columns: 1fr; }
+    }
+    .roadmap-col h4 {
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .roadmap-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .roadmap-card h5 {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+    .roadmap-card p {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    footer a {
+      color: var(--text);
+      text-decoration: none;
+    }
+    footer a:hover { text-decoration: underline; }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
+    }
+  </style>
 </head>
 <body>
-
-    <!-- Auth Modal -->
-    <div class="modal-overlay" id="authModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">×</button>
-            
-            <div class="modal-header">
-                <h2>Sign In to Download</h2>
-            </div>
-
-            <div class="auth-tabs">
-                <button class="auth-tab active" onclick="switchTab('signin')">Sign In</button>
-                <button class="auth-tab" onclick="switchTab('signup')">Sign Up</button>
-            </div>
-
-            <div class="form-error" id="authError"></div>
-
-            <form class="auth-form active" id="signinForm">
-                <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-input" id="signin-email" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-input" id="signin-password" required>
-                </div>
-                <button type="submit" class="form-button">Sign In</button>
-            </form>
-
-            <form class="auth-form" id="signupForm">
-                <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-input" id="signup-email" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-input" id="signup-password" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Confirm Password</label>
-                    <input type="password" class="form-input" id="signup-confirm" required>
-                </div>
-                <button type="submit" class="form-button">Create Account</button>
-            </form>
-        </div>
+  <nav>
+    <div class="logo">MEP Sandbox</div>
+    <div class="nav-links">
+      <a href="#roadmap">Roadmap</a>
+      <a href="https://discord.gg/BsUQUFYBmN" target="_blank">Discord</a>
+      <a href="https://buy.stripe.com/5kQ6oHcD6amY1i31k0grS0f" target="_blank">Support</a>
+      <button class="auth-btn" id="authBtn">Sign In</button>
     </div>
+  </nav>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="nav-logo">MEP Sandbox</div>
-            <ul class="nav-links">
-                <li><a href="#roadmap">Roadmap</a></li>
-                <li><a href="#community">Community</a></li>
-                <li><a href="#download">Download</a></li>
-            </ul>
-            <div class="nav-auth">
-                <button id="login-btn" class="login-btn">Sign In</button>
-                <div id="user-display" class="user-display">
-                    <span><span id="username-span">User</span></span>
-                    <a class="logout-link" id="logout-btn">Sign Out</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero -->
+  <main>
     <section class="hero">
-        <h1>Build 3D Worlds</h1>
-        <p class="hero-subtitle">Professional 3D engine. Script with Lua. Deploy anywhere. Free forever.</p>
-        
-        <div class="btn-group">
-            <button id="download-btn" class="btn btn-primary" disabled>
-                Sign In to Download
-            </button>
-            <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn btn-secondary">
-                Join Discord
-            </a>
-        </div>
-
-        <div style="color: var(--gray-500); font-size: 14px; margin-top: 32px;">
-            Windows 10/11 • OpenGL 3.3+ • 47MB
-        </div>
+      <h1>Build Anything</h1>
+      <p>A lightweight sandbox engine for creators. Design, prototype, and bring your ideas to life with MEPLua scripting and 50+ built-in object types.</p>
+      <div class="hero-buttons">
+        <a href="#" class="btn-primary" id="downloadBtn">Download v1.3</a>
+        <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" class="btn-secondary" target="_blank">View Source</a>
+      </div>
     </section>
 
-    <!-- Profile -->
-    <div class="section" id="profile">
-        <div class="section-header">
-            <h2 class="section-title">Your Profile</h2>
-            <p class="section-subtitle">Customize your display name and avatar</p>
+    <section class="stats">
+      <div class="stat">
+        <div class="stat-value" id="downloadCount">—</div>
+        <div class="stat-label">Downloads</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">50+</div>
+        <div class="stat-label">Object Types</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">v1.3</div>
+        <div class="stat-label">Latest Release</div>
+      </div>
+    </section>
+
+    <section class="profile-section" id="profileSection">
+      <h3>Your Profile</h3>
+      <div class="profile-row">
+        <div class="avatar-preview">
+          <img id="avatarPreview" src="https://api.dicebear.com/7.x/shapes/svg?seed=creator" alt="Avatar"/>
         </div>
-        <div class="profile-bar">
-            <img id="profile-avatar" class="profile-avatar" src="https://api.dicebear.com/7.x/shapes/svg?seed=Creator&backgroundColor=ffffff&radius=50" alt="Avatar">
-            <div class="profile-meta">
-                <strong id="profile-name">Guest</strong>
-                <span class="profile-hint">Pick a display name and avatar preset below.</span>
-            </div>
-            <div class="profile-edit">
-                <input id="profile-name-input" class="profile-input" type="text" placeholder="Display name" maxlength="24">
-                <select id="avatar-select" class="profile-input">
-                    <option value="Creator">Creator</option>
-                    <option value="Designer">Designer</option>
-                    <option value="Builder">Builder</option>
-                    <option value="Pilot">Pilot</option>
-                    <option value="Voyager">Voyager</option>
-                    <option value="Hacker">Hacker</option>
-                    <option value="Artist">Artist</option>
-                    <option value="Coder">Coder</option>
-                    <option value="Wizard">Wizard</option>
-                    <option value="Knight">Knight</option>
-                    <option value="Explorer">Explorer</option>
-                    <option value="Ninja">Ninja</option>
-                </select>
-                <button id="profile-save" class="profile-button">Save</button>
-            </div>
+        <div class="profile-fields">
+          <label>Display Name</label>
+          <input type="text" id="displayName" placeholder="Enter name..." maxlength="24"/>
+          <label>Choose Avatar</label>
+          <div class="avatar-presets" id="avatarPresets"></div>
         </div>
+      </div>
+      <button class="auth-btn save-profile" id="saveProfile">Save Profile</button>
+    </section>
+
+    <section class="roadmap" id="roadmap">
+      <h2>Roadmap</h2>
+      <div class="roadmap-grid">
+        <div class="roadmap-col">
+          <h4>✓ Shipped</h4>
+          <div class="roadmap-card">
+            <h5>Core Rendering Pipeline</h5>
+            <p>OpenGL-based 3D renderer with camera controls, lighting, and object hierarchy.</p>
+          </div>
+          <div class="roadmap-card">
+            <h5>50+ Object Types</h5>
+            <p>Parts, models, scripts, lights, UI elements, folders, cameras, and more.</p>
+          </div>
+          <div class="roadmap-card">
+            <h5>MEPLua Runtime</h5>
+            <p>Custom Lua 5.4 integration with Instance.new(), Vector3, Color3, and event system.</p>
+          </div>
+          <div class="roadmap-card">
+            <h5>Project System</h5>
+            <p>Full save/load with .mep project files, autosave, and recent files.</p>
+          </div>
+          <div class="roadmap-card">
+            <h5>Creator Tools</h5>
+            <p>Move, scale, rotate handles. Grid snapping. Multi-select. Property editor.</p>
+          </div>
+          <div class="roadmap-card">
+            <h5>Stability & Polish</h5>
+            <p>Crash recovery, error logging, memory management, and v1.3 launcher.</p>
+          </div>
+        </div>
+        <div class="roadmap-col">
+          <h4>🔨 Building Now</h4>
+          <div class="roadmap-card">
+            <h5>Animation System</h5>
+            <p>Timeline editor for keyframe animation on parts and models.</p>
+          </div>
+          <div class="roadmap-card">
+            <h5>Physics Baseline</h5>
+            <p>Gravity, collision detection, and basic rigid body simulation.</p>
+          </div>
+          <div class="roadmap-card">
+            <h5>Constraint System</h5>
+            <p>Welds, hinges, motors, and springs for interactive creations.</p>
+          </div>
+          <div class="roadmap-card">
+            <h5>UX Improvements</h5>
+            <p>Better explorer, faster property editing, keyboard shortcuts.</p>
+          </div>
+          <div class="roadmap-card">
+            <h5>User Profiles</h5>
+            <p>Cloud sync for projects and settings via Firebase.</p>
+          </div>
+        </div>
+        <div class="roadmap-col">
+          <h4>📋 Up Next</h4>
+          <div class="roadmap-card">
+            <h5>Character Rigging</h5>
+            <p>Skeletal animation support for humanoid and custom rigs.</p>
+          </div>
+          <div class="roadmap-card">
+            <h5>Material Editor</h5>
+            <p>PBR materials with texture maps and shader customization.</p>
+          </div>
+          <div class="roadmap-card">
+            <h5>Particle System</h5>
+            <p>Visual effects for fire, smoke, sparks, and custom emitters.</p>
+          </div>
+          <div class="roadmap-card">
+            <h5>Audio Engine</h5>
+            <p>3D spatial audio with volume, reverb, and sound effects.</p>
+          </div>
+          <div class="roadmap-card">
+            <h5>Play Mode</h5>
+            <p>Test your creations without leaving the editor.</p>
+          </div>
+          <div class="roadmap-card">
+            <h5>Visual Scripting</h5>
+            <p>Node-based logic for creators who prefer no-code.</p>
+          </div>
+          <div class="roadmap-card">
+            <h5>Multiplayer Foundation</h5>
+            <p>Basic networking for collaborative building and games.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://discord.gg/BsUQUFYBmN">Discord</a>
+      <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE">GitHub</a>
+      <a href="https://buy.stripe.com/5kQ6oHcD6amY1i31k0grS0f">Support Development</a>
     </div>
+    <p>© 2025 MEP Sandbox Engine. Built for creators.</p>
+  </footer>
 
-    <!-- Stats -->
-    <div class="section">
-        <div class="stats">
-            <div class="stat">
-                <span class="stat-value">1.3</span>
-                <span class="stat-label">Version</span>
-            </div>
-            <div class="stat">
-                <span class="stat-value">47MB</span>
-                <span class="stat-label">Size</span>
-            </div>
-            <div class="stat">
-                <span class="stat-value">Free</span>
-                <span class="stat-label">License</span>
-            </div>
-            <div class="stat">
-                <span class="stat-value">10K+</span>
-                <span class="stat-label">Downloads</span>
-            </div>
-        </div>
-    </div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
-    <!-- Roadmap -->
-    <section class="section" id="roadmap">
-        <div class="section-header">
-            <h2 class="section-title">Development Roadmap</h2>
-            <p class="section-subtitle">What shipped, what's building now, and what's next.</p>
-        </div>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAyAioT7g8jkZoybvAhBqaDaXlJh-ZTwV4",
+      authDomain: "mepsandboxengine.firebaseapp.com",
+      projectId: "mepsandboxengine",
+      storageBucket: "mepsandboxengine.appspot.com",
+      messagingSenderId: "1044651702498",
+      appId: "1:1044651702498:web:abc123"
+    };
 
-        <div class="roadmap-wrapper">
-            <div class="roadmap-column">
-                <h3>Shipped</h3>
-                <div class="roadmap-list">
-                    <div class="roadmap-card" data-state="done">
-                        <div class="meta"><span>Q1 2025</span><span>Done</span></div>
-                        <h4>Core Rendering + Scene Graph</h4>
-                        <p>OpenGL 3.3 renderer with depth testing, orbit camera, WASD movement, ambient + specular lighting, and hierarchical scene graph.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">OpenGL 3.3</span>
-                            <span class="roadmap-chip">Orbit Camera</span>
-                            <span class="roadmap-chip">Scene Graph</span>
-                            <span class="roadmap-chip">Lighting</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="done">
-                        <div class="meta"><span>Q1 2025</span><span>Done</span></div>
-                        <h4>50+ Object Types</h4>
-                        <p>Parts, Spheres, Cylinders, Pyramids, Torus, Models, Humanoids, Scripts, Motor6D, Welds, Attachments, GUI elements, Values, and more.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">Primitives</span>
-                            <span class="roadmap-chip">Humanoids</span>
-                            <span class="roadmap-chip">Constraints</span>
-                            <span class="roadmap-chip">GUI</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="done">
-                        <div class="meta"><span>Q2 2025</span><span>Done</span></div>
-                        <h4>Creator Tools + Import</h4>
-                        <p>Properties panel with 50+ editable fields, transform gizmos with snapping, OBJ import, JSON save/load, and multi-scene projects.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">OBJ Import</span>
-                            <span class="roadmap-chip">Gizmos</span>
-                            <span class="roadmap-chip">JSON Export</span>
-                            <span class="roadmap-chip">Properties</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="done">
-                        <div class="meta"><span>Q3 2025</span><span>Done</span></div>
-                        <h4>MEPLua Runtime v1</h4>
-                        <p>Full Lua runtime with on_start/on_update lifecycle, Instance.new(), Vector3/Color3 libraries, 100+ API functions, and hot-reload.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">Lua Runtime</span>
-                            <span class="roadmap-chip">Instance.new</span>
-                            <span class="roadmap-chip">Hot Reload</span>
-                            <span class="roadmap-chip">100+ APIs</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="done">
-                        <div class="meta"><span>Q3 2025</span><span>Done</span></div>
-                        <h4>Event System</h4>
-                        <p>Touched, Died, ClickDetector, ProximityPrompt, BindableEvent/Function, RemoteEvent/Function for script communication.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">Events</span>
-                            <span class="roadmap-chip">Bindables</span>
-                            <span class="roadmap-chip">Remotes</span>
-                            <span class="roadmap-chip">Signals</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="done">
-                        <div class="meta"><span>Q3 2025</span><span>Done</span></div>
-                        <h4>Stability & Diagnostics</h4>
-                        <p>Crash-safe launcher v1.3, dependency self-heal, UTF-8 IO, loop detection markers, and health checks before install.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">Launcher</span>
-                            <span class="roadmap-chip">Health</span>
-                            <span class="roadmap-chip">Diagnostics</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const provider = new GoogleAuthProvider();
 
-            <div class="roadmap-column">
-                <h3>Building Now</h3>
-                <div class="roadmap-list">
-                    <div class="roadmap-card" data-state="now">
-                        <div class="meta"><span>Q4 2025</span><span>In Progress</span></div>
-                        <h4>Animation + Timeline</h4>
-                        <p>Keyframe timeline editor, per-object animation tracks, easing presets (linear, ease-in/out, bounce), scrubbable viewport preview.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">Keyframes</span>
-                            <span class="roadmap-chip">Easing</span>
-                            <span class="roadmap-chip">Timeline</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="now">
-                        <div class="meta"><span>Q4 2025</span><span>In Progress</span></div>
-                        <h4>Physics Baseline</h4>
-                        <p>Rigid body primitives, gravity simulation, collision layers, BodyVelocity/BodyGyro/BodyPosition forces exposed to MEPLua.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">Rigid Bodies</span>
-                            <span class="roadmap-chip">Gravity</span>
-                            <span class="roadmap-chip">Collisions</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="now">
-                        <div class="meta"><span>Q4 2025</span><span>In Progress</span></div>
-                        <h4>Constraint System</h4>
-                        <p>Motor6D, Weld, BallSocket, Hinge, Prismatic, Spring, Rope, Rod constraints for mechanical assemblies and ragdolls.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">Welds</span>
-                            <span class="roadmap-chip">Motors</span>
-                            <span class="roadmap-chip">Springs</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="now">
-                        <div class="meta"><span>Q4 2025</span><span>In Progress</span></div>
-                        <h4>UX & Editor Polish</h4>
-                        <p>Black/white modern theme, faster file dialogs, error toasts, project health checks, and performance optimizations for 1000+ objects.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">UI Polish</span>
-                            <span class="roadmap-chip">Performance</span>
-                            <span class="roadmap-chip">Toasts</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="now">
-                        <div class="meta"><span>Q4 2025</span><span>In Progress</span></div>
-                        <h4>User Profiles</h4>
-                        <p>Custom display names, avatar presets, localStorage persistence, and Firebase profile sync for signed-in users.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">Profiles</span>
-                            <span class="roadmap-chip">Avatars</span>
-                            <span class="roadmap-chip">Sync</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    const authBtn = document.getElementById('authBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const profileSection = document.getElementById('profileSection');
+    const displayNameInput = document.getElementById('displayName');
+    const avatarPreview = document.getElementById('avatarPreview');
+    const avatarPresetsContainer = document.getElementById('avatarPresets');
+    const saveProfileBtn = document.getElementById('saveProfile');
+    const downloadCountEl = document.getElementById('downloadCount');
 
-            <div class="roadmap-column">
-                <h3>Up Next <span style="font-size:12px;font-weight:400;color:var(--gray-500);">vs Unity gaps</span></h3>
-                <div class="roadmap-list">
-                    <div class="roadmap-card" data-state="next">
-                        <div class="meta"><span>Q1 2026</span><span>Planned</span></div>
-                        <h4>Rigging & Humanoids</h4>
-                        <p>Bone hierarchies, FK/IK switching, pose editor, Animator controller, and export to FBX/glTF rig formats.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">Rigging</span>
-                            <span class="roadmap-chip">IK</span>
-                            <span class="roadmap-chip">Animator</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="next">
-                        <div class="meta"><span>Q1 2026</span><span>Planned</span></div>
-                        <h4>Material Editor</h4>
-                        <p>PBR materials, texture slots (albedo, normal, metallic, roughness), shader graph preview—closing gap with Unity Standard shader.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">PBR</span>
-                            <span class="roadmap-chip">Textures</span>
-                            <span class="roadmap-chip">Shader Graph</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="next">
-                        <div class="meta"><span>Q2 2026</span><span>Planned</span></div>
-                        <h4>Particle System</h4>
-                        <p>GPU-based particle emitters, lifetime curves, color gradients, forces, and sub-emitters like Unity Shuriken.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">Particles</span>
-                            <span class="roadmap-chip">GPU</span>
-                            <span class="roadmap-chip">Emitters</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="next">
-                        <div class="meta"><span>Q2 2026</span><span>Planned</span></div>
-                        <h4>AI & NPC Behaviors</h4>
-                        <p>NavMesh pathfinding, behavior trees, schedule-based routines, and visual AI graph editor—no code required.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">NavMesh</span>
-                            <span class="roadmap-chip">Behaviors</span>
-                            <span class="roadmap-chip">No-Code AI</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="next">
-                        <div class="meta"><span>Q2 2026</span><span>Planned</span></div>
-                        <h4>Terrain Tools</h4>
-                        <p>Heightmap sculpting, paint splatmaps, foliage scattering, and LOD system for large outdoor worlds.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">Terrain</span>
-                            <span class="roadmap-chip">Foliage</span>
-                            <span class="roadmap-chip">LOD</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="next">
-                        <div class="meta"><span>Q3 2026</span><span>Planned</span></div>
-                        <h4>Multiplayer Foundations</h4>
-                        <p>Authoritative server template, lobby system, replication channels, and network-safe Lua API—like Unity Netcode.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">Lobby</span>
-                            <span class="roadmap-chip">Replication</span>
-                            <span class="roadmap-chip">Server</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="next">
-                        <div class="meta"><span>Q3 2026</span><span>Planned</span></div>
-                        <h4>Audio Mixer</h4>
-                        <p>3D spatial audio, sound groups, ducking, reverb zones, and mixer snapshots for dynamic audio like Unity Audio Mixer.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">3D Audio</span>
-                            <span class="roadmap-chip">Mixer</span>
-                            <span class="roadmap-chip">Reverb</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="next">
-                        <div class="meta"><span>Q4 2026</span><span>Planned</span></div>
-                        <h4>Play Mode & Export</h4>
-                        <p>In-editor play mode, packaged standalone builds, input rebinding, and export presets for Windows/Mac/Linux.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">Play Mode</span>
-                            <span class="roadmap-chip">Builds</span>
-                            <span class="roadmap-chip">Inputs</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="next">
-                        <div class="meta"><span>Q4 2026</span><span>Planned</span></div>
-                        <h4>Visual Scripting</h4>
-                        <p>Node-based scripting graph, drag-and-drop logic blocks, and Lua code export for beginners—like Unity Visual Scripting.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">Nodes</span>
-                            <span class="roadmap-chip">No-Code</span>
-                            <span class="roadmap-chip">Export Lua</span>
-                        </div>
-                    </div>
-                    <div class="roadmap-card" data-state="next">
-                        <div class="meta"><span>2027</span><span>Planned</span></div>
-                        <h4>Cloud Sync & Teams</h4>
-                        <p>Cloud projects, versioned saves, team workspaces with role-based access, and asset sharing—like Unity Collaborate.</p>
-                        <div class="roadmap-tags">
-                            <span class="roadmap-chip">Cloud</span>
-                            <span class="roadmap-chip">Teams</span>
-                            <span class="roadmap-chip">Versions</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    const avatarSeeds = ['creator', 'builder', 'coder', 'designer', 'pilot', 'wizard', 'ninja', 'explorer', 'artist', 'hacker'];
+    let selectedSeed = 'creator';
+    let currentUser = null;
 
-    <!-- Community Guidelines -->
-    <section class="section" id="community">
-        <div class="section-header">
-            <h2 class="section-title">Community Guidelines</h2>
-            <p class="section-subtitle">Building a respectful and collaborative community</p>
-        </div>
+    // Initialize avatar presets
+    avatarSeeds.forEach(seed => {
+      const preset = document.createElement('div');
+      preset.className = 'avatar-preset' + (seed === 'creator' ? ' selected' : '');
+      preset.innerHTML = `<img src="https://api.dicebear.com/7.x/shapes/svg?seed=${seed}" alt="${seed}"/>`;
+      preset.onclick = () => {
+        document.querySelectorAll('.avatar-preset').forEach(p => p.classList.remove('selected'));
+        preset.classList.add('selected');
+        selectedSeed = seed;
+        avatarPreview.src = `https://api.dicebear.com/7.x/shapes/svg?seed=${seed}`;
+      };
+      avatarPresetsContainer.appendChild(preset);
+    });
 
-        <div class="guidelines-grid">
-            <div class="guideline-card">
-                <span class="guideline-icon">🤝</span>
-                <h3 class="guideline-title">Share Your Work</h3>
-                <p class="guideline-text">Showcase your projects and learn from others. Attribution is required when using community assets or code.</p>
-            </div>
-
-            <div class="guideline-card">
-                <span class="guideline-icon">🛠️</span>
-                <h3 class="guideline-title">Contribute & Collaborate</h3>
-                <p class="guideline-text">Contribute to the engine's development through code, documentation, or bug reports. Open source thrives on collaboration.</p>
-            </div>
-
-            <div class="guideline-card">
-                <span class="guideline-icon">📚</span>
-                <h3 class="guideline-title">Help Others Learn</h3>
-                <p class="guideline-text">Share knowledge and help newcomers. Everyone starts somewhere, and mentorship strengthens our community.</p>
-            </div>
-
-            <div class="guideline-card">
-                <span class="guideline-icon">⚖️</span>
-                <h3 class="guideline-title">Follow the Rules</h3>
-                <p class="guideline-text">Adhere to our terms of service and Discord server rules. Violations may result in warnings or removal from the community.</p>
-            </div>
-
-            <div class="guideline-card">
-                <span class="guideline-icon">💡</span>
-                <h3 class="guideline-title">Report Issues</h3>
-                <p class="guideline-text">Report bugs, security vulnerabilities, or community violations promptly. Help us maintain a safe and functional platform.</p>
-            </div>
-
-            <div class="guideline-card">
-                <span class="guideline-icon">🌟</span>
-                <h3 class="guideline-title">Celebrate Success</h3>
-                <p class="guideline-text">Recognize and celebrate community achievements. Positive reinforcement builds a stronger, more motivated community.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Download Section -->
-    <section class="section" id="download">
-        <div class="section-header">
-            <h2 class="section-title">Start Building Today</h2>
-            <p class="section-subtitle">Sign in to download MEP Sandbox Engine v1.3</p>
-        </div>
-
-        <div style="text-align: center; margin-top: 48px;">
-            <button id="download-btn-main" class="btn btn-primary" style="font-size: 20px; padding: 20px 56px;" disabled>
-                Sign In to Download
-            </button>
-            <p style="margin-top: 24px; color: var(--gray-500); font-size: 14px;">47MB • Windows 10/11 • Free Forever</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <div class="footer-logo">MEP Sandbox Engine</div>
-                <p class="footer-description">Professional 3D development platform built for creators. Free forever.</p>
-            </div>
-
-            <div class="footer-section">
-                <h4>Product</h4>
-                <ul class="footer-links">
-                    <li><a href="#roadmap">Roadmap</a></li>
-                    <li><a href="#community">Community</a></li>
-                    <li><a href="#download">Download</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Resources</h4>
-                <ul class="footer-links">
-                    <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" target="_blank">GitHub</a></li>
-                    <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/issues" target="_blank">Issues</a></li>
-                    <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/releases" target="_blank">Releases</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Community</h4>
-                <ul class="footer-links">
-                    <li><a href="https://discord.gg/BsUQUFYBmN" target="_blank">Discord</a></li>
-                    <li><a href="https://buy.stripe.com/5kQ6oHcD6amY1i31k0grS0f" target="_blank">Support</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p class="footer-copyright">© 2025 FugthChat. MEP Sandbox Engine. MIT License.</p>
-            <div class="footer-legal">
-                <a href="#" onclick="showLegal('privacy'); return false;">Privacy</a>
-                <a href="#" onclick="showLegal('terms'); return false;">Terms</a>
-                <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/blob/main/LICENSE" target="_blank">License</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Legal Modals -->
-    <div class="modal-overlay" id="legalModal">
-        <div class="modal-content" style="max-width: 800px; max-height: 80vh; overflow-y: auto;">
-            <button class="modal-close" onclick="closeLegal()">×</button>
-            <div id="legalContent"></div>
-        </div>
-    </div>
-
-    <!-- Firebase & Scripts -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyAyAioT7g8jkZoybvAhBqaDaXlJh-ZTwV4",
-            authDomain: "mepsandboxengine.firebaseapp.com",
-            projectId: "mepsandboxengine",
-            storageBucket: "mepsandboxengine.firebasestorage.app",
-            messagingSenderId: "604562482772",
-            appId: "1:604562482772:web:9f45cd16c0a9a1dcd7efc1",
-            measurementId: "G-4CN9M3M59L"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const analytics = getAnalytics(app);
-
-        const modal = document.getElementById('authModal');
-        const loginBtn = document.getElementById('login-btn');
-        const logoutBtn = document.getElementById('logout-btn');
-        const userDisplay = document.getElementById('user-display');
-        const usernameSpan = document.getElementById('username-span');
-        const authError = document.getElementById('authError');
-        const downloadBtn = document.getElementById('download-btn');
-        const downloadBtnMain = document.getElementById('download-btn-main');
-        const profileAvatar = document.getElementById('profile-avatar');
-        const profileName = document.getElementById('profile-name');
-        const profileNameInput = document.getElementById('profile-name-input');
-        const avatarSelect = document.getElementById('avatar-select');
-        const profileSave = document.getElementById('profile-save');
-
-        window.closeModal = () => {
-            modal.classList.remove('active');
-            authError.classList.remove('active');
-        };
-
-        window.switchTab = (tab) => {
-            const tabs = document.querySelectorAll('.auth-tab');
-            const forms = document.querySelectorAll('.auth-form');
-            
-            tabs.forEach(t => t.classList.remove('active'));
-            forms.forEach(f => f.classList.remove('active'));
-            
-            if (tab === 'signin') {
-                tabs[0].classList.add('active');
-                document.getElementById('signinForm').classList.add('active');
-            } else {
-                tabs[1].classList.add('active');
-                document.getElementById('signupForm').classList.add('active');
-            }
-            
-            authError.classList.remove('active');
-        };
-
-        loginBtn.addEventListener('click', () => modal.classList.add('active'));
-        
-        downloadBtn.addEventListener('click', () => {
-            if (!auth.currentUser) {
-                modal.classList.add('active');
-            }
+    // Fetch GitHub download stats
+    async function fetchGitHubStats() {
+      try {
+        const res = await fetch('https://api.github.com/repos/FugthChat/MEP-SANDBOX-ENGINE/releases');
+        const releases = await res.json();
+        let total = 0;
+        releases.forEach(release => {
+          release.assets?.forEach(asset => {
+            total += asset.download_count || 0;
+          });
         });
+        downloadCountEl.textContent = total.toLocaleString();
+      } catch (e) {
+        downloadCountEl.textContent = '—';
+      }
+    }
+    fetchGitHubStats();
 
-        downloadBtnMain.addEventListener('click', () => {
-            if (!auth.currentUser) {
-                modal.classList.add('active');
-            }
+    // Track download
+    async function trackDownload(user) {
+      try {
+        await addDoc(collection(db, 'downloads'), {
+          userId: user?.uid || 'anonymous',
+          timestamp: new Date(),
+          version: 'v1.3'
         });
+      } catch (e) {
+        console.log('Download tracking skipped');
+      }
+    }
 
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) window.closeModal();
-        });
+    // Download button
+    downloadBtn.onclick = async (e) => {
+      e.preventDefault();
+      await trackDownload(currentUser);
+      window.location.href = 'https://github.com/FugthChat/MEP-SANDBOX-ENGINE/raw/main/MicahEngineStudio_v1.3.rar';
+    };
 
-        function showError(message) {
-            authError.textContent = message;
-            authError.classList.add('active');
+    // Load profile
+    async function loadProfile(uid) {
+      try {
+        const docSnap = await getDoc(doc(db, 'users', uid));
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          displayNameInput.value = data.displayName || '';
+          selectedSeed = data.avatarSeed || 'creator';
+          avatarPreview.src = `https://api.dicebear.com/7.x/shapes/svg?seed=${selectedSeed}`;
+          document.querySelectorAll('.avatar-preset').forEach(p => {
+            p.classList.toggle('selected', p.querySelector('img').src.includes(selectedSeed));
+          });
         }
+      } catch (e) {
+        console.log('Profile load error');
+      }
+    }
 
-        document.getElementById('signinForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('signin-email').value;
-            const password = document.getElementById('signin-password').value;
-            
-            try {
-                await signInWithEmailAndPassword(auth, email, password);
-                window.closeModal();
-            } catch (error) {
-                let errorMessage = 'Sign in failed.';
-                if (error.code === 'auth/invalid-credential') errorMessage = 'Invalid email or password.';
-                else if (error.code === 'auth/user-not-found') errorMessage = 'No account found.';
-                showError(errorMessage);
-            }
-        });
+    // Save profile
+    saveProfileBtn.onclick = async () => {
+      if (!currentUser) return;
+      try {
+        await setDoc(doc(db, 'users', currentUser.uid), {
+          displayName: displayNameInput.value.slice(0, 24),
+          avatarSeed: selectedSeed,
+          updatedAt: new Date()
+        }, { merge: true });
+        saveProfileBtn.textContent = 'Saved!';
+        setTimeout(() => saveProfileBtn.textContent = 'Save Profile', 2000);
+      } catch (e) {
+        saveProfileBtn.textContent = 'Error';
+        setTimeout(() => saveProfileBtn.textContent = 'Save Profile', 2000);
+      }
+    };
 
-        document.getElementById('signupForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('signup-email').value;
-            const password = document.getElementById('signup-password').value;
-            const confirm = document.getElementById('signup-confirm').value;
-            
-            if (password !== confirm) {
-                showError('Passwords do not match.');
-                return;
-            }
-            
-            if (password.length < 6) {
-                showError('Password must be at least 6 characters.');
-                return;
-            }
-            
-            try {
-                await createUserWithEmailAndPassword(auth, email, password);
-                window.closeModal();
-            } catch (error) {
-                let errorMessage = 'Sign up failed.';
-                if (error.code === 'auth/email-already-in-use') errorMessage = 'Email already registered.';
-                showError(errorMessage);
-            }
-        });
+    // Auth state
+    onAuthStateChanged(auth, async (user) => {
+      currentUser = user;
+      if (user) {
+        authBtn.textContent = 'Sign Out';
+        profileSection.classList.add('active');
+        await loadProfile(user.uid);
+      } else {
+        authBtn.textContent = 'Sign In';
+        profileSection.classList.remove('active');
+      }
+    });
 
-        logoutBtn.addEventListener('click', async () => {
-            try {
-                await signOut(auth);
-            } catch (error) {
-                console.error('Sign out error:', error);
-            }
-        });
-
-        const releaseUrl = 'https://github.com/FugthChat/MEP-SANDBOX-ENGINE/releases/download/v1.3/MicahEngineStudio_v1.3_Release.zip';
-
-        function updateProfileUI(name, avatarSeed) {
-            const seed = avatarSeed || 'Creator';
-            profileAvatar.src = `https://api.dicebear.com/7.x/shapes/svg?seed=${encodeURIComponent(seed)}&backgroundColor=ffffff&radius=50`;
-            profileName.textContent = name || 'Guest';
-            profileNameInput.value = name || '';
-            avatarSelect.value = seed;
-            localStorage.setItem('mep_profile_name', name || '');
-            localStorage.setItem('mep_avatar_seed', seed);
+    // Auth button
+    authBtn.onclick = async () => {
+      if (currentUser) {
+        await signOut(auth);
+      } else {
+        try {
+          await signInWithPopup(auth, provider);
+        } catch (e) {
+          console.log('Auth error');
         }
-
-        function loadProfileDefaults() {
-            const storedName = localStorage.getItem('mep_profile_name') || '';
-            const storedSeed = localStorage.getItem('mep_avatar_seed') || 'Creator';
-            updateProfileUI(storedName || 'Guest', storedSeed);
-        }
-
-        profileSave.addEventListener('click', () => {
-            const name = profileNameInput.value.trim() || 'Guest';
-            const seed = avatarSelect.value || 'Creator';
-            updateProfileUI(name, seed);
-            if (auth.currentUser) {
-                // Update Firebase profile lightly (non-blocking)
-                import('https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js').then(({ updateProfile }) => {
-                    updateProfile(auth.currentUser, { displayName: name, photoURL: `https://api.dicebear.com/7.x/shapes/svg?seed=${encodeURIComponent(seed)}` }).catch(() => {});
-                });
-            }
-        });
-
-        loadProfileDefaults();
-
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                loginBtn.style.display = 'none';
-                userDisplay.style.display = 'flex';
-                const displayName = user.displayName || user.email.split('@')[0];
-                usernameSpan.textContent = displayName;
-                const seed = localStorage.getItem('mep_avatar_seed') || 'Creator';
-                updateProfileUI(displayName, seed);
-                
-                downloadBtn.disabled = false;
-                downloadBtn.textContent = 'Download v1.3';
-                downloadBtn.onclick = () => {
-                    window.location.href = releaseUrl;
-                };
-
-                downloadBtnMain.disabled = false;
-                downloadBtnMain.textContent = 'Download v1.3';
-                downloadBtnMain.onclick = () => {
-                    window.location.href = releaseUrl;
-                };
-            } else {
-                loginBtn.style.display = 'block';
-                userDisplay.style.display = 'none';
-                
-                downloadBtn.disabled = true;
-                downloadBtn.textContent = 'Sign In to Download';
-                downloadBtn.onclick = null;
-
-                downloadBtnMain.disabled = true;
-                downloadBtnMain.textContent = 'Sign In to Download';
-                downloadBtnMain.onclick = null;
-            }
-        });
-
-        window.showLegal = (type) => {
-            const content = document.getElementById('legalContent');
-            const legalModal = document.getElementById('legalModal');
-            
-            if (type === 'privacy') {
-                content.innerHTML = `
-                    <h2 style="font-size: 32px; font-weight: 900; margin-bottom: 32px;">Privacy Policy</h2>
-                    <p style="color: var(--gray-600); margin-bottom: 40px;">Last updated: December 5, 2025</p>
-                    
-                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">Information Collection</h3>
-                    <p style="margin-bottom: 16px;">We collect email addresses for authentication purposes only. No personal data is sold or shared with third parties.</p>
-                    
-                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">Data Usage</h3>
-                    <p style="margin-bottom: 16px;">Your email is used solely for account management and essential service communications. We use Google Analytics to understand usage patterns.</p>
-                    
-                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">Data Security</h3>
-                    <p style="margin-bottom: 16px;">Authentication is handled by Firebase. We employ industry-standard security measures to protect your information.</p>
-                    
-                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">Your Rights</h3>
-                    <p style="margin-bottom: 16px;">You may request deletion of your account and data at any time by contacting us through Discord or GitHub.</p>
-                `;
-            } else if (type === 'terms') {
-                content.innerHTML = `
-                    <h2 style="font-size: 32px; font-weight: 900; margin-bottom: 32px;">Terms of Service</h2>
-                    <p style="color: var(--gray-600); margin-bottom: 40px;">Last updated: December 5, 2025</p>
-                    
-                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">License</h3>
-                    <p style="margin-bottom: 16px;">MEP Sandbox Engine is licensed under the MIT License. You are free to use, modify, and distribute the software for commercial and non-commercial purposes.</p>
-                    
-                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">Acceptable Use</h3>
-                    <p style="margin-bottom: 16px;">You agree not to use MEP Sandbox Engine for illegal activities, malicious purposes, or to harm others. Respect intellectual property rights when using community assets.</p>
-                    
-                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">No Warranty</h3>
-                    <p style="margin-bottom: 16px;">The software is provided "as is" without warranty of any kind. We are not liable for any damages arising from use of the software.</p>
-                    
-                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">Account Termination</h3>
-                    <p style="margin-bottom: 16px;">We reserve the right to terminate accounts that violate these terms or community guidelines.</p>
-                    
-                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">Changes</h3>
-                    <p style="margin-bottom: 16px;">We may update these terms at any time. Continued use constitutes acceptance of updated terms.</p>
-                `;
-            }
-            
-            legalModal.classList.add('active');
-        };
-
-        window.closeLegal = () => {
-            document.getElementById('legalModal').classList.remove('active');
-        };
-    </script>
-
+      }
+    };
+  </script>
 </body>
 </html>
