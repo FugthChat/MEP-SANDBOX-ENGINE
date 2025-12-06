@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEP Sandbox Engine | Professional 3D Development Platform</title>
     
-    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4250792589739491" crossorigin="anonymous"></script>
 
     <style>
@@ -52,7 +51,7 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 32px;
-            height: 64px;
+            height: 72px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -60,7 +59,7 @@
 
         .nav-logo {
             font-size: 24px;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--black);
             letter-spacing: -0.02em;
         }
@@ -76,7 +75,7 @@
             color: var(--gray-600);
             text-decoration: none;
             font-size: 15px;
-            font-weight: 500;
+            font-weight: 600;
             transition: color 0.2s;
         }
 
@@ -84,21 +83,15 @@
             color: var(--black);
         }
 
-        .nav-auth {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
         .login-btn {
             background: var(--black);
             color: var(--white);
             border: none;
-            padding: 10px 24px;
+            padding: 12px 28px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 15px;
+            font-weight: 600;
             transition: all 0.2s;
         }
 
@@ -111,14 +104,13 @@
             align-items: center;
             gap: 16px;
             font-size: 14px;
-            color: var(--gray-600);
         }
 
         .logout-link {
             color: var(--black);
             cursor: pointer;
             text-decoration: underline;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         /* Modal */
@@ -129,7 +121,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             z-index: 10000;
             justify-content: center;
             align-items: center;
@@ -144,10 +136,9 @@
             border: 1px solid var(--gray-200);
             border-radius: 12px;
             padding: 48px;
-            max-width: 440px;
+            max-width: 480px;
             width: 90%;
             position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
         }
 
         .modal-close {
@@ -159,58 +150,40 @@
             color: var(--gray-500);
             font-size: 28px;
             cursor: pointer;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: color 0.2s;
-        }
-
-        .modal-close:hover {
-            color: var(--black);
-        }
-
-        .modal-header {
-            margin-bottom: 32px;
-            text-align: center;
         }
 
         .modal-header h2 {
             font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--black);
-        }
-
-        .modal-header p {
-            color: var(--gray-500);
-            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 32px;
+            text-align: center;
         }
 
         .auth-tabs {
             display: flex;
-            gap: 16px;
+            gap: 8px;
             margin-bottom: 32px;
-            border-bottom: 1px solid var(--gray-200);
+            background: var(--gray-100);
+            padding: 4px;
+            border-radius: 8px;
         }
 
         .auth-tab {
             flex: 1;
-            background: none;
+            background: transparent;
             border: none;
-            padding: 12px 0;
+            padding: 12px;
             font-size: 15px;
-            font-weight: 500;
-            color: var(--gray-500);
+            font-weight: 600;
+            color: var(--gray-600);
             cursor: pointer;
-            border-bottom: 2px solid transparent;
+            border-radius: 6px;
             transition: all 0.2s;
         }
 
         .auth-tab.active {
             color: var(--black);
-            border-bottom-color: var(--black);
+            background: var(--white);
         }
 
         .auth-form {
@@ -228,20 +201,16 @@
         .form-label {
             display: block;
             font-size: 14px;
-            font-weight: 500;
-            color: var(--gray-700);
+            font-weight: 600;
             margin-bottom: 8px;
         }
 
         .form-input {
             width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--gray-300);
+            padding: 14px 16px;
+            border: 2px solid var(--gray-200);
             border-radius: 6px;
             font-size: 15px;
-            transition: all 0.2s;
-            background: var(--white);
-            color: var(--black);
         }
 
         .form-input:focus {
@@ -254,7 +223,7 @@
             background: var(--black);
             color: var(--white);
             border: none;
-            padding: 14px;
+            padding: 16px;
             border-radius: 6px;
             font-size: 15px;
             font-weight: 600;
@@ -270,11 +239,9 @@
             display: none;
             background: #fee;
             color: #c00;
-            padding: 12px 16px;
+            padding: 12px;
             border-radius: 6px;
-            font-size: 14px;
             margin-bottom: 20px;
-            border: 1px solid #fcc;
         }
 
         .form-error.active {
@@ -283,64 +250,57 @@
 
         /* Hero */
         .hero {
-            padding: 160px 32px 120px;
+            padding: 180px 32px 120px;
             text-align: center;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         h1 {
-            font-size: 72px;
+            font-size: 80px;
             line-height: 1.1;
-            font-weight: 800;
+            font-weight: 900;
             letter-spacing: -0.03em;
             margin-bottom: 24px;
-            color: var(--black);
         }
 
         .hero-subtitle {
             font-size: 24px;
             color: var(--gray-600);
             margin-bottom: 48px;
-            font-weight: 400;
-        }
-
-        /* Buttons */
-        .btn-group {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
         }
 
         .btn {
-            padding: 14px 32px;
+            padding: 16px 36px;
             border-radius: 6px;
             font-size: 16px;
             font-weight: 600;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             transition: all 0.2s;
             cursor: pointer;
+            border: 2px solid var(--black);
         }
 
         .btn-primary {
             background: var(--black);
             color: var(--white);
-            border: 2px solid var(--black);
         }
 
         .btn-primary:hover {
             background: var(--gray-800);
-            border-color: var(--gray-800);
+        }
+
+        .btn-primary:disabled {
+            background: var(--gray-300);
+            border-color: var(--gray-300);
+            cursor: not-allowed;
         }
 
         .btn-secondary {
             background: var(--white);
-            border: 2px solid var(--black);
             color: var(--black);
         }
 
@@ -348,35 +308,12 @@
             background: var(--gray-100);
         }
 
-        /* Stats */
-        .stats {
+        .btn-group {
             display: flex;
+            gap: 16px;
             justify-content: center;
-            gap: 80px;
-            padding: 60px 0;
-            border-top: 1px solid var(--gray-200);
-            border-bottom: 1px solid var(--gray-200);
-            margin: 80px 0;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 56px;
-            font-weight: 800;
-            display: block;
-            color: var(--black);
-            letter-spacing: -0.02em;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: var(--gray-500);
-            margin-top: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
         }
 
         /* Section */
@@ -393,118 +330,224 @@
 
         .section-title {
             font-size: 56px;
-            font-weight: 800;
+            font-weight: 900;
             letter-spacing: -0.02em;
             margin-bottom: 16px;
-            color: var(--black);
         }
 
         .section-subtitle {
             font-size: 20px;
             color: var(--gray-600);
-            max-width: 700px;
+        }
+
+        /* Roadmap */
+        .roadmap-container {
+            max-width: 1000px;
             margin: 0 auto;
+            position: relative;
         }
 
-        /* Feature Grid */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 32px;
+        .roadmap-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gray-200);
+            transform: translateX(-50%);
         }
 
-        .feature-card {
+        .roadmap-progress {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 30%;
+            background: var(--black);
+        }
+
+        .roadmap-item {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .roadmap-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .roadmap-content {
+            flex: 1;
             background: var(--white);
-            border: 1px solid var(--gray-200);
+            border: 2px solid var(--gray-200);
             border-radius: 12px;
-            padding: 48px 40px;
+            padding: 32px;
             transition: all 0.3s;
         }
 
-        .feature-card:hover {
+        .roadmap-content:hover {
             border-color: var(--black);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .feature-icon {
-            font-size: 48px;
-            display: block;
-            margin-bottom: 24px;
-        }
-
-        .feature-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--black);
-        }
-
-        .feature-description {
-            font-size: 16px;
-            color: var(--gray-600);
-            line-height: 1.6;
-        }
-
-        /* Specs Table */
-        .specs-table {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: 12px;
-            overflow: hidden;
-            margin: 60px 0;
-        }
-
-        .specs-table table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .specs-table th,
-        .specs-table td {
-            padding: 24px 40px;
-            text-align: left;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .specs-table th {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--gray-600);
+        .roadmap-item.completed .roadmap-content {
+            border-color: var(--black);
             background: var(--gray-50);
         }
 
-        .specs-table td {
-            font-size: 16px;
+        .roadmap-dot {
+            position: absolute;
+            left: 50%;
+            top: 32px;
+            width: 20px;
+            height: 20px;
+            background: var(--white);
+            border: 3px solid var(--gray-200);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .roadmap-item.completed .roadmap-dot {
+            background: var(--black);
+            border-color: var(--black);
+        }
+
+        .roadmap-item.current .roadmap-dot {
+            background: var(--black);
+            border-color: var(--black);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
+        }
+
+        .roadmap-phase {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray-500);
+            margin-bottom: 8px;
+        }
+
+        .roadmap-item.completed .roadmap-phase,
+        .roadmap-item.current .roadmap-phase {
             color: var(--black);
         }
 
-        .specs-table tr:last-child td {
-            border-bottom: none;
+        .roadmap-title {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 12px;
         }
 
-        /* Code Block */
-        .code-block {
+        .roadmap-description {
+            color: var(--gray-600);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .roadmap-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .roadmap-tag {
+            background: var(--gray-100);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .roadmap-item.completed .roadmap-tag {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .roadmap-item.current .roadmap-tag {
             background: var(--gray-900);
-            border: 1px solid var(--gray-800);
+            color: var(--white);
+        }
+
+        /* Community Guidelines */
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .guideline-card {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
             border-radius: 12px;
             padding: 40px;
-            margin: 40px 0;
-            overflow-x: auto;
+            transition: all 0.3s;
         }
 
-        .code-block pre {
-            color: var(--gray-100);
-            font-family: 'SF Mono', 'Courier New', monospace;
+        .guideline-card:hover {
+            border-color: var(--black);
+        }
+
+        .guideline-icon {
+            font-size: 48px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .guideline-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .guideline-text {
+            color: var(--gray-600);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            padding: 80px 0;
+            border-top: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-200);
+            margin: 80px 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 56px;
+            font-weight: 900;
+            display: block;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
             font-size: 14px;
-            line-height: 1.8;
+            color: var(--gray-600);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
         }
 
         /* Footer */
         footer {
             border-top: 1px solid var(--gray-200);
-            padding: 80px 32px;
+            padding: 80px 32px 40px;
             margin-top: 120px;
             background: var(--gray-50);
         }
@@ -513,16 +556,32 @@
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 48px;
-            margin-bottom: 48px;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .footer-description {
+            color: var(--gray-600);
+            font-size: 15px;
+            line-height: 1.6;
         }
 
         .footer-section h4 {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
             margin-bottom: 20px;
-            color: var(--black);
             text-transform: uppercase;
             letter-spacing: 0.08em;
         }
@@ -549,44 +608,87 @@
         .footer-bottom {
             padding-top: 40px;
             border-top: 1px solid var(--gray-200);
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copyright {
             color: var(--gray-500);
             font-size: 14px;
         }
 
+        .footer-legal {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-legal a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-legal a:hover {
+            color: var(--black);
+        }
+
         /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 48px;
             }
 
-            .hero-subtitle {
-                font-size: 18px;
-            }
-
             .section-title {
-                font-size: 40px;
-            }
-
-            .stats {
-                gap: 40px;
-                flex-wrap: wrap;
-            }
-
-            .stat-value {
-                font-size: 40px;
+                font-size: 36px;
             }
 
             .nav-links {
                 display: none;
             }
 
-            .feature-grid {
+            .footer-content {
                 grid-template-columns: 1fr;
             }
 
-            .modal-content {
-                padding: 32px 24px;
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .roadmap-line {
+                left: 20px;
+            }
+
+            .roadmap-dot {
+                left: 20px;
+            }
+
+            .roadmap-item,
+            .roadmap-item:nth-child(even) {
+                flex-direction: column;
+                padding-left: 60px;
+            }
+
+            .roadmap-content {
+                margin-left: 0;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
             }
         }
     </style>
@@ -599,8 +701,7 @@
             <button class="modal-close" onclick="closeModal()">×</button>
             
             <div class="modal-header">
-                <h2>Welcome</h2>
-                <p>Sign in to join the MEP community</p>
+                <h2>Sign In to Download</h2>
             </div>
 
             <div class="auth-tabs">
@@ -610,32 +711,30 @@
 
             <div class="form-error" id="authError"></div>
 
-            <!-- Sign In Form -->
             <form class="auth-form active" id="signinForm">
                 <div class="form-group">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-input" id="signin-email" placeholder="your@email.com" required>
+                    <input type="email" class="form-input" id="signin-email" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Password</label>
-                    <input type="password" class="form-input" id="signin-password" placeholder="••••••••" required>
+                    <input type="password" class="form-input" id="signin-password" required>
                 </div>
                 <button type="submit" class="form-button">Sign In</button>
             </form>
 
-            <!-- Sign Up Form -->
             <form class="auth-form" id="signupForm">
                 <div class="form-group">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-input" id="signup-email" placeholder="your@email.com" required>
+                    <input type="email" class="form-input" id="signup-email" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Password</label>
-                    <input type="password" class="form-input" id="signup-password" placeholder="••••••••" required>
+                    <input type="password" class="form-input" id="signup-password" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Confirm Password</label>
-                    <input type="password" class="form-input" id="signup-confirm" placeholder="••••••••" required>
+                    <input type="password" class="form-input" id="signup-confirm" required>
                 </div>
                 <button type="submit" class="form-button">Create Account</button>
             </form>
@@ -647,15 +746,14 @@
         <div class="nav-container">
             <div class="nav-logo">MEP Sandbox</div>
             <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#specs">Specs</a></li>
-                <li><a href="#scripting">Scripting</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#community">Community</a></li>
                 <li><a href="#download">Download</a></li>
             </ul>
             <div class="nav-auth">
                 <button id="login-btn" class="login-btn">Sign In</button>
                 <div id="user-display" class="user-display">
-                    <span>Hi, <span id="username-span">User</span></span>
+                    <span><span id="username-span">User</span></span>
                     <a class="logout-link" id="logout-btn">Sign Out</a>
                 </div>
             </div>
@@ -664,17 +762,20 @@
 
     <!-- Hero -->
     <section class="hero">
-        <h1>Micah Engine Studio</h1>
-        <p class="hero-subtitle">Professional 3D development. No subscriptions. No installations. Just pure power.</p>
+        <h1>Build 3D Worlds</h1>
+        <p class="hero-subtitle">Professional 3D engine. Script with Lua. Deploy anywhere. Free forever.</p>
         
         <div class="btn-group">
-            <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/raw/main/MicahEngineStudio_v1.3.rar" class="btn btn-primary">Download v1.3</a>
-            <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn btn-secondary">Join Discord</a>
-            <a href="https://buy.stripe.com/5kQ6oHcD6amY1i31k0grS0f" target="_blank" class="btn btn-secondary">Support Dev</a>
+            <button id="download-btn" class="btn btn-primary" disabled>
+                Sign In to Download
+            </button>
+            <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn btn-secondary">
+                Join Discord
+            </a>
         </div>
 
         <div style="color: var(--gray-500); font-size: 14px; margin-top: 32px;">
-            Windows 10/11 • OpenGL 3.3+ • Free & Open Source
+            Windows 10/11 • OpenGL 3.3+ • 47MB
         </div>
     </section>
 
@@ -693,181 +794,210 @@
                 <span class="stat-value">Free</span>
                 <span class="stat-label">License</span>
             </div>
+            <div class="stat">
+                <span class="stat-value">10K+</span>
+                <span class="stat-label">Downloads</span>
+            </div>
         </div>
     </div>
 
-    <!-- Features -->
-    <section class="section" id="features">
+    <!-- Roadmap -->
+    <section class="section" id="roadmap">
         <div class="section-header">
-            <h2 class="section-title">Built for Developers</h2>
-            <p class="section-subtitle">Everything you need to create, prototype, and ship 3D projects</p>
+            <h2 class="section-title">Development Roadmap</h2>
+            <p class="section-subtitle">Building the future of 3D development</p>
         </div>
 
-        <div class="feature-grid">
-            <div class="feature-card">
-                <span class="feature-icon">🎨</span>
-                <h3 class="feature-title">Professional Interface</h3>
-                <p class="feature-description">Modern layout with viewport controls, scene explorer, and real-time property inspector.</p>
+        <div class="roadmap-container">
+            <div class="roadmap-line">
+                <div class="roadmap-progress"></div>
             </div>
 
-            <div class="feature-card">
-                <span class="feature-icon">⚡</span>
-                <h3 class="feature-title">MEPLua Scripting</h3>
-                <p class="feature-description">Powerful Lua-based scripting with syntax highlighting and comprehensive API access.</p>
+            <div class="roadmap-item completed">
+                <div class="roadmap-dot"></div>
+                <div class="roadmap-content">
+                    <div class="roadmap-phase">Phase 1 - Complete</div>
+                    <h3 class="roadmap-title">Core Engine Foundation</h3>
+                    <p class="roadmap-description">OpenGL rendering pipeline with basic 3D primitives, camera controls, and scene management.</p>
+                    <div class="roadmap-features">
+                        <span class="roadmap-tag">OpenGL 3.3</span>
+                        <span class="roadmap-tag">3D Primitives</span>
+                        <span class="roadmap-tag">Camera System</span>
+                        <span class="roadmap-tag">Scene Graph</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="feature-card">
-                <span class="feature-icon">📦</span>
-                <h3 class="feature-title">Asset Pipeline</h3>
-                <p class="feature-description">Import OBJ meshes, export scenes, and manage assets with JSON serialization.</p>
+            <div class="roadmap-item completed">
+                <div class="roadmap-dot"></div>
+                <div class="roadmap-content">
+                    <div class="roadmap-phase">Phase 2 - Complete</div>
+                    <h3 class="roadmap-title">Object Creation & Manipulation</h3>
+                    <p class="roadmap-description">Transform gizmos, object properties, OBJ import, and JSON scene serialization.</p>
+                    <div class="roadmap-features">
+                        <span class="roadmap-tag">Transform Gizmos</span>
+                        <span class="roadmap-tag">OBJ Import</span>
+                        <span class="roadmap-tag">JSON Export</span>
+                        <span class="roadmap-tag">Properties Panel</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="feature-card">
-                <span class="feature-icon">🎯</span>
-                <h3 class="feature-title">Precision Tools</h3>
-                <p class="feature-description">Industry-standard gizmos for move, rotate, and scale with grid snapping.</p>
+            <div class="roadmap-item current">
+                <div class="roadmap-dot"></div>
+                <div class="roadmap-content">
+                    <div class="roadmap-phase">Phase 3 - In Progress</div>
+                    <h3 class="roadmap-title">Scripting & Animation</h3>
+                    <p class="roadmap-description">MEPLua scripting with lifecycle hooks, object animation, rotation, and basic physics.</p>
+                    <div class="roadmap-features">
+                        <span class="roadmap-tag">MEPLua Runtime</span>
+                        <span class="roadmap-tag">Script Editor</span>
+                        <span class="roadmap-tag">Object Animation</span>
+                        <span class="roadmap-tag">Hot Reload</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="feature-card">
-                <span class="feature-icon">🔧</span>
-                <h3 class="feature-title">Modular Architecture</h3>
-                <p class="feature-description">Parent-child hierarchy system for complex models and character rigs.</p>
+            <div class="roadmap-item">
+                <div class="roadmap-dot"></div>
+                <div class="roadmap-content">
+                    <div class="roadmap-phase">Phase 4 - Q1 2026</div>
+                    <h3 class="roadmap-title">Rigging & Humanoid Animation</h3>
+                    <p class="roadmap-description">Skeletal rigging system, bone hierarchies, humanoid animation controller, and IK solver.</p>
+                    <div class="roadmap-features">
+                        <span class="roadmap-tag">Skeletal Rigging</span>
+                        <span class="roadmap-tag">Bone Editor</span>
+                        <span class="roadmap-tag">Humanoid System</span>
+                        <span class="roadmap-tag">Animation Controller</span>
+                        <span class="roadmap-tag">IK Solver</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="feature-card">
-                <span class="feature-icon">🚀</span>
-                <h3 class="feature-title">Performance First</h3>
-                <p class="feature-description">Built on OpenGL 3.3 Core for maximum compatibility and efficiency.</p>
+            <div class="roadmap-item">
+                <div class="roadmap-dot"></div>
+                <div class="roadmap-content">
+                    <div class="roadmap-phase">Phase 5 - Q2 2026</div>
+                    <h3 class="roadmap-title">AI & NPC Systems</h3>
+                    <p class="roadmap-description">Smart AI NPCs with pathfinding, behavior trees, daily routines, and goal-based decision making.</p>
+                    <div class="roadmap-features">
+                        <span class="roadmap-tag">AI Pathfinding</span>
+                        <span class="roadmap-tag">Behavior Trees</span>
+                        <span class="roadmap-tag">NPC Routines</span>
+                        <span class="roadmap-tag">Goal System</span>
+                        <span class="roadmap-tag">AI Builder Tool</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-dot"></div>
+                <div class="roadmap-content">
+                    <div class="roadmap-phase">Phase 6 - Q3 2026</div>
+                    <h3 class="roadmap-title">Server-Side & Multiplayer</h3>
+                    <p class="roadmap-description">Integrated Flask server, client-server architecture, real-time multiplayer, and networked physics.</p>
+                    <div class="roadmap-features">
+                        <span class="roadmap-tag">Flask Server</span>
+                        <span class="roadmap-tag">Client-Server</span>
+                        <span class="roadmap-tag">Multiplayer</span>
+                        <span class="roadmap-tag">Network Sync</span>
+                        <span class="roadmap-tag">Lobby System</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="roadmap-dot"></div>
+                <div class="roadmap-content">
+                    <div class="roadmap-phase">Phase 7 - Q4 2026</div>
+                    <h3 class="roadmap-title">Play Mode & Full Gameplay</h3>
+                    <p class="roadmap-description">Launch play mode, game loop, input systems, complete gameplay mechanics, and build deployment.</p>
+                    <div class="roadmap-features">
+                        <span class="roadmap-tag">Play Mode</span>
+                        <span class="roadmap-tag">Input System</span>
+                        <span class="roadmap-tag">Game Loop</span>
+                        <span class="roadmap-tag">Physics Engine</span>
+                        <span class="roadmap-tag">Build Export</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Specs -->
-    <section class="section" id="specs">
+    <!-- Community Guidelines -->
+    <section class="section" id="community">
         <div class="section-header">
-            <h2 class="section-title">Technical Specifications</h2>
+            <h2 class="section-title">Community Guidelines</h2>
+            <p class="section-subtitle">Building a respectful and collaborative community</p>
         </div>
 
-        <div class="specs-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Component</th>
-                        <th>Specification</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Rendering Engine</strong></td>
-                        <td>OpenGL 3.3 Core Profile</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Scripting Runtime</strong></td>
-                        <td>MEPLua (Lua 5.x compatible)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>File Formats</strong></td>
-                        <td>JSON scenes, OBJ meshes</td>
-                    </tr>
-                    <tr>
-                        <td><strong>System Requirements</strong></td>
-                        <td>Windows 10/11 • 4GB RAM • OpenGL 3.3+ GPU</td>
-                    </tr>
-                    <tr>
-                        <td><strong>License</strong></td>
-                        <td>Free & Open Source</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- Scripting -->
-    <section class="section" id="scripting">
-        <div class="section-header">
-            <h2 class="section-title">MEPLua Scripting</h2>
-            <p class="section-subtitle">Write clean, efficient code that runs in real-time</p>
-        </div>
-
-        <div class="code-block">
-            <pre><code>-- Rotate and animate an object
-function on_start()
-    print("Scene initialized!")
-    script.Parent.Color = Color3.new(1, 0, 0)
-    script.speed = 5
-    script.timer = 0
-end
-
-function on_update(dt)
-    -- Smooth rotation
-    local rotation = script.Parent.Rotation
-    local newY = rotation.Y + (script.speed * dt * 10)
-    script.Parent.Rotation = Vector3.new(rotation.X, newY, rotation.Z)
-    
-    -- Oscillating movement
-    script.timer = script.timer + dt
-    local yPos = math.sin(script.timer * 2) * 3
-    script.Parent.Position = Vector3.new(0, yPos, 0)
-end</code></pre>
-        </div>
-
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3 class="feature-title">Lifecycle System</h3>
-                <p class="feature-description">on_start() and on_update() hooks for complete control over game logic.</p>
+        <div class="guidelines-grid">
+            <div class="guideline-card">
+                <span class="guideline-icon">🤝</span>
+                <h3 class="guideline-title">Share Your Work</h3>
+                <p class="guideline-text">Showcase your projects and learn from others. Attribution is required when using community assets or code.</p>
             </div>
 
-            <div class="feature-card">
-                <h3 class="feature-title">Event System</h3>
-                <p class="feature-description">Collision detection, input handling, and custom events for interactivity.</p>
+            <div class="guideline-card">
+                <span class="guideline-icon">🛠️</span>
+                <h3 class="guideline-title">Contribute & Collaborate</h3>
+                <p class="guideline-text">Contribute to the engine's development through code, documentation, or bug reports. Open source thrives on collaboration.</p>
             </div>
 
-            <div class="feature-card">
-                <h3 class="feature-title">Complete API</h3>
-                <p class="feature-description">Access Vector3 math, Color3 system, scene manipulation, and more.</p>
+            <div class="guideline-card">
+                <span class="guideline-icon">📚</span>
+                <h3 class="guideline-title">Help Others Learn</h3>
+                <p class="guideline-text">Share knowledge and help newcomers. Everyone starts somewhere, and mentorship strengthens our community.</p>
+            </div>
+
+            <div class="guideline-card">
+                <span class="guideline-icon">⚖️</span>
+                <h3 class="guideline-title">Follow the Rules</h3>
+                <p class="guideline-text">Adhere to our terms of service and Discord server rules. Violations may result in warnings or removal from the community.</p>
+            </div>
+
+            <div class="guideline-card">
+                <span class="guideline-icon">💡</span>
+                <h3 class="guideline-title">Report Issues</h3>
+                <p class="guideline-text">Report bugs, security vulnerabilities, or community violations promptly. Help us maintain a safe and functional platform.</p>
+            </div>
+
+            <div class="guideline-card">
+                <span class="guideline-icon">🌟</span>
+                <h3 class="guideline-title">Celebrate Success</h3>
+                <p class="guideline-text">Recognize and celebrate community achievements. Positive reinforcement builds a stronger, more motivated community.</p>
             </div>
         </div>
     </section>
 
-    <!-- Download -->
+    <!-- Download Section -->
     <section class="section" id="download">
         <div class="section-header">
-            <h2 class="section-title">Get Started Today</h2>
-            <p class="section-subtitle">Download, extract, and start creating in minutes</p>
+            <h2 class="section-title">Start Building Today</h2>
+            <p class="section-subtitle">Sign in to download MEP Sandbox Engine v1.3</p>
         </div>
 
         <div style="text-align: center; margin-top: 48px;">
-            <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/raw/main/MicahEngineStudio_v1.3.rar" class="btn btn-primary" style="font-size: 20px; padding: 18px 48px;">Download v1.3</a>
-            <p style="margin-top: 24px; color: var(--gray-500); font-size: 14px;">47MB RAR • Windows 10/11 • No Installation Required</p>
-        </div>
-
-        <div class="feature-grid" style="margin-top: 80px;">
-            <div class="feature-card">
-                <h3 class="feature-title">1. Extract</h3>
-                <p class="feature-description">Unzip the RAR file using WinRAR or 7-Zip to any location.</p>
-            </div>
-
-            <div class="feature-card">
-                <h3 class="feature-title">2. Launch</h3>
-                <p class="feature-description">Run MicahEngineStudio.exe—no installation needed.</p>
-            </div>
-
-            <div class="feature-card">
-                <h3 class="feature-title">3. Create</h3>
-                <p class="feature-description">Start building with built-in tutorials and examples.</p>
-            </div>
+            <button id="download-btn-main" class="btn btn-primary" style="font-size: 20px; padding: 20px 56px;" disabled>
+                Sign In to Download
+            </button>
+            <p style="margin-top: 24px; color: var(--gray-500); font-size: 14px;">47MB • Windows 10/11 • Free Forever</p>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">MEP Sandbox Engine</div>
+                <p class="footer-description">Professional 3D development platform built for creators. Free forever.</p>
+            </div>
+
             <div class="footer-section">
                 <h4>Product</h4>
                 <ul class="footer-links">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#specs">Specifications</a></li>
-                    <li><a href="#scripting">Scripting API</a></li>
+                    <li><a href="#roadmap">Roadmap</a></li>
+                    <li><a href="#community">Community</a></li>
                     <li><a href="#download">Download</a></li>
                 </ul>
             </div>
@@ -876,9 +1006,8 @@ end</code></pre>
                 <h4>Resources</h4>
                 <ul class="footer-links">
                     <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" target="_blank">GitHub</a></li>
-                    <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/issues" target="_blank">Report Issues</a></li>
+                    <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/issues" target="_blank">Issues</a></li>
                     <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/releases" target="_blank">Releases</a></li>
-                    <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/blob/main/LICENSE" target="_blank">License</a></li>
                 </ul>
             </div>
 
@@ -886,33 +1015,35 @@ end</code></pre>
                 <h4>Community</h4>
                 <ul class="footer-links">
                     <li><a href="https://discord.gg/BsUQUFYBmN" target="_blank">Discord</a></li>
-                    <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/discussions" target="_blank">Discussions</a></li>
                     <li><a href="https://buy.stripe.com/5kQ6oHcD6amY1i31k0grS0f" target="_blank">Support</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Legal</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Privacy</a></li>
-                    <li><a href="#">Terms</a></li>
-                    <li><a href="#">Contact</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>© 2025 FugthChat. MEP Sandbox Engine. All rights reserved.</p>
+            <p class="footer-copyright">© 2025 FugthChat. MEP Sandbox Engine. MIT License.</p>
+            <div class="footer-legal">
+                <a href="#" onclick="showLegal('privacy'); return false;">Privacy</a>
+                <a href="#" onclick="showLegal('terms'); return false;">Terms</a>
+                <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/blob/main/LICENSE" target="_blank">License</a>
+            </div>
         </div>
     </footer>
 
-    <!-- Firebase SDK -->
+    <!-- Legal Modals -->
+    <div class="modal-overlay" id="legalModal">
+        <div class="modal-content" style="max-width: 800px; max-height: 80vh; overflow-y: auto;">
+            <button class="modal-close" onclick="closeLegal()">×</button>
+            <div id="legalContent"></div>
+        </div>
+    </div>
+
+    <!-- Firebase & Scripts -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
 
-        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAyAioT7g8jkZoybvAhBqaDaXlJh-ZTwV4",
             authDomain: "mepsandboxengine.firebaseapp.com",
@@ -923,27 +1054,22 @@ end</code></pre>
             measurementId: "G-4CN9M3M59L"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const analytics = getAnalytics(app);
 
-        // DOM Elements
         const modal = document.getElementById('authModal');
         const loginBtn = document.getElementById('login-btn');
         const logoutBtn = document.getElementById('logout-btn');
         const userDisplay = document.getElementById('user-display');
         const usernameSpan = document.getElementById('username-span');
         const authError = document.getElementById('authError');
-        const signinForm = document.getElementById('signinForm');
-        const signupForm = document.getElementById('signupForm');
+        const downloadBtn = document.getElementById('download-btn');
+        const downloadBtnMain = document.getElementById('download-btn-main');
 
-        // Modal Controls
         window.closeModal = () => {
             modal.classList.remove('active');
             authError.classList.remove('active');
-            signinForm.reset();
-            signupForm.reset();
         };
 
         window.switchTab = (tab) => {
@@ -955,35 +1081,39 @@ end</code></pre>
             
             if (tab === 'signin') {
                 tabs[0].classList.add('active');
-                signinForm.classList.add('active');
+                document.getElementById('signinForm').classList.add('active');
             } else {
                 tabs[1].classList.add('active');
-                signupForm.classList.add('active');
+                document.getElementById('signupForm').classList.add('active');
             }
             
             authError.classList.remove('active');
         };
 
-        // Open Modal
-        loginBtn.addEventListener('click', () => {
-            modal.classList.add('active');
-        });
-
-        // Close on overlay click
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                window.closeModal();
+        loginBtn.addEventListener('click', () => modal.classList.add('active'));
+        
+        downloadBtn.addEventListener('click', () => {
+            if (!auth.currentUser) {
+                modal.classList.add('active');
             }
         });
 
-        // Show Error
+        downloadBtnMain.addEventListener('click', () => {
+            if (!auth.currentUser) {
+                modal.classList.add('active');
+            }
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) window.closeModal();
+        });
+
         function showError(message) {
             authError.textContent = message;
             authError.classList.add('active');
         }
 
-        // Sign In
-        signinForm.addEventListener('submit', async (e) => {
+        document.getElementById('signinForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('signin-email').value;
             const password = document.getElementById('signin-password').value;
@@ -992,25 +1122,14 @@ end</code></pre>
                 await signInWithEmailAndPassword(auth, email, password);
                 window.closeModal();
             } catch (error) {
-                console.error('Sign in error:', error);
-                let errorMessage = 'Sign in failed. Please try again.';
-                
-                if (error.code === 'auth/invalid-email') {
-                    errorMessage = 'Invalid email address.';
-                } else if (error.code === 'auth/user-not-found') {
-                    errorMessage = 'No account found with this email.';
-                } else if (error.code === 'auth/wrong-password') {
-                    errorMessage = 'Incorrect password.';
-                } else if (error.code === 'auth/invalid-credential') {
-                    errorMessage = 'Invalid email or password.';
-                }
-                
+                let errorMessage = 'Sign in failed.';
+                if (error.code === 'auth/invalid-credential') errorMessage = 'Invalid email or password.';
+                else if (error.code === 'auth/user-not-found') errorMessage = 'No account found.';
                 showError(errorMessage);
             }
         });
 
-        // Sign Up
-        signupForm.addEventListener('submit', async (e) => {
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('signup-email').value;
             const password = document.getElementById('signup-password').value;
@@ -1030,22 +1149,12 @@ end</code></pre>
                 await createUserWithEmailAndPassword(auth, email, password);
                 window.closeModal();
             } catch (error) {
-                console.error('Sign up error:', error);
-                let errorMessage = 'Sign up failed. Please try again.';
-                
-                if (error.code === 'auth/email-already-in-use') {
-                    errorMessage = 'This email is already registered.';
-                } else if (error.code === 'auth/invalid-email') {
-                    errorMessage = 'Invalid email address.';
-                } else if (error.code === 'auth/weak-password') {
-                    errorMessage = 'Password is too weak.';
-                }
-                
+                let errorMessage = 'Sign up failed.';
+                if (error.code === 'auth/email-already-in-use') errorMessage = 'Email already registered.';
                 showError(errorMessage);
             }
         });
 
-        // Sign Out
         logoutBtn.addEventListener('click', async () => {
             try {
                 await signOut(auth);
@@ -1054,23 +1163,105 @@ end</code></pre>
             }
         });
 
-        // Auth State Observer
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // User is signed in
                 loginBtn.style.display = 'none';
                 userDisplay.style.display = 'flex';
+                usernameSpan.textContent = user.email.split('@')[0];
                 
-                // Extract username from email (part before @)
-                const username = user.email.split('@')[0];
-                usernameSpan.innerText = username.charAt(0).toUpperCase() + username.slice(1);
+                downloadBtn.disabled = false;
+                downloadBtn.textContent = 'Download v1.3';
+                downloadBtn.onclick = () => {
+                    window.location.href = 'https://github.com/FugthChat/MEP-SANDBOX-ENGINE/raw/main/MicahEngineStudio_v1.3.rar';
+                };
+
+                downloadBtnMain.disabled = false;
+                downloadBtnMain.textContent = 'Download v1.3';
+                downloadBtnMain.onclick = () => {
+                    window.location.href = 'https://github.com/FugthChat/MEP-SANDBOX-ENGINE/raw/main/MicahEngineStudio_v1.3.rar';
+                };
             } else {
-                // User is signed out
                 loginBtn.style.display = 'block';
                 userDisplay.style.display = 'none';
+                
+                downloadBtn.disabled = true;
+                downloadBtn.textContent = 'Sign In to Download';
+                downloadBtn.onclick = null;
+
+                downloadBtnMain.disabled = true;
+                downloadBtnMain.textContent = 'Sign In to Download';
+                downloadBtnMain.onclick = null;
             }
         });
+
+        window.showLegal = (type) => {
+            const content = document.getElementById('legalContent');
+            const legalModal = document.getElementById('legalModal');
+            
+            if (type === 'privacy') {
+                content.innerHTML = `
+                    <h2 style="font-size: 32px; font-weight: 900; margin-bottom: 32px;">Privacy Policy</h2>
+                    <p style="color: var(--gray-600); margin-bottom: 40px;">Last updated: December 5, 2025</p>
+                    
+                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">Information Collection</h3>
+                    <p style="margin-bottom: 16px;">We collect email addresses for authentication purposes only. No personal data is sold or shared with third parties.</p>
+                    
+                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">Data Usage</h3>
+                    <p style="margin-bottom: 16px;">Your email is used solely for account management and essential service communications. We use Google Analytics to understand usage patterns.</p>
+                    
+                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">Data Security</h3>
+                    <p style="margin-bottom: 16px;">Authentication is handled by Firebase. We employ industry-standard security measures to protect your information.</p>
+                    
+                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">Your Rights</h3>
+                    <p style="margin-bottom: 16px;">You may request deletion of your account and data at any time by contacting us through Discord or GitHub.</p>
+                `;
+            } else if (type === 'terms') {
+                content.innerHTML = `
+                    <h2 style="font-size: 32px; font-weight: 900; margin-bottom: 32px;">Terms of Service</h2>
+                    <p style="color: var(--gray-600); margin-bottom: 40px;">Last updated: December 5, 2025</p>
+                    
+                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">License</h3>
+                    <p style="margin-bottom: 16px;">MEP Sandbox Engine is licensed under the MIT License. You are free to use, modify, and distribute the software for commercial and non-commercial purposes.</p>
+                    
+                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">Acceptable Use</h3>
+                    <p style="margin-bottom: 16px;">You agree not to use MEP Sandbox Engine for illegal activities, malicious purposes, or to harm others. Respect intellectual property rights when using community assets.</p>
+                    
+                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">No Warranty</h3>
+                    <p style="margin-bottom: 16px;">The software is provided "as is" without warranty of any kind. We are not liable for any damages arising from use of the software.</p>
+                    
+                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">Account Termination</h3>
+                    <p style="margin-bottom: 16px;">We reserve the right to terminate accounts that violate these terms or community guidelines.</p>
+                    
+                    <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 16px;">Changes</h3>
+                    <p style="margin-bottom: 16px;">We may update these terms at any time. Continued use constitutes acceptance of updated terms.</p>
+                `;
+            }
+            
+            legalModal.classList.add('active');
+        };
+
+        window.closeLegal = () => {
+            document.getElementById('legalModal').classList.remove('active');
+        };
     </script>
 
 </body>
-</html>
+</html>">Be Respectful</h3>
+                <p class="guideline-text">Treat all community members with kindness and respect. Harassment, discrimination, and toxic behavior are not tolerated.</p>
+            </div>
+
+            <div class="guideline-card">
+                <span class="guideline-icon">💬</span>
+                <h3 class="guideline-title">Constructive Communication</h3>
+                <p class="guideline-text">Provide helpful feedback and engage in meaningful discussions. Criticism should be constructive and focused on ideas, not individuals.</p>
+            </div>
+
+            <div class="guideline-card">
+                <span class="guideline-icon">🔒</span>
+                <h3 class="guideline-title">Privacy & Safety</h3>
+                <p class="guideline-text">Protect your personal information and respect others' privacy. Never share sensitive data or engage in doxxing.</p>
+            </div>
+
+            <div class="guideline-card">
+                <span class="guideline-icon">🎨</span>
+                <h3 class="guideline-title
