@@ -341,138 +341,178 @@
         }
 
         /* Roadmap */
-        .roadmap-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
+        .roadmap-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
         }
 
-        .roadmap-line {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--gray-200);
-            transform: translateX(-50%);
-        }
-
-        .roadmap-progress {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 30%;
-            background: var(--black);
-        }
-
-        .roadmap-item {
-            display: flex;
-            gap: 40px;
-            margin-bottom: 80px;
-            position: relative;
-        }
-
-        .roadmap-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .roadmap-content {
-            flex: 1;
+        .roadmap-column {
+            border: 2px solid var(--gray-200);
+            border-radius: 14px;
+            padding: 28px;
             background: var(--white);
+        }
+
+        .roadmap-column h3 {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .roadmap-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .roadmap-card {
             border: 2px solid var(--gray-200);
             border-radius: 12px;
-            padding: 32px;
-            transition: all 0.3s;
-        }
-
-        .roadmap-content:hover {
-            border-color: var(--black);
-        }
-
-        .roadmap-item.completed .roadmap-content {
-            border-color: var(--black);
+            padding: 18px;
             background: var(--gray-50);
+            transition: border-color 0.2s ease, transform 0.2s ease;
         }
 
-        .roadmap-dot {
-            position: absolute;
-            left: 50%;
-            top: 32px;
-            width: 20px;
-            height: 20px;
-            background: var(--white);
-            border: 3px solid var(--gray-200);
-            border-radius: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-        }
-
-        .roadmap-item.completed .roadmap-dot {
-            background: var(--black);
+        .roadmap-card:hover {
             border-color: var(--black);
+            transform: translateY(-2px);
         }
 
-        .roadmap-item.current .roadmap-dot {
-            background: var(--black);
-            border-color: var(--black);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.2); }
-        }
-
-        .roadmap-phase {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--gray-500);
+        .roadmap-card .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
             margin-bottom: 8px;
-        }
-
-        .roadmap-item.completed .roadmap-phase,
-        .roadmap-item.current .roadmap-phase {
-            color: var(--black);
-        }
-
-        .roadmap-title {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
-
-        .roadmap-description {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
             color: var(--gray-600);
-            font-size: 15px;
-            line-height: 1.6;
-            margin-bottom: 16px;
         }
 
-        .roadmap-features {
+        .roadmap-card h4 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .roadmap-card p {
+            color: var(--gray-700);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .roadmap-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
         }
 
-        .roadmap-tag {
-            background: var(--gray-100);
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: 600;
+        .roadmap-chip {
+            padding: 6px 10px;
+            border-radius: 20px;
+            border: 1px solid var(--gray-300);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--gray-700);
         }
 
-        .roadmap-item.completed .roadmap-tag {
+        .roadmap-card[data-state="done"] {
+            background: var(--white);
+            border-color: var(--black);
+        }
+
+        .roadmap-card[data-state="now"] {
+            background: var(--gray-900);
+            border-color: var(--black);
+            color: var(--white);
+        }
+
+        .roadmap-card[data-state="now"] p,
+        .roadmap-card[data-state="now"] .meta,
+        .roadmap-card[data-state="now"] .roadmap-chip {
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .roadmap-card[data-state="next"] {
+            background: var(--gray-100);
+        }
+
+        /* Profile */
+        .profile-bar {
+            margin: 32px 0;
+            padding: 20px;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--gray-50);
+        }
+
+        .profile-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 2px solid var(--gray-300);
+            object-fit: cover;
+            background: var(--white);
+        }
+
+        .profile-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .profile-meta strong {
+            font-size: 18px;
+        }
+
+        .profile-edit {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-left: auto;
+            align-items: center;
+        }
+
+        .profile-input {
+            padding: 10px 12px;
+            border: 1px solid var(--gray-300);
+            border-radius: 8px;
+            font-size: 14px;
+            min-width: 180px;
+        }
+
+        .profile-button {
             background: var(--black);
             color: var(--white);
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
-        .roadmap-item.current .roadmap-tag {
-            background: var(--gray-900);
-            color: var(--white);
+        .profile-button:hover {
+            background: var(--gray-800);
+        }
+
+        .profile-hint {
+            font-size: 12px;
+            color: var(--gray-600);
         }
 
         /* Community Guidelines */
@@ -779,6 +819,39 @@
         </div>
     </section>
 
+    <!-- Profile -->
+    <div class="section" id="profile">
+        <div class="section-header">
+            <h2 class="section-title">Your Profile</h2>
+            <p class="section-subtitle">Customize your display name and avatar</p>
+        </div>
+        <div class="profile-bar">
+            <img id="profile-avatar" class="profile-avatar" src="https://api.dicebear.com/7.x/shapes/svg?seed=Creator&backgroundColor=ffffff&radius=50" alt="Avatar">
+            <div class="profile-meta">
+                <strong id="profile-name">Guest</strong>
+                <span class="profile-hint">Pick a display name and avatar preset below.</span>
+            </div>
+            <div class="profile-edit">
+                <input id="profile-name-input" class="profile-input" type="text" placeholder="Display name" maxlength="24">
+                <select id="avatar-select" class="profile-input">
+                    <option value="Creator">Creator</option>
+                    <option value="Designer">Designer</option>
+                    <option value="Builder">Builder</option>
+                    <option value="Pilot">Pilot</option>
+                    <option value="Voyager">Voyager</option>
+                    <option value="Hacker">Hacker</option>
+                    <option value="Artist">Artist</option>
+                    <option value="Coder">Coder</option>
+                    <option value="Wizard">Wizard</option>
+                    <option value="Knight">Knight</option>
+                    <option value="Explorer">Explorer</option>
+                    <option value="Ninja">Ninja</option>
+                </select>
+                <button id="profile-save" class="profile-button">Save</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Stats -->
     <div class="section">
         <div class="stats">
@@ -805,119 +878,239 @@
     <section class="section" id="roadmap">
         <div class="section-header">
             <h2 class="section-title">Development Roadmap</h2>
-            <p class="section-subtitle">Building the future of 3D development</p>
+            <p class="section-subtitle">What shipped, what's building now, and what's next.</p>
         </div>
 
-        <div class="roadmap-container">
-            <div class="roadmap-line">
-                <div class="roadmap-progress"></div>
-            </div>
-
-            <div class="roadmap-item completed">
-                <div class="roadmap-dot"></div>
-                <div class="roadmap-content">
-                    <div class="roadmap-phase">Phase 1 - Complete</div>
-                    <h3 class="roadmap-title">Core Engine Foundation</h3>
-                    <p class="roadmap-description">OpenGL rendering pipeline with basic 3D primitives, camera controls, and scene management.</p>
-                    <div class="roadmap-features">
-                        <span class="roadmap-tag">OpenGL 3.3</span>
-                        <span class="roadmap-tag">3D Primitives</span>
-                        <span class="roadmap-tag">Camera System</span>
-                        <span class="roadmap-tag">Scene Graph</span>
+        <div class="roadmap-wrapper">
+            <div class="roadmap-column">
+                <h3>Shipped</h3>
+                <div class="roadmap-list">
+                    <div class="roadmap-card" data-state="done">
+                        <div class="meta"><span>Q1 2025</span><span>Done</span></div>
+                        <h4>Core Rendering + Scene Graph</h4>
+                        <p>OpenGL 3.3 renderer with depth testing, orbit camera, WASD movement, ambient + specular lighting, and hierarchical scene graph.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">OpenGL 3.3</span>
+                            <span class="roadmap-chip">Orbit Camera</span>
+                            <span class="roadmap-chip">Scene Graph</span>
+                            <span class="roadmap-chip">Lighting</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-card" data-state="done">
+                        <div class="meta"><span>Q1 2025</span><span>Done</span></div>
+                        <h4>50+ Object Types</h4>
+                        <p>Parts, Spheres, Cylinders, Pyramids, Torus, Models, Humanoids, Scripts, Motor6D, Welds, Attachments, GUI elements, Values, and more.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">Primitives</span>
+                            <span class="roadmap-chip">Humanoids</span>
+                            <span class="roadmap-chip">Constraints</span>
+                            <span class="roadmap-chip">GUI</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-card" data-state="done">
+                        <div class="meta"><span>Q2 2025</span><span>Done</span></div>
+                        <h4>Creator Tools + Import</h4>
+                        <p>Properties panel with 50+ editable fields, transform gizmos with snapping, OBJ import, JSON save/load, and multi-scene projects.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">OBJ Import</span>
+                            <span class="roadmap-chip">Gizmos</span>
+                            <span class="roadmap-chip">JSON Export</span>
+                            <span class="roadmap-chip">Properties</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-card" data-state="done">
+                        <div class="meta"><span>Q3 2025</span><span>Done</span></div>
+                        <h4>MEPLua Runtime v1</h4>
+                        <p>Full Lua runtime with on_start/on_update lifecycle, Instance.new(), Vector3/Color3 libraries, 100+ API functions, and hot-reload.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">Lua Runtime</span>
+                            <span class="roadmap-chip">Instance.new</span>
+                            <span class="roadmap-chip">Hot Reload</span>
+                            <span class="roadmap-chip">100+ APIs</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-card" data-state="done">
+                        <div class="meta"><span>Q3 2025</span><span>Done</span></div>
+                        <h4>Event System</h4>
+                        <p>Touched, Died, ClickDetector, ProximityPrompt, BindableEvent/Function, RemoteEvent/Function for script communication.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">Events</span>
+                            <span class="roadmap-chip">Bindables</span>
+                            <span class="roadmap-chip">Remotes</span>
+                            <span class="roadmap-chip">Signals</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-card" data-state="done">
+                        <div class="meta"><span>Q3 2025</span><span>Done</span></div>
+                        <h4>Stability & Diagnostics</h4>
+                        <p>Crash-safe launcher v1.3, dependency self-heal, UTF-8 IO, loop detection markers, and health checks before install.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">Launcher</span>
+                            <span class="roadmap-chip">Health</span>
+                            <span class="roadmap-chip">Diagnostics</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="roadmap-item completed">
-                <div class="roadmap-dot"></div>
-                <div class="roadmap-content">
-                    <div class="roadmap-phase">Phase 2 - Complete</div>
-                    <h3 class="roadmap-title">Object Creation & Manipulation</h3>
-                    <p class="roadmap-description">Transform gizmos, object properties, OBJ import, and JSON scene serialization.</p>
-                    <div class="roadmap-features">
-                        <span class="roadmap-tag">Transform Gizmos</span>
-                        <span class="roadmap-tag">OBJ Import</span>
-                        <span class="roadmap-tag">JSON Export</span>
-                        <span class="roadmap-tag">Properties Panel</span>
+            <div class="roadmap-column">
+                <h3>Building Now</h3>
+                <div class="roadmap-list">
+                    <div class="roadmap-card" data-state="now">
+                        <div class="meta"><span>Q4 2025</span><span>In Progress</span></div>
+                        <h4>Animation + Timeline</h4>
+                        <p>Keyframe timeline editor, per-object animation tracks, easing presets (linear, ease-in/out, bounce), scrubbable viewport preview.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">Keyframes</span>
+                            <span class="roadmap-chip">Easing</span>
+                            <span class="roadmap-chip">Timeline</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-card" data-state="now">
+                        <div class="meta"><span>Q4 2025</span><span>In Progress</span></div>
+                        <h4>Physics Baseline</h4>
+                        <p>Rigid body primitives, gravity simulation, collision layers, BodyVelocity/BodyGyro/BodyPosition forces exposed to MEPLua.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">Rigid Bodies</span>
+                            <span class="roadmap-chip">Gravity</span>
+                            <span class="roadmap-chip">Collisions</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-card" data-state="now">
+                        <div class="meta"><span>Q4 2025</span><span>In Progress</span></div>
+                        <h4>Constraint System</h4>
+                        <p>Motor6D, Weld, BallSocket, Hinge, Prismatic, Spring, Rope, Rod constraints for mechanical assemblies and ragdolls.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">Welds</span>
+                            <span class="roadmap-chip">Motors</span>
+                            <span class="roadmap-chip">Springs</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-card" data-state="now">
+                        <div class="meta"><span>Q4 2025</span><span>In Progress</span></div>
+                        <h4>UX & Editor Polish</h4>
+                        <p>Black/white modern theme, faster file dialogs, error toasts, project health checks, and performance optimizations for 1000+ objects.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">UI Polish</span>
+                            <span class="roadmap-chip">Performance</span>
+                            <span class="roadmap-chip">Toasts</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-card" data-state="now">
+                        <div class="meta"><span>Q4 2025</span><span>In Progress</span></div>
+                        <h4>User Profiles</h4>
+                        <p>Custom display names, avatar presets, localStorage persistence, and Firebase profile sync for signed-in users.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">Profiles</span>
+                            <span class="roadmap-chip">Avatars</span>
+                            <span class="roadmap-chip">Sync</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="roadmap-item current">
-                <div class="roadmap-dot"></div>
-                <div class="roadmap-content">
-                    <div class="roadmap-phase">Phase 3 - In Progress</div>
-                    <h3 class="roadmap-title">Scripting & Animation</h3>
-                    <p class="roadmap-description">MEPLua scripting with lifecycle hooks, object animation, rotation, and basic physics.</p>
-                    <div class="roadmap-features">
-                        <span class="roadmap-tag">MEPLua Runtime</span>
-                        <span class="roadmap-tag">Script Editor</span>
-                        <span class="roadmap-tag">Object Animation</span>
-                        <span class="roadmap-tag">Hot Reload</span>
+            <div class="roadmap-column">
+                <h3>Up Next <span style="font-size:12px;font-weight:400;color:var(--gray-500);">vs Unity gaps</span></h3>
+                <div class="roadmap-list">
+                    <div class="roadmap-card" data-state="next">
+                        <div class="meta"><span>Q1 2026</span><span>Planned</span></div>
+                        <h4>Rigging & Humanoids</h4>
+                        <p>Bone hierarchies, FK/IK switching, pose editor, Animator controller, and export to FBX/glTF rig formats.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">Rigging</span>
+                            <span class="roadmap-chip">IK</span>
+                            <span class="roadmap-chip">Animator</span>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="roadmap-item">
-                <div class="roadmap-dot"></div>
-                <div class="roadmap-content">
-                    <div class="roadmap-phase">Phase 4 - Q1 2026</div>
-                    <h3 class="roadmap-title">Rigging & Humanoid Animation</h3>
-                    <p class="roadmap-description">Skeletal rigging system, bone hierarchies, humanoid animation controller, and IK solver.</p>
-                    <div class="roadmap-features">
-                        <span class="roadmap-tag">Skeletal Rigging</span>
-                        <span class="roadmap-tag">Bone Editor</span>
-                        <span class="roadmap-tag">Humanoid System</span>
-                        <span class="roadmap-tag">Animation Controller</span>
-                        <span class="roadmap-tag">IK Solver</span>
+                    <div class="roadmap-card" data-state="next">
+                        <div class="meta"><span>Q1 2026</span><span>Planned</span></div>
+                        <h4>Material Editor</h4>
+                        <p>PBR materials, texture slots (albedo, normal, metallic, roughness), shader graph preview—closing gap with Unity Standard shader.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">PBR</span>
+                            <span class="roadmap-chip">Textures</span>
+                            <span class="roadmap-chip">Shader Graph</span>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="roadmap-item">
-                <div class="roadmap-dot"></div>
-                <div class="roadmap-content">
-                    <div class="roadmap-phase">Phase 5 - Q2 2026</div>
-                    <h3 class="roadmap-title">AI & NPC Systems</h3>
-                    <p class="roadmap-description">Smart AI NPCs with pathfinding, behavior trees, daily routines, and goal-based decision making.</p>
-                    <div class="roadmap-features">
-                        <span class="roadmap-tag">AI Pathfinding</span>
-                        <span class="roadmap-tag">Behavior Trees</span>
-                        <span class="roadmap-tag">NPC Routines</span>
-                        <span class="roadmap-tag">Goal System</span>
-                        <span class="roadmap-tag">AI Builder Tool</span>
+                    <div class="roadmap-card" data-state="next">
+                        <div class="meta"><span>Q2 2026</span><span>Planned</span></div>
+                        <h4>Particle System</h4>
+                        <p>GPU-based particle emitters, lifetime curves, color gradients, forces, and sub-emitters like Unity Shuriken.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">Particles</span>
+                            <span class="roadmap-chip">GPU</span>
+                            <span class="roadmap-chip">Emitters</span>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="roadmap-item">
-                <div class="roadmap-dot"></div>
-                <div class="roadmap-content">
-                    <div class="roadmap-phase">Phase 6 - Q3 2026</div>
-                    <h3 class="roadmap-title">Server-Side & Multiplayer</h3>
-                    <p class="roadmap-description">Integrated Flask server, client-server architecture, real-time multiplayer, and networked physics.</p>
-                    <div class="roadmap-features">
-                        <span class="roadmap-tag">Flask Server</span>
-                        <span class="roadmap-tag">Client-Server</span>
-                        <span class="roadmap-tag">Multiplayer</span>
-                        <span class="roadmap-tag">Network Sync</span>
-                        <span class="roadmap-tag">Lobby System</span>
+                    <div class="roadmap-card" data-state="next">
+                        <div class="meta"><span>Q2 2026</span><span>Planned</span></div>
+                        <h4>AI & NPC Behaviors</h4>
+                        <p>NavMesh pathfinding, behavior trees, schedule-based routines, and visual AI graph editor—no code required.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">NavMesh</span>
+                            <span class="roadmap-chip">Behaviors</span>
+                            <span class="roadmap-chip">No-Code AI</span>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="roadmap-item">
-                <div class="roadmap-dot"></div>
-                <div class="roadmap-content">
-                    <div class="roadmap-phase">Phase 7 - Q4 2026</div>
-                    <h3 class="roadmap-title">Play Mode & Full Gameplay</h3>
-                    <p class="roadmap-description">Launch play mode, game loop, input systems, complete gameplay mechanics, and build deployment.</p>
-                    <div class="roadmap-features">
-                        <span class="roadmap-tag">Play Mode</span>
-                        <span class="roadmap-tag">Input System</span>
-                        <span class="roadmap-tag">Game Loop</span>
-                        <span class="roadmap-tag">Physics Engine</span>
-                        <span class="roadmap-tag">Build Export</span>
+                    <div class="roadmap-card" data-state="next">
+                        <div class="meta"><span>Q2 2026</span><span>Planned</span></div>
+                        <h4>Terrain Tools</h4>
+                        <p>Heightmap sculpting, paint splatmaps, foliage scattering, and LOD system for large outdoor worlds.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">Terrain</span>
+                            <span class="roadmap-chip">Foliage</span>
+                            <span class="roadmap-chip">LOD</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-card" data-state="next">
+                        <div class="meta"><span>Q3 2026</span><span>Planned</span></div>
+                        <h4>Multiplayer Foundations</h4>
+                        <p>Authoritative server template, lobby system, replication channels, and network-safe Lua API—like Unity Netcode.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">Lobby</span>
+                            <span class="roadmap-chip">Replication</span>
+                            <span class="roadmap-chip">Server</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-card" data-state="next">
+                        <div class="meta"><span>Q3 2026</span><span>Planned</span></div>
+                        <h4>Audio Mixer</h4>
+                        <p>3D spatial audio, sound groups, ducking, reverb zones, and mixer snapshots for dynamic audio like Unity Audio Mixer.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">3D Audio</span>
+                            <span class="roadmap-chip">Mixer</span>
+                            <span class="roadmap-chip">Reverb</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-card" data-state="next">
+                        <div class="meta"><span>Q4 2026</span><span>Planned</span></div>
+                        <h4>Play Mode & Export</h4>
+                        <p>In-editor play mode, packaged standalone builds, input rebinding, and export presets for Windows/Mac/Linux.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">Play Mode</span>
+                            <span class="roadmap-chip">Builds</span>
+                            <span class="roadmap-chip">Inputs</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-card" data-state="next">
+                        <div class="meta"><span>Q4 2026</span><span>Planned</span></div>
+                        <h4>Visual Scripting</h4>
+                        <p>Node-based scripting graph, drag-and-drop logic blocks, and Lua code export for beginners—like Unity Visual Scripting.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">Nodes</span>
+                            <span class="roadmap-chip">No-Code</span>
+                            <span class="roadmap-chip">Export Lua</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-card" data-state="next">
+                        <div class="meta"><span>2027</span><span>Planned</span></div>
+                        <h4>Cloud Sync & Teams</h4>
+                        <p>Cloud projects, versioned saves, team workspaces with role-based access, and asset sharing—like Unity Collaborate.</p>
+                        <div class="roadmap-tags">
+                            <span class="roadmap-chip">Cloud</span>
+                            <span class="roadmap-chip">Teams</span>
+                            <span class="roadmap-chip">Versions</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1066,6 +1259,11 @@
         const authError = document.getElementById('authError');
         const downloadBtn = document.getElementById('download-btn');
         const downloadBtnMain = document.getElementById('download-btn-main');
+        const profileAvatar = document.getElementById('profile-avatar');
+        const profileName = document.getElementById('profile-name');
+        const profileNameInput = document.getElementById('profile-name-input');
+        const avatarSelect = document.getElementById('avatar-select');
+        const profileSave = document.getElementById('profile-save');
 
         window.closeModal = () => {
             modal.classList.remove('active');
@@ -1163,22 +1361,57 @@
             }
         });
 
+        const releaseUrl = 'https://github.com/FugthChat/MEP-SANDBOX-ENGINE/releases/download/v1.3/MicahEngineStudio_v1.3_Release.zip';
+
+        function updateProfileUI(name, avatarSeed) {
+            const seed = avatarSeed || 'Creator';
+            profileAvatar.src = `https://api.dicebear.com/7.x/shapes/svg?seed=${encodeURIComponent(seed)}&backgroundColor=ffffff&radius=50`;
+            profileName.textContent = name || 'Guest';
+            profileNameInput.value = name || '';
+            avatarSelect.value = seed;
+            localStorage.setItem('mep_profile_name', name || '');
+            localStorage.setItem('mep_avatar_seed', seed);
+        }
+
+        function loadProfileDefaults() {
+            const storedName = localStorage.getItem('mep_profile_name') || '';
+            const storedSeed = localStorage.getItem('mep_avatar_seed') || 'Creator';
+            updateProfileUI(storedName || 'Guest', storedSeed);
+        }
+
+        profileSave.addEventListener('click', () => {
+            const name = profileNameInput.value.trim() || 'Guest';
+            const seed = avatarSelect.value || 'Creator';
+            updateProfileUI(name, seed);
+            if (auth.currentUser) {
+                // Update Firebase profile lightly (non-blocking)
+                import('https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js').then(({ updateProfile }) => {
+                    updateProfile(auth.currentUser, { displayName: name, photoURL: `https://api.dicebear.com/7.x/shapes/svg?seed=${encodeURIComponent(seed)}` }).catch(() => {});
+                });
+            }
+        });
+
+        loadProfileDefaults();
+
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 loginBtn.style.display = 'none';
                 userDisplay.style.display = 'flex';
-                usernameSpan.textContent = user.email.split('@')[0];
+                const displayName = user.displayName || user.email.split('@')[0];
+                usernameSpan.textContent = displayName;
+                const seed = localStorage.getItem('mep_avatar_seed') || 'Creator';
+                updateProfileUI(displayName, seed);
                 
                 downloadBtn.disabled = false;
                 downloadBtn.textContent = 'Download v1.3';
                 downloadBtn.onclick = () => {
-                    window.location.href = 'https://github.com/FugthChat/MEP-SANDBOX-ENGINE/raw/main/MicahEngineStudio_v1.3.rar';
+                    window.location.href = releaseUrl;
                 };
 
                 downloadBtnMain.disabled = false;
                 downloadBtnMain.textContent = 'Download v1.3';
                 downloadBtnMain.onclick = () => {
-                    window.location.href = 'https://github.com/FugthChat/MEP-SANDBOX-ENGINE/raw/main/MicahEngineStudio_v1.3.rar';
+                    window.location.href = releaseUrl;
                 };
             } else {
                 loginBtn.style.display = 'block';
@@ -1246,22 +1479,4 @@
     </script>
 
 </body>
-</html>">Be Respectful</h3>
-                <p class="guideline-text">Treat all community members with kindness and respect. Harassment, discrimination, and toxic behavior are not tolerated.</p>
-            </div>
-
-            <div class="guideline-card">
-                <span class="guideline-icon">💬</span>
-                <h3 class="guideline-title">Constructive Communication</h3>
-                <p class="guideline-text">Provide helpful feedback and engage in meaningful discussions. Criticism should be constructive and focused on ideas, not individuals.</p>
-            </div>
-
-            <div class="guideline-card">
-                <span class="guideline-icon">🔒</span>
-                <h3 class="guideline-title">Privacy & Safety</h3>
-                <p class="guideline-text">Protect your personal information and respect others' privacy. Never share sensitive data or engage in doxxing.</p>
-            </div>
-
-            <div class="guideline-card">
-                <span class="guideline-icon">🎨</span>
-                <h3 class="guideline-title
+</html>
