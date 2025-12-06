@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEP Sandbox Engine | Professional 3D Development Platform</title>
     
+    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4250792589739491" crossorigin="anonymous"></script>
 
     <style>
@@ -15,539 +16,515 @@
         }
 
         :root {
-            --bg-deep: #050505;
-            --bg-surface: #111111;
-            --bg-elevated: #1a1a1a;
-            --accent: #ffffff;
-            --accent-secondary: #4a9eff;
-            --text-main: #ffffff;
-            --text-dim: #888888;
-            --border: #333333;
+            --white: #ffffff;
+            --black: #000000;
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --gray-700: #404040;
+            --gray-800: #262626;
+            --gray-900: #171717;
         }
 
         body {
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-            background-color: var(--bg-deep);
-            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+            background: var(--white);
+            color: var(--black);
             line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
+            -webkit-font-smoothing: antialiased;
         }
-
-        /* Animated Background Characters */
-        .background-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.15;
-        }
-
-        /* Typography */
-        h1, h2, h3, h4 {
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: var(--accent);
-        }
-
-        h1 { 
-            font-size: 3.5rem; 
-            line-height: 1.1;
-            animation: slideInDown 0.8s ease-out;
-        }
-        h2 { 
-            font-size: 2rem; 
-            margin-bottom: 1.5rem;
-            animation: fadeIn 0.6s ease-out;
-        }
-        h3 { font-size: 1.5rem; }
-        p { color: var(--text-dim); font-size: 1.05rem; }
 
         /* Navigation */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(5, 5, 5, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            transition: all 0.3s ease;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 9999;
         }
 
-        nav.scrolled {
-            background: rgba(5, 5, 5, 0.98);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        nav .container {
+        .nav-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0 32px;
+            height: 64px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo {
-            font-size: 1.25rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            border: 2px solid var(--accent);
-            padding: 0.5rem 1rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
+        .nav-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: -0.02em;
         }
 
-        .logo:hover {
-            background: var(--accent);
-            color: var(--bg-deep);
-            transform: translateY(-2px);
-        }
-
-        nav ul {
+        .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 48px;
+            align-items: center;
             list-style: none;
         }
 
-        nav a {
-            color: var(--text-dim);
+        .nav-links a {
+            color: var(--gray-600);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 15px;
             font-weight: 500;
-            transition: all 0.3s;
-            position: relative;
+            transition: color 0.2s;
         }
 
-        nav a:hover {
-            color: var(--accent);
+        .nav-links a:hover {
+            color: var(--black);
         }
 
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
+        .nav-auth {
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
 
-        nav a:hover::after {
-            width: 100%;
+        .login-btn {
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 10px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 200px 20px 120px;
-            text-align: center;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 70%);
-            border-bottom: 1px solid var(--border);
-            position: relative;
-            z-index: 1;
+        .login-btn:hover {
+            background: var(--gray-800);
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
+        .user-display {
+            display: none;
+            align-items: center;
+            gap: 16px;
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+
+        .logout-link {
+            color: var(--black);
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                linear-gradient(90deg, transparent 0%, rgba(74, 158, 255, 0.05) 50%, transparent 100%),
-                linear-gradient(0deg, transparent 0%, rgba(255, 255, 255, 0.03) 100%);
-            animation: shimmer 8s infinite;
-            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
         }
 
-        @keyframes shimmer {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
-        }
-
-        .hero h1 {
-            margin-bottom: 1.5rem;
-        }
-
-        .hero p {
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-            font-size: 1.2rem;
-            line-height: 1.8;
-        }
-
-        .cta-group {
+        .modal-overlay.active {
             display: flex;
-            gap: 1.5rem;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 48px;
+            max-width: 440px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            color: var(--gray-500);
+            font-size: 28px;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--black);
+        }
+
+        .modal-header {
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .modal-header h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--black);
+        }
+
+        .modal-header p {
+            color: var(--gray-500);
+            font-size: 15px;
+        }
+
+        .auth-tabs {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .auth-tab {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 12px 0;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--gray-500);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .auth-tab.active {
+            color: var(--black);
+            border-bottom-color: var(--black);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--gray-300);
+            border-radius: 6px;
+            font-size: 15px;
+            transition: all 0.2s;
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+
+        .form-button {
+            width: 100%;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .form-button:hover {
+            background: var(--gray-800);
+        }
+
+        .form-error {
+            display: none;
+            background: #fee;
+            color: #c00;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            border: 1px solid #fcc;
+        }
+
+        .form-error.active {
+            display: block;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 160px 32px 120px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 72px;
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            color: var(--black);
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            color: var(--gray-600);
+            margin-bottom: 48px;
+            font-weight: 400;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 16px;
             justify-content: center;
             flex-wrap: wrap;
+            margin-bottom: 40px;
         }
 
         .btn {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--bg-deep);
-            padding: 1.2rem 3rem;
+            padding: 14px 32px;
+            border-radius: 6px;
+            font-size: 16px;
             font-weight: 600;
             text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            cursor: pointer;
         }
 
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+        .btn-primary {
+            background: var(--black);
+            color: var(--white);
+            border: 2px solid var(--black);
         }
 
-        .btn:hover::before {
-            width: 300px;
-            height: 300px;
+        .btn-primary:hover {
+            background: var(--gray-800);
+            border-color: var(--gray-800);
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        .btn-secondary {
+            background: var(--white);
+            border: 2px solid var(--black);
+            color: var(--black);
         }
 
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--border);
-            color: var(--text-main);
+        .btn-secondary:hover {
+            background: var(--gray-100);
         }
 
-        .btn-outline:hover {
-            border-color: var(--accent);
-            background: var(--bg-elevated);
-        }
-
-        /* Stats Bar */
-        .stats-bar {
+        /* Stats */
+        .stats {
             display: flex;
             justify-content: center;
-            gap: 4rem;
-            margin-top: 4rem;
-            padding: 2rem;
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            gap: 80px;
+            padding: 60px 0;
+            border-top: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-200);
+            margin: 80px 0;
         }
 
         .stat {
             text-align: center;
         }
 
-        .stat-number {
-            font-size: 2.5rem;
+        .stat-value {
+            font-size: 56px;
             font-weight: 800;
-            color: var(--accent-secondary);
             display: block;
+            color: var(--black);
+            letter-spacing: -0.02em;
         }
 
         .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-dim);
+            font-size: 14px;
+            color: var(--gray-500);
+            margin-top: 8px;
             text-transform: uppercase;
             letter-spacing: 0.1em;
         }
 
-        /* Layout */
-        .container {
+        /* Section */
+        .section {
             max-width: 1400px;
+            margin: 120px auto;
+            padding: 0 32px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 56px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            color: var(--black);
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: var(--gray-600);
+            max-width: 700px;
             margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
         }
 
-        /* Tabs System */
-        .tabs-container {
-            margin-top: 6rem;
-            margin-bottom: 6rem;
-        }
-
-        .tabs {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 4rem;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            color: var(--text-dim);
-            font-size: 1rem;
-            cursor: pointer;
-            padding: 1rem 2rem;
-            transition: all 0.3s;
-            border-radius: 6px 6px 0 0;
-            position: relative;
-        }
-
-        .tab-btn:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        .tab-btn.active {
-            color: var(--accent);
-            border-bottom: 3px solid var(--accent);
-            background: var(--bg-elevated);
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeInUp 0.5s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(20px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
-
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Grid Layouts */
+        /* Feature Grid */
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 32px;
         }
 
-        .card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border);
-            padding: 2.5rem;
+        .feature-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 48px 40px;
             transition: all 0.3s;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-secondary), var(--accent));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
+        .feature-card:hover {
+            border-color: var(--black);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .feature-icon {
+            font-size: 48px;
             display: block;
+            margin-bottom: 24px;
         }
 
-        /* Code Blocks */
-        pre {
-            background: var(--bg-elevated);
-            padding: 2rem;
-            border-left: 4px solid var(--accent-secondary);
-            overflow-x: auto;
-            margin: 2rem 0;
-            font-family: 'Courier New', monospace;
-            font-size: 0.95rem;
-            border-radius: 6px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        .feature-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--black);
         }
 
-        code {
-            color: #d4d4d4;
+        .feature-description {
+            font-size: 16px;
+            color: var(--gray-600);
+            line-height: 1.6;
         }
 
-        /* Tech Specs Table */
-        table {
+        /* Specs Table */
+        .specs-table {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 60px 0;
+        }
+
+        .specs-table table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 2rem;
-            background: var(--bg-surface);
-            border-radius: 8px;
-            overflow: hidden;
         }
 
-        th, td {
+        .specs-table th,
+        .specs-table td {
+            padding: 24px 40px;
             text-align: left;
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--gray-200);
         }
 
-        th {
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 0.9rem;
+        .specs-table th {
+            font-size: 13px;
+            font-weight: 700;
             text-transform: uppercase;
-            background: var(--bg-elevated);
+            letter-spacing: 0.08em;
+            color: var(--gray-600);
+            background: var(--gray-50);
         }
 
-        tr:hover {
-            background: var(--bg-elevated);
+        .specs-table td {
+            font-size: 16px;
+            color: var(--black);
         }
 
-        /* Download Section */
-        .download-area {
-            background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
-            border: 2px solid var(--border);
-            padding: 4rem;
-            text-align: center;
-            margin-top: 3rem;
+        .specs-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--gray-900);
+            border: 1px solid var(--gray-800);
             border-radius: 12px;
-            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            margin: 40px 0;
+            overflow-x: auto;
         }
 
-        .meta-tag {
-            display: inline-block;
-            background: var(--bg-elevated);
-            padding: 0.5rem 1rem;
-            font-size: 0.85rem;
-            margin: 0.5rem;
-            border: 1px solid var(--border);
-            color: var(--text-dim);
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-
-        .meta-tag:hover {
-            border-color: var(--accent-secondary);
-            color: var(--accent);
-        }
-
-        /* Feature List */
-        .feature-list {
-            list-style: none;
-            margin: 2rem 0;
-        }
-
-        .feature-list li {
-            padding: 1rem;
-            margin: 0.5rem 0;
-            background: var(--bg-surface);
-            border-left: 3px solid var(--accent-secondary);
-            transition: all 0.3s;
-        }
-
-        .feature-list li:hover {
-            background: var(--bg-elevated);
-            transform: translateX(10px);
-        }
-
-        .feature-list li::before {
-            content: '✓';
-            color: var(--accent-secondary);
-            font-weight: bold;
-            margin-right: 1rem;
-        }
-
-        /* Comparison Grid */
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .comparison-card {
-            background: var(--bg-surface);
-            padding: 2rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .comparison-card h4 {
-            color: var(--accent-secondary);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+        .code-block pre {
+            color: var(--gray-100);
+            font-family: 'SF Mono', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.8;
         }
 
         /* Footer */
         footer {
-            margin-top: 8rem;
-            padding: 5rem 0;
-            border-top: 1px solid var(--border);
-            background: var(--bg-surface);
-            position: relative;
-            z-index: 1;
+            border-top: 1px solid var(--gray-200);
+            padding: 80px 32px;
+            margin-top: 120px;
+            background: var(--gray-50);
         }
 
-        .footer-grid {
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 48px;
+            margin-bottom: 48px;
         }
 
         .footer-section h4 {
-            margin-bottom: 1.5rem;
-            color: var(--accent);
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--black);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
         .footer-links {
@@ -555,315 +532,274 @@
         }
 
         .footer-links li {
-            margin: 0.8rem 0;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
-            color: var(--text-dim);
+            color: var(--gray-600);
             text-decoration: none;
-            transition: color 0.3s;
+            font-size: 15px;
+            transition: color 0.2s;
         }
 
         .footer-links a:hover {
-            color: var(--accent);
+            color: var(--black);
         }
 
-        .discord-btn {
-            color: var(--text-main);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-            padding: 1rem 2rem;
-            background: #5865F2;
-            border-radius: 6px;
-            transition: all 0.3s;
-        }
-
-        .discord-btn:hover {
-            background: #4752C4;
-            transform: translateY(-2px);
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid var(--gray-200);
+            text-align: center;
+            color: var(--gray-500);
+            font-size: 14px;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 1.5rem; }
-            
-            nav ul {
-                gap: 1rem;
+            h1 {
+                font-size: 48px;
             }
-            
-            .hero {
-                padding: 150px 20px 80px;
+
+            .hero-subtitle {
+                font-size: 18px;
             }
-            
-            .stats-bar {
-                flex-direction: column;
-                gap: 2rem;
+
+            .section-title {
+                font-size: 40px;
             }
-            
-            .cta-group {
-                flex-direction: column;
+
+            .stats {
+                gap: 40px;
+                flex-wrap: wrap;
+            }
+
+            .stat-value {
+                font-size: 40px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 32px 24px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <canvas class="background-canvas" id="bgCanvas"></canvas>
 
-    <nav id="mainNav">
-        <div class="container">
-            <div class="logo" onclick="scrollToTop()">MEP SANDBOX</div>
-            <ul>
-                <li><a href="#" onclick="openTab('overview-tab')">Overview</a></li>
-                <li><a href="#" onclick="openTab('features-tab')">Features</a></li>
-                <li><a href="#" onclick="openTab('meplua-tab')">Scripting</a></li>
-                <li><a href="#" onclick="openTab('documentation-tab')">Docs</a></li>
-                <li><a href="#" onclick="openTab('roadmap-tab')">Roadmap</a></li>
-                <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/raw/main/MicahEngineStudio_v1.3.rar" class="highlight">Download v1.3</a></li>
+    <!-- Auth Modal -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            
+            <div class="modal-header">
+                <h2>Welcome</h2>
+                <p>Sign in to join the MEP community</p>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchTab('signin')">Sign In</button>
+                <button class="auth-tab" onclick="switchTab('signup')">Sign Up</button>
+            </div>
+
+            <div class="form-error" id="authError"></div>
+
+            <!-- Sign In Form -->
+            <form class="auth-form active" id="signinForm">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" id="signin-email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="signin-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="form-button">Sign In</button>
+            </form>
+
+            <!-- Sign Up Form -->
+            <form class="auth-form" id="signupForm">
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" id="signup-email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="signup-password" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-input" id="signup-confirm" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="form-button">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">MEP Sandbox</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#specs">Specs</a></li>
+                <li><a href="#scripting">Scripting</a></li>
+                <li><a href="#download">Download</a></li>
             </ul>
+            <div class="nav-auth">
+                <button id="login-btn" class="login-btn">Sign In</button>
+                <div id="user-display" class="user-display">
+                    <span>Hi, <span id="username-span">User</span></span>
+                    <a class="logout-link" id="logout-btn">Sign Out</a>
+                </div>
+            </div>
         </div>
     </nav>
 
+    <!-- Hero -->
     <section class="hero">
-        <div class="container">
-            <h1>Micah Engine Studio v1.3</h1>
-            <p>A professional, standalone 3D development environment built from the ground up. Powered by Python and OpenGL for precision rendering, performance optimization, and complete creative freedom. No subscriptions, no limitations—just pure development power.</p>
-            <div class="cta-group">
-                <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/raw/main/MicahEngineStudio_v1.3.rar" class="btn">Download Studio (v1.3)</a>
-                <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn btn-outline">Join Discord</a>
-                <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" target="_blank" class="btn btn-outline">GitHub Repository</a>
+        <h1>Micah Engine Studio</h1>
+        <p class="hero-subtitle">Professional 3D development. No subscriptions. No installations. Just pure power.</p>
+        
+        <div class="btn-group">
+            <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/raw/main/MicahEngineStudio_v1.3.rar" class="btn btn-primary">Download v1.3</a>
+            <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn btn-secondary">Join Discord</a>
+            <a href="https://buy.stripe.com/5kQ6oHcD6amY1i31k0grS0f" target="_blank" class="btn btn-secondary">Support Dev</a>
+        </div>
+
+        <div style="color: var(--gray-500); font-size: 14px; margin-top: 32px;">
+            Windows 10/11 • OpenGL 3.3+ • Free & Open Source
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="section">
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-value">1.3</span>
+                <span class="stat-label">Version</span>
             </div>
-            
-            <div class="stats-bar">
-                <div class="stat">
-                    <span class="stat-number">1.3</span>
-                    <span class="stat-label">Latest Version</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">Free</span>
-                    <span class="stat-label">Open Source</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">OpenGL 3.3+</span>
-                    <span class="stat-label">Rendering</span>
-                </div>
+            <div class="stat">
+                <span class="stat-value">47MB</span>
+                <span class="stat-label">Size</span>
             </div>
-            
-            <div style="margin-top: 2rem;">
-                <span class="meta-tag">Windows 10/11</span>
-                <span class="meta-tag">Standalone EXE</span>
-                <span class="meta-tag">No Installation</span>
-                <span class="meta-tag">MEPLua Scripting</span>
-                <span class="meta-tag">OBJ Import/Export</span>
+            <div class="stat">
+                <span class="stat-value">Free</span>
+                <span class="stat-label">License</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <section class="section" id="features">
+        <div class="section-header">
+            <h2 class="section-title">Built for Developers</h2>
+            <p class="section-subtitle">Everything you need to create, prototype, and ship 3D projects</p>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🎨</span>
+                <h3 class="feature-title">Professional Interface</h3>
+                <p class="feature-description">Modern layout with viewport controls, scene explorer, and real-time property inspector.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3 class="feature-title">MEPLua Scripting</h3>
+                <p class="feature-description">Powerful Lua-based scripting with syntax highlighting and comprehensive API access.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">📦</span>
+                <h3 class="feature-title">Asset Pipeline</h3>
+                <p class="feature-description">Import OBJ meshes, export scenes, and manage assets with JSON serialization.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🎯</span>
+                <h3 class="feature-title">Precision Tools</h3>
+                <p class="feature-description">Industry-standard gizmos for move, rotate, and scale with grid snapping.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🔧</span>
+                <h3 class="feature-title">Modular Architecture</h3>
+                <p class="feature-description">Parent-child hierarchy system for complex models and character rigs.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🚀</span>
+                <h3 class="feature-title">Performance First</h3>
+                <p class="feature-description">Built on OpenGL 3.3 Core for maximum compatibility and efficiency.</p>
             </div>
         </div>
     </section>
 
-    <div class="container tabs-container">
-        <div class="tabs">
-            <button class="tab-btn active" onclick="openTab('overview-tab')">Overview</button>
-            <button class="tab-btn" onclick="openTab('features-tab')">System Features</button>
-            <button class="tab-btn" onclick="openTab('meplua-tab')">MEPLua Scripting</button>
-            <button class="tab-btn" onclick="openTab('documentation-tab')">Documentation</button>
-            <button class="tab-btn" onclick="openTab('roadmap-tab')">Roadmap</button>
-            <button class="tab-btn" onclick="openTab('download-tab')">Download</button>
+    <!-- Specs -->
+    <section class="section" id="specs">
+        <div class="section-header">
+            <h2 class="section-title">Technical Specifications</h2>
         </div>
 
-        <!-- OVERVIEW TAB -->
-        <div id="overview-tab" class="tab-content active">
-            <h2>Built for Developers, By Developers</h2>
-            <p style="font-size: 1.1rem; max-width: 900px; margin-bottom: 3rem;">MEP Sandbox Engine is a lightweight, powerful alternative to bloated game engines. Whether you're prototyping gameplay mechanics, building educational simulations, or creating full games, MEP provides the essential tools without the overhead.</p>
-            
-            <div class="feature-grid">
-                <div class="card">
-                    <span class="card-icon">🎨</span>
-                    <h3>Professional Interface</h3>
-                    <p>A modern, dockable layout featuring viewport controls, hierarchical scene explorer, and real-time property inspector. Built for workflow efficiency with keyboard shortcuts and smart tool switching.</p>
-                </div>
-                <div class="card">
-                    <span class="card-icon">🎯</span>
-                    <h3>Precision Gizmos</h3>
-                    <p>Industry-standard transformation tools with RGB-coded axes. Move, rotate, and scale objects with pixel-perfect accuracy. Supports both global and local space transformations with optional grid snapping.</p>
-                </div>
-                <div class="card">
-                    <span class="card-icon">📦</span>
-                    <h3>Complete Asset Pipeline</h3>
-                    <p>Import custom OBJ meshes or use built-in primitives (cubes, spheres, wedges, cylinders). Export your creations back to OBJ format. Full JSON-based scene serialization preserves every detail.</p>
-                </div>
-                <div class="card">
-                    <span class="card-icon">⚡</span>
-                    <h3>MEPLua Integration</h3>
-                    <p>Powerful scripting environment with syntax highlighting and auto-completion. Write game logic using Lua—a battle-tested language used in AAA titles. Hot-reload scripts during runtime.</p>
-                </div>
-                <div class="card">
-                    <span class="card-icon">🔧</span>
-                    <h3>Modular Architecture</h3>
-                    <p>Parent-child hierarchy system with support for complex models and character rigs. Group objects, create prefabs, and manage your scene structure with an intuitive explorer interface.</p>
-                </div>
-                <div class="card">
-                    <span class="card-icon">🚀</span>
-                    <h3>Performance First</h3>
-                    <p>Built on OpenGL 3.3 Core Profile for maximum compatibility and performance. Efficient rendering pipeline with wireframe mode, ambient lighting controls, and optimized draw calls.</p>
-                </div>
-            </div>
-
-            <div class="comparison-grid">
-                <div class="comparison-card">
-                    <h4>Why Choose MEP?</h4>
-                    <ul class="feature-list" style="text-align: left;">
-                        <li>No subscription fees</li>
-                        <li>Lightweight (~50MB)</li>
-                        <li>Instant startup</li>
-                        <li>Full source access</li>
-                        <li>Active community</li>
-                    </ul>
-                </div>
-                <div class="comparison-card">
-                    <h4>Perfect For</h4>
-                    <ul class="feature-list" style="text-align: left;">
-                        <li>Rapid prototyping</li>
-                        <li>Game jams</li>
-                        <li>Educational projects</li>
-                        <li>Indie development</li>
-                        <li>3D visualization</li>
-                    </ul>
-                </div>
-                <div class="comparison-card">
-                    <h4>Technical Highlights</h4>
-                    <ul class="feature-list" style="text-align: left;">
-                        <li>Python backend</li>
-                        <li>OpenGL rendering</li>
-                        <li>Lua scripting</li>
-                        <li>JSON persistence</li>
-                        <li>OBJ support</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- FEATURES TAB -->
-        <div id="features-tab" class="tab-content">
-            <h2>Core System Architecture</h2>
-            <p>MEP Sandbox Engine strips away unnecessary complexity while maintaining professional-grade features. Every component is designed for speed, reliability, and ease of use.</p>
-            
+        <div class="specs-table">
             <table>
                 <thead>
                     <tr>
                         <th>Component</th>
                         <th>Specification</th>
-                        <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><strong>Rendering Engine</strong></td>
                         <td>OpenGL 3.3 Core Profile</td>
-                        <td>Hardware-accelerated rendering with wireframe mode, ambient lighting, and real-time shadows</td>
                     </tr>
                     <tr>
                         <td><strong>Scripting Runtime</strong></td>
                         <td>MEPLua (Lua 5.x compatible)</td>
-                        <td>Threaded execution, event system, lifecycle hooks (on_start, on_update), collision detection</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Physics & Math</strong></td>
-                        <td>Vector3 mathematics</td>
-                        <td>Euler rotation, quaternion support, raycasting, collision detection, transform hierarchy</td>
                     </tr>
                     <tr>
                         <td><strong>File Formats</strong></td>
-                        <td>.JSON scenes, .OBJ meshes</td>
-                        <td>Human-readable scene files, industry-standard mesh format, full state persistence</td>
+                        <td>JSON scenes, OBJ meshes</td>
                     </tr>
                     <tr>
-                        <td><strong>Scene Structure</strong></td>
-                        <td>Parent-Child Hierarchy</td>
-                        <td>Explorer-based organization, grouping, model/rig assembly, prefab system</td>
+                        <td><strong>System Requirements</strong></td>
+                        <td>Windows 10/11 • 4GB RAM • OpenGL 3.3+ GPU</td>
                     </tr>
                     <tr>
-                        <td><strong>Asset System</strong></td>
-                        <td>Import/Export Pipeline</td>
-                        <td>OBJ import with material support, texture loading, mesh optimization</td>
+                        <td><strong>License</strong></td>
+                        <td>Free & Open Source</td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </section>
 
-            <h2 style="margin-top: 4rem;">Object Types & Prefabs</h2>
-            <div class="feature-grid">
-                <div class="card">
-                    <h3>Basic Primitives</h3>
-                    <p><strong>Parts, Spheres, Wedges, Cylinders</strong> - Spawn geometric primitives instantly. Each primitive is fully customizable with position, rotation, scale, color, and material properties.</p>
-                </div>
-                <div class="card">
-                    <h3>Scene Objects</h3>
-                    <p><strong>SpawnLocations, Cameras, Lights</strong> - Add player spawns, configure camera perspectives, and place light sources. Full control over FOV, clipping planes, and illumination.</p>
-                </div>
-                <div class="card">
-                    <h3>Advanced Grouping</h3>
-                    <p><strong>Model Groups & Rigs</strong> - Combine multiple objects into models or character rigs. Maintain parent-child relationships, create articulated structures, and manage complex assemblies.</p>
-                </div>
-                <div class="card">
-                    <h3>Custom Meshes</h3>
-                    <p><strong>OBJ Import System</strong> - Bring in models from Blender, Maya, or any 3D software. Automatic UV mapping, normal calculation, and material assignment.</p>
-                </div>
-            </div>
-
-            <h2 style="margin-top: 4rem;">Rendering Features</h2>
-            <ul class="feature-list">
-                <li><strong>Wireframe Mode:</strong> Toggle between solid and wireframe rendering for debugging mesh topology</li>
-                <li><strong>Ambient Lighting:</strong> Global illumination control with adjustable intensity and color temperature</li>
-                <li><strong>Material System:</strong> Per-object color, transparency, and reflectivity settings</li>
-                <li><strong>Camera Controls:</strong> Free-look camera with WASD movement, mouse orbit, and configurable FOV</li>
-                <li><strong>Grid System:</strong> Visual reference grid with snapping support for precise object placement</li>
-                <li><strong>Transform Gizmos:</strong> Context-sensitive tools for move, rotate, and scale operations</li>
-            </ul>
-
-            <h2 style="margin-top: 4rem;">Workflow Tools</h2>
-            <div class="feature-grid">
-                <div class="card">
-                    <h3>Scene Explorer</h3>
-                    <p>Hierarchical tree view of all scene objects. Drag-and-drop parenting, multi-select, visibility toggles, and quick search functionality.</p>
-                </div>
-                <div class="card">
-                    <h3>Properties Panel</h3>
-                    <p>Real-time property editing for selected objects. Modify transforms, materials, scripts, and physics properties with instant visual feedback.</p>
-                </div>
-                <div class="card">
-                    <h3>Script Editor</h3>
-                    <p>Integrated IDE with syntax highlighting, line numbers, and error detection. Test scripts without leaving the engine.</p>
-                </div>
-            </div>
+    <!-- Scripting -->
+    <section class="section" id="scripting">
+        <div class="section-header">
+            <h2 class="section-title">MEPLua Scripting</h2>
+            <p class="section-subtitle">Write clean, efficient code that runs in real-time</p>
         </div>
 
-        <!-- MEPLUA TAB -->
-        <div id="meplua-tab" class="tab-content">
-            <h2>MEPLua Scripting API</h2>
-            <p style="max-width: 900px; margin-bottom: 3rem;">MEPLua brings the power of Lua scripting to your 3D projects. Write clean, efficient code that runs in real-time. Access the full engine API with simple, intuitive syntax. From simple rotations to complex AI behaviors—MEPLua handles it all.</p>
-
-            <h3>📘 Core Concepts</h3>
-            <p>Every script in MEP has access to a lifecycle system and event handlers. Scripts are attached to objects and can reference their parent, children, and other scene objects.</p>
-
-            <h3>🔄 The Lifecycle System</h3>
-            <pre><code>-- on_start() executes once when the scene loads
+        <div class="code-block">
+            <pre><code>-- Rotate and animate an object
 function on_start()
-    print("Game Initialized!")
-    
-    -- Access the object this script is attached to
-    script.Parent.Color = Color3.new(1, 0, 0) -- Set to red
-    script.Parent.Position = Vector3.new(0, 5, 0) -- Move up
-    
-    -- Store data in the script
+    print("Scene initialized!")
+    script.Parent.Color = Color3.new(1, 0, 0)
     script.speed = 5
     script.timer = 0
 end
 
--- on_update(dt) runs every frame (dt = delta time)
 function on_update(dt)
-    -- Smooth rotation over time
+    -- Smooth rotation
     local rotation = script.Parent.Rotation
     local newY = rotation.Y + (script.speed * dt * 10)
     script.Parent.Rotation = Vector3.new(rotation.X, newY, rotation.Z)
@@ -873,503 +809,268 @@ function on_update(dt)
     local yPos = math.sin(script.timer * 2) * 3
     script.Parent.Position = Vector3.new(0, yPos, 0)
 end</code></pre>
-
-            <h3>⚡ Interactive Events</h3>
-            <pre><code>-- Collision Detection
-script.Parent.Touched:Connect(function(otherPart)
-    print("Touched: " .. otherPart.Name)
-    
-    -- Check if we hit a player
-    local humanoid = otherPart.Parent:FindFirstChild("Humanoid")
-    if humanoid then
-        humanoid.Health = humanoid.Health - 10
-        print("Player damaged!")
-    end
-    
-    -- Change color on impact
-    script.Parent.Color = Color3.new(0, 1, 0) -- Green
-end)</code></pre>
-
-            <h3>🎮 Player & Character Control</h3>
-            <pre><code>-- Character Movement Script
-function on_start()
-    script.humanoid = script.Parent:FindFirstChild("Humanoid")
-    script.moveSpeed = 16
-end
-
-function on_update(dt)
-    local player = game.Players.LocalPlayer
-    if not player then return end
-    
-    local character = player.Character
-    if not character then return end
-    
-    -- Get input (W, A, S, D)
-    local moveDirection = player:GetMoveVector()
-    
-    -- Apply movement
-    character.HumanoidRootPart.Position = 
-        character.HumanoidRootPart.Position + (moveDirection * script.moveSpeed * dt)
-end</code></pre>
-
-            <h3>🔍 Scene Manipulation</h3>
-            <pre><code>-- Find and manipulate objects in the scene
-function on_start()
-    -- Find object by name
-    local targetPart = game.Workspace:FindFirstChild("Target")
-    if targetPart then
-        targetPart.Color = Color3.new(1, 1, 0) -- Yellow
-    end
-    
-    -- Get all children
-    local allParts = game.Workspace:GetChildren()
-    for i, part in ipairs(allParts) do
-        print(part.Name)
-    end
-    
-    -- Create new objects dynamically
-    local newPart = Instance.new("Part")
-    newPart.Name = "DynamicPart"
-    newPart.Position = Vector3.new(0, 10, 0)
-    newPart.Parent = game.Workspace
-end</code></pre>
-
-            <h3>📦 Vector3 & Color3 API</h3>
-            <div class="feature-grid" style="margin-top: 2rem;">
-                <div class="card">
-                    <h4>Vector3 Math</h4>
-                    <pre><code>-- Create vectors
-local v1 = Vector3.new(1, 2, 3)
-local v2 = Vector3.new(4, 5, 6)
-
--- Math operations
-local sum = v1 + v2
-local scaled = v1 * 2
-local distance = (v2 - v1).Magnitude
-
--- Normalization
-local normalized = v1.Unit</code></pre>
-                </div>
-                <div class="card">
-                    <h4>Color3 System</h4>
-                    <pre><code>-- RGB values (0-1)
-local red = Color3.new(1, 0, 0)
-local green = Color3.new(0, 1, 0)
-local blue = Color3.new(0, 0, 1)
-
--- Apply to objects
-script.Parent.Color = red
-
--- Interpolate colors
-local mixed = Color3.new(0.5, 0.5, 0)</code></pre>
-                </div>
-            </div>
-
-            <h3>🎯 Advanced Techniques</h3>
-            <ul class="feature-list">
-                <li><strong>Raycasting:</strong> Cast rays to detect objects in line of sight</li>
-                <li><strong>Tweening:</strong> Smooth interpolation between values for animations</li>
-                <li><strong>Coroutines:</strong> Run asynchronous code without blocking the main thread</li>
-                <li><strong>Data Persistence:</strong> Save and load game state across sessions</li>
-                <li><strong>Event Systems:</strong> Custom events for communication between scripts</li>
-            </ul>
         </div>
 
-        <!-- DOCUMENTATION TAB -->
-        <div id="documentation-tab" class="tab-content">
-            <h2>Complete Documentation</h2>
-            <p>Everything you need to master MEP Sandbox Engine. From basic tutorials to advanced API references.</p>
-
-            <div class="feature-grid">
-                <div class="card">
-                    <h3>📚 Getting Started</h3>
-                    <ul class="feature-list" style="text-align: left;">
-                        <li>Installation & Setup</li>
-                        <li>Interface Overview</li>
-                        <li>Your First Scene</li>
-                        <li>Basic Object Manipulation</li>
-                        <li>Camera Controls</li>
-                    </ul>
-                    <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" target="_blank" class="btn" style="margin-top: 1rem; font-size: 0.9rem; padding: 0.8rem 1.5rem;">View Guide →</a>
-                </div>
-                <div class="card">
-                    <h3>⚙️ Engine Reference</h3>
-                    <ul class="feature-list" style="text-align: left;">
-                        <li>Rendering Pipeline</li>
-                        <li>Scene Management</li>
-                        <li>Asset Import/Export</li>
-                        <li>Material System</li>
-                        <li>Keyboard Shortcuts</li>
-                    </ul>
-                    <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" target="_blank" class="btn" style="margin-top: 1rem; font-size: 0.9rem; padding: 0.8rem 1.5rem;">Engine Docs →</a>
-                </div>
-                <div class="card">
-                    <h3>💻 MEPLua API</h3>
-                    <ul class="feature-list" style="text-align: left;">
-                        <li>Complete API Reference</li>
-                        <li>Lifecycle Functions</li>
-                        <li>Event System</li>
-                        <li>Built-in Classes</li>
-                        <li>Example Scripts</li>
-                    </ul>
-                    <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" target="_blank" class="btn" style="margin-top: 1rem; font-size: 0.9rem; padding: 0.8rem 1.5rem;">API Docs →</a>
-                </div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3 class="feature-title">Lifecycle System</h3>
+                <p class="feature-description">on_start() and on_update() hooks for complete control over game logic.</p>
             </div>
 
-            <h2 style="margin-top: 4rem;">Keyboard Shortcuts</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Action</th>
-                        <th>Shortcut</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Move Tool</td>
-                        <td><strong>G</strong></td>
-                        <td>Activate move gizmo for selected object</td>
-                    </tr>
-                    <tr>
-                        <td>Rotate Tool</td>
-                        <td><strong>R</strong></td>
-                        <td>Activate rotation gizmo</td>
-                    </tr>
-                    <tr>
-                        <td>Scale Tool</td>
-                        <td><strong>S</strong></td>
-                        <td>Activate scale gizmo</td>
-                    </tr>
-                    <tr>
-                        <td>Delete</td>
-                        <td><strong>Del</strong></td>
-                        <td>Delete selected object(s)</td>
-                    </tr>
-                    <tr>
-                        <td>Duplicate</td>
-                        <td><strong>Ctrl + D</strong></td>
-                        <td>Duplicate selected object</td>
-                    </tr>
-                    <tr>
-                        <td>Save Scene</td>
-                        <td><strong>Ctrl + S</strong></td>
-                        <td>Save current scene to JSON</td>
-                    </tr>
-                    <tr>
-                        <td>Play/Stop</td>
-                        <td><strong>F5</strong></td>
-                        <td>Start or stop scene playback</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="feature-card">
+                <h3 class="feature-title">Event System</h3>
+                <p class="feature-description">Collision detection, input handling, and custom events for interactivity.</p>
+            </div>
 
-            <h2 style="margin-top: 4rem;">Community Resources</h2>
-            <div class="feature-grid">
-                <div class="card">
-                    <h3>🎓 Video Tutorials</h3>
-                    <p>Step-by-step video guides covering everything from basics to advanced techniques. Updated weekly with new content.</p>
-                </div>
-                <div class="card">
-                    <h3>💬 Discord Community</h3>
-                    <p>Join 1000+ developers in our Discord server. Get help, share projects, and collaborate on new features.</p>
-                </div>
-                <div class="card">
-                    <h3>📝 Sample Projects</h3>
-                    <p>Download ready-made example scenes and scripts. Learn by deconstructing working projects.</p>
-                </div>
+            <div class="feature-card">
+                <h3 class="feature-title">Complete API</h3>
+                <p class="feature-description">Access Vector3 math, Color3 system, scene manipulation, and more.</p>
             </div>
         </div>
+    </section>
 
-        <!-- ROADMAP TAB -->
-        <div id="roadmap-tab" class="tab-content">
-            <h2>Development Roadmap</h2>
-            <p>See what's coming next to MEP Sandbox Engine. We're committed to continuous improvement based on community feedback.</p>
-
-            <h3 style="margin-top: 3rem; color: #4a9eff;">✅ Version 1.3 (Current)</h3>
-            <ul class="feature-list">
-                <li>Complete MEPLua scripting engine</li>
-                <li>OBJ import/export pipeline</li>
-                <li>Transform gizmos (Move, Rotate, Scale)</li>
-                <li>Scene hierarchy with parent-child relationships</li>
-                <li>JSON scene serialization</li>
-                <li>Material and color system</li>
-                <li>Basic lighting controls</li>
-            </ul>
-
-            <h3 style="margin-top: 3rem; color: #4a9eff;">🚧 Version 1.4 (In Development)</h3>
-            <ul class="feature-list">
-                <li>Physics engine integration (collision, gravity, forces)</li>
-                <li>Particle system for effects</li>
-                <li>Audio support (sound effects & music)</li>
-                <li>Improved camera system (multiple viewports)</li>
-                <li>Terrain generation tools</li>
-                <li>Enhanced material editor</li>
-                <li>Performance profiler</li>
-            </ul>
-
-            <h3 style="margin-top: 3rem; color: #888;">📋 Version 1.5 (Planned)</h3>
-            <ul class="feature-list">
-                <li>Animation system (keyframe & skeletal)</li>
-                <li>UI system for in-game interfaces</li>
-                <li>FBX model support</li>
-                <li>Texture painting tools</li>
-                <li>Real-time shadows & advanced lighting</li>
-                <li>Multiplayer networking foundation</li>
-                <li>Asset marketplace integration</li>
-            </ul>
-
-            <h3 style="margin-top: 3rem; color: #888;">🔮 Future Vision</h3>
-            <ul class="feature-list">
-                <li>Visual scripting node editor</li>
-                <li>Mobile export (Android/iOS)</li>
-                <li>VR/AR support</li>
-                <li>Advanced shader editor</li>
-                <li>Procedural generation tools</li>
-                <li>Built-in version control</li>
-                <li>Cloud collaboration features</li>
-            </ul>
-
-            <div class="card" style="margin-top: 3rem; background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);">
-                <h3>🎤 Your Voice Matters</h3>
-                <p>Have a feature request or suggestion? Join our Discord community and share your ideas! The roadmap is shaped by user feedback, and we're always looking for ways to make MEP better for developers.</p>
-                <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn" style="margin-top: 1rem;">Join Discussion →</a>
-            </div>
+    <!-- Download -->
+    <section class="section" id="download">
+        <div class="section-header">
+            <h2 class="section-title">Get Started Today</h2>
+            <p class="section-subtitle">Download, extract, and start creating in minutes</p>
         </div>
 
-        <!-- DOWNLOAD TAB -->
-        <div id="download-tab" class="tab-content">
-            <div class="download-area">
-                <h2>Get MEP Sandbox Engine</h2>
-                <p style="margin-bottom: 3rem; font-size: 1.1rem;">Download the complete studio package. No installation required—extract and run. Free, open-source, and ready to use.</p>
-                
-                <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/raw/main/MicahEngineStudio_v1.3.rar" class="btn" style="font-size: 1.3rem; padding: 1.8rem 4rem;">
-                    ⬇️ Download v1.3 (.RAR - 47MB)
-                </a>
-                
-                <div style="margin-top: 3rem; text-align: left; max-width: 700px; margin-left: auto; margin-right: auto;">
-                    <h3>📦 Installation Instructions</h3>
-                    <ol style="color: var(--text-dim); margin-left: 2rem; margin-top: 1.5rem; font-size: 1.05rem; line-height: 2;">
-                        <li>Download the <strong>MicahEngineStudio_v1.3.rar</strong> file from the link above</li>
-                        <li>Extract the RAR archive using WinRAR or 7-Zip (both free)</li>
-                        <li>Navigate to the extracted folder</li>
-                        <li>Run <strong>MicahEngineStudio.exe</strong> to launch the engine</li>
-                        <li>No additional dependencies or installation required!</li>
-                    </ol>
+        <div style="text-align: center; margin-top: 48px;">
+            <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/raw/main/MicahEngineStudio_v1.3.rar" class="btn btn-primary" style="font-size: 20px; padding: 18px 48px;">Download v1.3</a>
+            <p style="margin-top: 24px; color: var(--gray-500); font-size: 14px;">47MB RAR • Windows 10/11 • No Installation Required</p>
+        </div>
 
-                    <h3 style="margin-top: 3rem;">💻 System Requirements</h3>
-                    <table style="margin-top: 1rem;">
-                        <tr>
-                            <td><strong>OS</strong></td>
-                            <td>Windows 10 or Windows 11 (64-bit)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>GPU</strong></td>
-                            <td>OpenGL 3.3+ compatible graphics card</td>
-                        </tr>
-                        <tr>
-                            <td><strong>RAM</strong></td>
-                            <td>4GB minimum, 8GB recommended</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Storage</strong></td>
-                            <td>100MB free space</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Processor</strong></td>
-                            <td>Intel i3 or AMD equivalent</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div style="margin-top: 4rem;">
-                    <h3>🔗 Alternative Downloads</h3>
-                    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
-                        <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" target="_blank" class="btn btn-outline">GitHub Repository</a>
-                        <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/releases" target="_blank" class="btn btn-outline">All Releases</a>
-                    </div>
-                </div>
+        <div class="feature-grid" style="margin-top: 80px;">
+            <div class="feature-card">
+                <h3 class="feature-title">1. Extract</h3>
+                <p class="feature-description">Unzip the RAR file using WinRAR or 7-Zip to any location.</p>
             </div>
 
-            <h2 style="margin-top: 4rem;">📚 Next Steps</h2>
-            <div class="feature-grid">
-                <div class="card">
-                    <h3>1. Quick Start Guide</h3>
-                    <p>Launch the engine and follow the built-in tutorial. Learn the interface, create your first scene, and understand the basic workflow in under 10 minutes.</p>
-                </div>
-                <div class="card">
-                    <h3>2. Explore Examples</h3>
-                    <p>Open the included sample scenes to see MEPLua scripting in action. Experiment with the code, modify objects, and learn by doing.</p>
-                </div>
-                <div class="card">
-                    <h3>3. Join the Community</h3>
-                    <p>Connect with other developers on Discord. Share your projects, get help with issues, and stay updated on new features and releases.</p>
-                </div>
+            <div class="feature-card">
+                <h3 class="feature-title">2. Launch</h3>
+                <p class="feature-description">Run MicahEngineStudio.exe—no installation needed.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3 class="feature-title">3. Create</h3>
+                <p class="feature-description">Start building with built-in tutorials and examples.</p>
             </div>
         </div>
-    </div>
+    </section>
 
+    <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>Product</h4>
-                    <ul class="footer-links">
-                        <li><a href="#" onclick="openTab('features-tab')">Features</a></li>
-                        <li><a href="#" onclick="openTab('documentation-tab')">Documentation</a></li>
-                        <li><a href="#" onclick="openTab('roadmap-tab')">Roadmap</a></li>
-                        <li><a href="#" onclick="openTab('download-tab')">Download</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul class="footer-links">
-                        <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" target="_blank">GitHub</a></li>
-                        <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/issues" target="_blank">Report Issues</a></li>
-                        <li><a href="#" onclick="openTab('meplua-tab')">API Reference</a></li>
-                        <li><a href="https://discord.gg/BsUQUFYBmN" target="_blank">Tutorials</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Community</h4>
-                    <ul class="footer-links">
-                        <li><a href="https://discord.gg/BsUQUFYBmN" target="_blank">Discord Server</a></li>
-                        <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/discussions" target="_blank">Discussions</a></li>
-                        <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" target="_blank">Contributing</a></li>
-                        <li><a href="https://discord.gg/BsUQUFYBmN" target="_blank">Showcase</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul class="footer-links">
-                        <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/blob/main/LICENSE" target="_blank">License</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Credits</a></li>
-                    </ul>
-                </div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Product</h4>
+                <ul class="footer-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#specs">Specifications</a></li>
+                    <li><a href="#scripting">Scripting API</a></li>
+                    <li><a href="#download">Download</a></li>
+                </ul>
             </div>
 
-            <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border);">
-                <p style="margin-bottom: 1.5rem;">© 2025 FugthChat | MEP Sandbox Engine | Built with ❤️ for developers</p>
-                <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="discord-btn">
-                    💬 Join the Discord Community
-                </a>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" target="_blank">GitHub</a></li>
+                    <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/issues" target="_blank">Report Issues</a></li>
+                    <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/releases" target="_blank">Releases</a></li>
+                    <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/blob/main/LICENSE" target="_blank">License</a></li>
+                </ul>
             </div>
+
+            <div class="footer-section">
+                <h4>Community</h4>
+                <ul class="footer-links">
+                    <li><a href="https://discord.gg/BsUQUFYBmN" target="_blank">Discord</a></li>
+                    <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/discussions" target="_blank">Discussions</a></li>
+                    <li><a href="https://buy.stripe.com/5kQ6oHcD6amY1i31k0grS0f" target="_blank">Support</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 FugthChat. MEP Sandbox Engine. All rights reserved.</p>
         </div>
     </footer>
 
-    <script>
-        // Animated Background with 2D-style 3D Characters
-        const canvas = document.getElementById('bgCanvas');
-        const ctx = canvas.getContext('2d');
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAyAioT7g8jkZoybvAhBqaDaXlJh-ZTwV4",
+            authDomain: "mepsandboxengine.firebaseapp.com",
+            projectId: "mepsandboxengine",
+            storageBucket: "mepsandboxengine.firebasestorage.app",
+            messagingSenderId: "604562482772",
+            appId: "1:604562482772:web:9f45cd16c0a9a1dcd7efc1",
+            measurementId: "G-4CN9M3M59L"
+        };
 
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const analytics = getAnalytics(app);
 
-        class Character {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = 20 + Math.random() * 30;
-                this.speedX = (Math.random() - 0.5) * 1.5;
-                this.speedY = (Math.random() - 0.5) * 1.5;
-                this.rotation = Math.random() * Math.PI * 2;
-                this.rotationSpeed = (Math.random() - 0.5) * 0.02;
-                this.color = `rgba(${100 + Math.random() * 155}, ${100 + Math.random() * 155}, 255, 0.6)`;
-            }
+        // DOM Elements
+        const modal = document.getElementById('authModal');
+        const loginBtn = document.getElementById('login-btn');
+        const logoutBtn = document.getElementById('logout-btn');
+        const userDisplay = document.getElementById('user-display');
+        const usernameSpan = document.getElementById('username-span');
+        const authError = document.getElementById('authError');
+        const signinForm = document.getElementById('signinForm');
+        const signupForm = document.getElementById('signupForm');
 
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                this.rotation += this.rotationSpeed;
+        // Modal Controls
+        window.closeModal = () => {
+            modal.classList.remove('active');
+            authError.classList.remove('active');
+            signinForm.reset();
+            signupForm.reset();
+        };
 
-                if (this.x < -50 || this.x > canvas.width + 50) this.speedX *= -1;
-                if (this.y < -50 || this.y > canvas.height + 50) this.speedY *= -1;
-            }
-
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.rotation);
-                
-                // Draw simple 3D-looking character (box with perspective)
-                ctx.fillStyle = this.color;
-                ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
-                
-                // Add depth
-                ctx.fillStyle = `rgba(255, 255, 255, 0.2)`;
-                ctx.fillRect(-this.size/2, -this.size/2, this.size * 0.3, this.size);
-                
-                // Draw "limbs"
-                ctx.strokeStyle = this.color;
-                ctx.lineWidth = 3;
-                ctx.beginPath();
-                ctx.moveTo(0, this.size/2);
-                ctx.lineTo(-this.size/3, this.size);
-                ctx.moveTo(0, this.size/2);
-                ctx.lineTo(this.size/3, this.size);
-                ctx.stroke();
-                
-                ctx.restore();
-            }
-        }
-
-        const characters = [];
-        for (let i = 0; i < 15; i++) {
-            characters.push(new Character());
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        window.switchTab = (tab) => {
+            const tabs = document.querySelectorAll('.auth-tab');
+            const forms = document.querySelectorAll('.auth-form');
             
-            characters.forEach(char => {
-                char.update();
-                char.draw();
-            });
+            tabs.forEach(t => t.classList.remove('active'));
+            forms.forEach(f => f.classList.remove('active'));
             
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-
-        // Tab switching
-        function openTab(tabId) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
-
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            document.getElementById(tabId).classList.add('active');
-            
-            const eventButtons = Array.from(document.querySelectorAll('.tab-btn'));
-            const targetBtn = eventButtons.find(btn => btn.getAttribute('onclick').includes(tabId));
-            if(targetBtn) targetBtn.classList.add('active');
-
-            // Scroll to top when switching tabs
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('mainNav');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
+            if (tab === 'signin') {
+                tabs[0].classList.add('active');
+                signinForm.classList.add('active');
             } else {
-                nav.classList.remove('scrolled');
+                tabs[1].classList.add('active');
+                signupForm.classList.add('active');
+            }
+            
+            authError.classList.remove('active');
+        };
+
+        // Open Modal
+        loginBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+        });
+
+        // Close on overlay click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                window.closeModal();
             }
         });
 
-        // Scroll to top function
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Show Error
+        function showError(message) {
+            authError.textContent = message;
+            authError.classList.add('active');
         }
+
+        // Sign In
+        signinForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('signin-email').value;
+            const password = document.getElementById('signin-password').value;
+            
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                window.closeModal();
+            } catch (error) {
+                console.error('Sign in error:', error);
+                let errorMessage = 'Sign in failed. Please try again.';
+                
+                if (error.code === 'auth/invalid-email') {
+                    errorMessage = 'Invalid email address.';
+                } else if (error.code === 'auth/user-not-found') {
+                    errorMessage = 'No account found with this email.';
+                } else if (error.code === 'auth/wrong-password') {
+                    errorMessage = 'Incorrect password.';
+                } else if (error.code === 'auth/invalid-credential') {
+                    errorMessage = 'Invalid email or password.';
+                }
+                
+                showError(errorMessage);
+            }
+        });
+
+        // Sign Up
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const confirm = document.getElementById('signup-confirm').value;
+            
+            if (password !== confirm) {
+                showError('Passwords do not match.');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showError('Password must be at least 6 characters.');
+                return;
+            }
+            
+            try {
+                await createUserWithEmailAndPassword(auth, email, password);
+                window.closeModal();
+            } catch (error) {
+                console.error('Sign up error:', error);
+                let errorMessage = 'Sign up failed. Please try again.';
+                
+                if (error.code === 'auth/email-already-in-use') {
+                    errorMessage = 'This email is already registered.';
+                } else if (error.code === 'auth/invalid-email') {
+                    errorMessage = 'Invalid email address.';
+                } else if (error.code === 'auth/weak-password') {
+                    errorMessage = 'Password is too weak.';
+                }
+                
+                showError(errorMessage);
+            }
+        });
+
+        // Sign Out
+        logoutBtn.addEventListener('click', async () => {
+            try {
+                await signOut(auth);
+            } catch (error) {
+                console.error('Sign out error:', error);
+            }
+        });
+
+        // Auth State Observer
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in
+                loginBtn.style.display = 'none';
+                userDisplay.style.display = 'flex';
+                
+                // Extract username from email (part before @)
+                const username = user.email.split('@')[0];
+                usernameSpan.innerText = username.charAt(0).toUpperCase() + username.slice(1);
+            } else {
+                // User is signed out
+                loginBtn.style.display = 'block';
+                userDisplay.style.display = 'none';
+            }
+        });
     </script>
+
 </body>
 </html>
