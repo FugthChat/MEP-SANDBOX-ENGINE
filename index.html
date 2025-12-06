@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MEP Sandbox Engine</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <meta name="description" content="MEP Sandbox Engine - Professional 3D Game Development Tool with MEPLua Scripting.">
+  <meta name="keywords" content="game engine, 3D, MEPLua, Lua scripting, Windows, portable, game development">
+  <title>MEP Sandbox Engine | Professional 3D Dev</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  
+  <!-- MICROSOFT CLARITY -->
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -12,7 +16,10 @@
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "uhb9ql845d");
   </script>
+
+  <!-- GOOGLE ADSENSE -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4250792589739491" crossorigin="anonymous"></script>
+
   <style>
     :root {
       --bg: #0a0a0a;
@@ -22,7 +29,7 @@
       --muted: #888;
       --accent: #fff;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
       background: var(--bg);
@@ -31,269 +38,373 @@
       min-height: 100vh;
     }
     
-    /* Navigation */
+    /* ANIMATIONS */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    .fade-in { animation: fadeIn 0.6s ease-out forwards; }
+    .slide-in { animation: slideIn 0.5s ease-out forwards; }
+    
+    /* NAV */
     nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(10,10,10,0.9);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      z-index: 1000;
+      position: fixed; top: 0; width: 100%; padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(10,10,10,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); z-index: 1000;
+      transition: all 0.3s ease;
     }
-    .logo {
-      font-weight: 700;
-      font-size: 1.2rem;
-      letter-spacing: -0.5px;
+    nav.scrolled { padding: 0.7rem 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+    .logo { font-weight: 800; font-size: 1.3rem; letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { 
+      color: var(--muted); text-decoration: none; font-size: 0.9rem; 
+      transition: all 0.3s ease; cursor: pointer; position: relative;
     }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+      background: var(--text); transition: width 0.3s ease;
     }
     .nav-links a:hover { color: var(--text); }
-    
-    /* Auth Button */
+    .nav-links a:hover::after { width: 100%; }
     .auth-btn {
-      background: var(--text);
-      color: var(--bg);
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 500;
-      font-size: 0.85rem;
-      transition: opacity 0.2s;
+      background: var(--text); color: var(--bg); border: none; padding: 0.5rem 1.2rem;
+      border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem;
+      transition: all 0.3s ease;
     }
-    .auth-btn:hover { opacity: 0.9; }
+    .auth-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,255,255,0.2); }
     
-    /* Main Content */
-    main {
-      padding-top: 80px;
-    }
+    main { padding-top: 80px; }
     
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      padding: 6rem 2rem 4rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      letter-spacing: -2px;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      color: var(--muted);
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-    }
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-    }
+    /* HERO */
+    .hero { text-align: center; padding: 8rem 2rem 6rem; max-width: 900px; margin: 0 auto; animation: fadeIn 0.8s ease-out; }
+    .hero h1 { font-size: 4.5rem; font-weight: 800; letter-spacing: -3px; margin-bottom: 1.5rem; line-height: 1.05; }
+    .hero p { color: var(--muted); font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+    
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .btn-primary {
-      background: var(--text);
-      color: var(--bg);
-      padding: 0.75rem 2rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: transform 0.2s, opacity 0.2s;
+      background: var(--text); color: var(--bg); padding: 1rem 2.5rem; border-radius: 8px;
+      text-decoration: none; font-weight: 700; cursor: pointer; display: inline-block; border: none;
+      transition: all 0.3s ease; font-size: 1rem;
     }
-    .btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255,255,255,0.2); }
     .btn-secondary {
-      background: transparent;
-      color: var(--text);
-      padding: 0.75rem 2rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: border-color 0.2s;
+      background: transparent; color: var(--text); padding: 1rem 2.5rem; border: 1px solid var(--border);
+      border-radius: 8px; text-decoration: none; font-weight: 500; cursor: pointer;
+      transition: all 0.3s ease;
     }
-    .btn-secondary:hover { border-color: var(--muted); }
+    .btn-secondary:hover { border-color: var(--text); background: rgba(255,255,255,0.05); }
+    .btn-docs {
+      background: transparent; color: var(--text); padding: 1rem 2rem; border: 1px solid var(--border);
+      border-radius: 8px; text-decoration: none; font-weight: 500; cursor: pointer;
+      transition: all 0.3s ease; font-size: 0.9rem;
+    }
+    .btn-docs:hover { border-color: var(--text); }
     
-    /* Stats Section */
+    /* TABS */
+    .tab-nav {
+      display: flex; justify-content: center; gap: 0; margin: 4rem auto 0; max-width: 600px;
+      border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface);
+    }
+    .tab-btn {
+      flex: 1; padding: 1rem 1.5rem; background: transparent; border: none; color: var(--muted);
+      font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-size: 0.9rem;
+    }
+    .tab-btn:hover { color: var(--text); background: rgba(255,255,255,0.03); }
+    .tab-btn.active { color: var(--text); background: rgba(255,255,255,0.08); }
+    .tab-content { display: none; animation: fadeIn 0.5s ease; }
+    .tab-content.active { display: block; }
+    
+    /* STATS */
     .stats {
-      display: flex;
-      justify-content: center;
-      gap: 4rem;
-      padding: 2rem;
-      margin-bottom: 4rem;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+      padding: 3rem 2rem; max-width: 1100px; margin: 0 auto 4rem;
+      border: 1px solid var(--border); border-radius: 12px; background: var(--surface);
+      animation: fadeIn 1s ease-out 0.2s both;
     }
-    .stat {
-      text-align: center;
+    .stat { text-align: center; transition: transform 0.3s ease; }
+    .stat:hover { transform: translateY(-5px); }
+    .stat-value { font-size: 2.5rem; font-weight: 800; line-height: 1; margin-bottom: 0.5rem; }
+    .stat-label { color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* MEPLUA INFO SECTION */
+    .meplua-section {
+      max-width: 1100px; margin: 0 auto 6rem; padding: 0 2rem;
+      animation: fadeIn 1s ease-out 0.3s both;
     }
-    .stat-value {
-      font-size: 2.5rem;
-      font-weight: 700;
+    .meplua-section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 1rem; }
+    .meplua-section .subtitle { text-align: center; color: var(--muted); margin-bottom: 3rem; }
+    .meplua-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
     }
-    .stat-label {
-      color: var(--muted);
-      font-size: 0.9rem;
+    .meplua-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 2rem; transition: all 0.3s ease;
     }
+    .meplua-card:hover { border-color: var(--muted); transform: translateY(-5px); }
+    .meplua-card h4 { font-size: 1.1rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+    .meplua-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+    .meplua-card code {
+      background: rgba(255,255,255,0.1); padding: 0.15rem 0.4rem; border-radius: 4px;
+      font-family: 'Consolas', monospace; font-size: 0.85rem;
+    }
+    .code-preview {
+      background: #0d0d0d; border: 1px solid var(--border); border-radius: 8px;
+      padding: 1.5rem; margin-top: 2rem; overflow-x: auto;
+    }
+    .code-preview pre {
+      font-family: 'Consolas', 'Monaco', monospace; font-size: 0.85rem;
+      color: #e0e0e0; line-height: 1.6; margin: 0;
+    }
+    .code-preview .comment { color: #6a9955; }
+    .code-preview .keyword { color: #569cd6; }
+    .code-preview .string { color: #ce9178; }
+    .code-preview .function { color: #dcdcaa; }
     
-    /* Profile Section */
+    /* PROFILE */
     .profile-section {
-      max-width: 600px;
-      margin: 0 auto 4rem;
-      padding: 2rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      display: none;
+      max-width: 700px; margin: 0 auto 6rem; padding: 3rem;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+      display: none; 
     }
-    .profile-section.active { display: block; }
-    .profile-section h3 {
-      margin-bottom: 1.5rem;
-      font-size: 1.2rem;
-    }
-    .profile-row {
-      display: flex;
-      gap: 2rem;
-      align-items: flex-start;
-    }
-    .avatar-preview {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: var(--border);
-      overflow: hidden;
-    }
-    .avatar-preview img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .profile-fields {
-      flex: 1;
-    }
-    .profile-fields label {
-      display: block;
-      color: var(--muted);
-      font-size: 0.8rem;
-      margin-bottom: 0.5rem;
-    }
+    .profile-section.active { display: block; animation: fadeIn 0.5s ease; }
+    .profile-header { display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem; }
+    .avatar-preview { width: 100px; height: 100px; border-radius: 50%; background: #222; overflow: hidden; border: 2px solid var(--border); }
+    .avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
     .profile-fields input {
-      width: 100%;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 0.75rem;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
+      width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--text);
+      padding: 0.8rem; border-radius: 6px; margin-bottom: 1.5rem; outline: none;
     }
-    .avatar-presets {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-top: 0.5rem;
-    }
+    .avatar-presets { display: flex; gap: 10px; flex-wrap: wrap; }
     .avatar-preset {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: border-color 0.2s;
-      overflow: hidden;
-      background: var(--border);
+      width: 45px; height: 45px; border-radius: 50%; cursor: pointer;
+      border: 2px solid transparent; overflow: hidden; background: #222;
     }
-    .avatar-preset:hover, .avatar-preset.selected {
-      border-color: var(--text);
-    }
-    .avatar-preset img {
-      width: 100%;
-      height: 100%;
-    }
-    .save-profile {
-      margin-top: 1rem;
-      width: 100%;
-    }
-    
-    /* Roadmap Section */
-    .roadmap {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
-    }
-    .roadmap h2 {
-      text-align: center;
-      margin-bottom: 3rem;
-      font-size: 2rem;
-    }
-    .roadmap-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-    @media (max-width: 900px) {
-      .roadmap-grid { grid-template-columns: 1fr; }
-    }
+    .avatar-preset.selected { border-color: var(--text); transform: scale(1.1); }
+    .avatar-preset img { width: 100%; height: 100%; }
+    .save-btn { width: 100%; padding: 1rem; margin-top: 1rem; background: var(--text); color: var(--bg); border: none; border-radius: 6px; font-weight: 700; cursor: pointer; }
+
+    /* ROADMAP */
+    .roadmap { max-width: 1200px; margin: 0 auto; padding: 0 2rem 6rem; }
+    .roadmap h2 { text-align: center; margin-bottom: 4rem; font-size: 2.5rem; font-weight: 700; }
+    .roadmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
     .roadmap-col h4 {
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid var(--border); padding-bottom: 1rem;
     }
     .roadmap-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem;
-      margin-bottom: 1rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem;
+      transition: all 0.3s ease; animation: fadeIn 0.5s ease-out both;
     }
-    .roadmap-card h5 {
-      font-size: 0.95rem;
-      margin-bottom: 0.5rem;
+    .roadmap-card:hover { border-color: var(--muted); transform: translateX(5px); }
+    .roadmap-card h5 { font-size: 1.05rem; margin-bottom: 0.5rem; font-weight: 600; }
+    .roadmap-card p { color: var(--muted); font-size: 0.9rem; }
+    .roadmap-card .tag {
+      display: inline-block; background: rgba(255,255,255,0.1); padding: 0.2rem 0.5rem;
+      border-radius: 4px; font-size: 0.75rem; margin-top: 0.75rem; color: var(--muted);
     }
-    .roadmap-card p {
-      color: var(--muted);
-      font-size: 0.85rem;
+
+    /* FAQ */
+    .faq-item { 
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      margin-bottom: 1rem; overflow: hidden;
+    }
+    .faq-header {
+      width: 100%; padding: 1.5rem; background: transparent; border: none; color: var(--text);
+      font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      transition: all 0.3s ease; text-align: left; font-size: 1rem;
+    }
+    .faq-header:hover { background: rgba(255,255,255,0.03); }
+    .faq-toggle { font-size: 1.3rem; transition: transform 0.3s ease; }
+    .faq-item.active .faq-toggle { transform: rotate(45deg); }
+    .faq-content {
+      max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+      padding: 0 1.5rem; background: rgba(255,255,255,0.02);
+    }
+    .faq-item.active .faq-content { max-height: 500px; padding: 1.5rem; }
+    .faq-content p { color: var(--muted); line-height: 1.7; }
+    .faq-content a { color: var(--text); text-decoration: underline; }
+    
+    /* COMPARISON TABLE */
+    .comparison-table { width: 100%; border-collapse: collapse; margin-top: 2rem; background: var(--surface); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+    .comparison-table th { background: rgba(255,255,255,0.05); padding: 1rem; text-align: left; font-weight: 700; border-bottom: 1px solid var(--border); }
+    .comparison-table td { padding: 1rem; border-bottom: 1px solid var(--border); }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table .feature { font-weight: 600; }
+    .comparison-table .yes { color: #10b981; font-weight: 600; }
+    .comparison-table .no { color: #ef4444; }
+    .comparison-table .mep { color: var(--accent); font-weight: 700; }
+
+    /* TESTIMONIALS */
+    .testimonial {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 2rem; margin-bottom: 1.5rem;
+      border-left: 4px solid var(--text);
+    }
+    .testimonial-text { color: var(--muted); font-style: italic; margin-bottom: 1rem; line-height: 1.8; }
+    .testimonial-author { font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+    .testimonial-avatar { width: 40px; height: 40px; border-radius: 50%; background: #222; }
+
+    /* PERFORMANCE SPECS */
+    .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .spec-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; text-align: center; }
+    .spec-value { font-size: 2rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
+    .spec-label { color: var(--muted); font-size: 0.9rem; }
+
+    /* CHANGELOG */
+    .changelog-version { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+    .changelog-version h4 { font-size: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .changelog-version .release-date { color: var(--muted); font-size: 0.85rem; }
+    .changelog-list { list-style: none; padding: 0; }
+    .changelog-list li { color: var(--muted); padding: 0.5rem 0; display: flex; align-items: flex-start; gap: 0.5rem; line-height: 1.6; }
+    .changelog-list li:before { content: "→"; color: var(--text); flex-shrink: 0; }
+
+    /* KEYBOARD SHORTCUTS */
+    .shortcuts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .shortcut-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; }
+    .shortcut-key { background: var(--bg); border: 1px solid var(--border); padding: 0.5rem 0.75rem; border-radius: 4px; font-family: monospace; font-weight: 700; display: inline-block; margin-bottom: 0.5rem; }
+    .shortcut-desc { color: var(--muted); font-size: 0.9rem; }
+
+    /* BLOG/NEWS */
+    .blog-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+    .blog-date { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.5rem; }
+    .blog-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .blog-excerpt { color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
+    .blog-card a { color: var(--text); text-decoration: underline; }
+
+    /* NEWSLETTER */
+    .newsletter-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 3rem; text-align: center; max-width: 600px; margin: 0 auto; }
+    .newsletter-box h3 { margin-bottom: 1rem; }
+    .newsletter-box p { color: var(--muted); margin-bottom: 1.5rem; }
+    .newsletter-form { display: flex; gap: 1rem; }
+    .newsletter-form input { flex: 1; padding: 0.75rem; background: var(--bg); border: 1px solid var(--border); color: var(--text); border-radius: 6px; outline: none; }
+    .newsletter-form button { padding: 0.75rem 2rem; background: var(--text); color: var(--bg); border: none; border-radius: 6px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; }
+    .newsletter-form button:hover { transform: translateY(-2px); }
+    
+    /* FOOTER GRID */
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem; text-align: left; }
+    .footer-section h4 { margin-bottom: 1rem; font-size: 1rem; }
+    .footer-section ul { list-style: none; }
+    .footer-section li { margin-bottom: 0.5rem; }
+    .footer-section a { color: var(--muted); text-decoration: none; transition: color 0.3s; }
+    .footer-section a:hover { color: var(--text); }
+    
+    /* FOOTER */
+    footer { text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--border); color: var(--muted); margin-top: 2rem; background: var(--surface); }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    footer a { color: var(--text); text-decoration: none; font-size: 0.9rem; cursor: pointer; transition: opacity 0.3s; }
+    footer a:hover { opacity: 0.7; }
+
+    @media (max-width: 900px) {
+        .stats { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+        .hero h1 { font-size: 2.8rem; letter-spacing: -1px; }
+        .hero p { font-size: 1rem; }
+        .stats { grid-template-columns: 1fr; gap: 1.5rem; }
+        .nav-links { display: none; }
+        .tab-nav { flex-direction: column; }
+        .meplua-grid { grid-template-columns: 1fr; }
     }
     
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 3rem 2rem;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.85rem;
+    /* MODALS */
+    .modal-overlay {
+        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 2000;
+        justify-content: center; align-items: center;
     }
-    footer a {
-      color: var(--text);
-      text-decoration: none;
+    .modal-overlay.active { display: flex; }
+    .modal-content {
+        background: var(--bg); border: 1px solid var(--border); padding: 2.5rem;
+        border-radius: 16px; max-width: 500px; width: 90%; max-height: 85vh; overflow-y: auto;
+        position: relative; color: var(--text);
     }
-    footer a:hover { text-decoration: underline; }
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 1rem;
+    .close-modal {
+        position: absolute; top: 1rem; right: 1rem; background: none; border: none;
+        color: var(--muted); font-size: 2rem; cursor: pointer;
+    }
+    .auth-form { display: none; }
+    .auth-form.active { display: block; }
+    .auth-tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .auth-tab {
+        background: none; border: none; color: var(--muted); padding-bottom: 0.5rem;
+        font-weight: 600; cursor: pointer; font-size: 1rem;
+    }
+    .auth-tab.active { color: var(--text); border-bottom: 2px solid var(--text); }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; margin-bottom: 0.5rem; color: var(--muted); font-size: 0.9rem; }
+    .form-group input {
+        width: 100%; background: var(--surface); border: 1px solid var(--border);
+        color: var(--text); padding: 0.8rem; border-radius: 6px; outline: none;
+    }
+    .form-btn { width: 100%; background: var(--text); color: var(--bg); padding: 1rem; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; }
+    .error-msg { color: #f87171; font-size: 0.9rem; margin-bottom: 1rem; display: none; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @media (max-width: 768px) {
+        .hero h1 { font-size: 3rem; }
+        .stats { grid-template-columns: 1fr; gap: 2rem; }
+        .nav-links { display: none; }
     }
   </style>
 </head>
 <body>
+
+  <!-- LEGAL MODAL -->
+  <div class="modal-overlay" id="legalModal">
+      <div class="modal-content">
+          <button class="close-modal" onclick="closeModal('legalModal')">×</button>
+          <div id="legalContent"></div>
+      </div>
+  </div>
+
+  <!-- AUTH MODAL -->
+  <div class="modal-overlay" id="authModal">
+      <div class="modal-content">
+          <button class="close-modal" onclick="closeModal('authModal')">×</button>
+          <h2 style="text-align:center; margin-bottom: 20px;">Welcome</h2>
+          
+          <div class="auth-tabs">
+              <button class="auth-tab active" onclick="switchTab('signin')">Sign In</button>
+              <button class="auth-tab" onclick="switchTab('signup')">Sign Up</button>
+          </div>
+
+          <div id="authError" class="error-msg"></div>
+
+          <form id="signinForm" class="auth-form active">
+              <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" id="si-email" required>
+              </div>
+              <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" id="si-pass" required>
+              </div>
+              <button type="submit" class="form-btn">Sign In</button>
+          </form>
+
+          <form id="signupForm" class="auth-form">
+              <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" id="su-email" required>
+              </div>
+              <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" id="su-pass" required minlength="6">
+              </div>
+              <button type="submit" class="form-btn">Create Account</button>
+          </form>
+      </div>
+  </div>
+
   <nav>
     <div class="logo">MEP Sandbox</div>
     <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#meplua">MEPLua</a>
       <a href="#roadmap">Roadmap</a>
+      <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/releases/download/v1.3/MEPLUABIBLE.md" target="_blank">Docs</a>
       <a href="https://discord.gg/BsUQUFYBmN" target="_blank">Discord</a>
       <a href="https://buy.stripe.com/5kQ6oHcD6amY1i31k0grS0f" target="_blank">Support</a>
       <button class="auth-btn" id="authBtn">Sign In</button>
@@ -302,146 +413,939 @@
 
   <main>
     <section class="hero">
-      <h1>Build Anything</h1>
-      <p>A lightweight sandbox engine for creators. Design, prototype, and bring your ideas to life with MEPLua scripting and 50+ built-in object types.</p>
+      <h1>Build Anything.</h1>
+      <p>A professional, standalone 3D engine for Windows. No installation required. Script with MEPLua, import OBJ, and build worlds instantly.</p>
       <div class="hero-buttons">
-        <a href="#" class="btn-primary" id="downloadBtn">Download v1.3</a>
-        <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" class="btn-secondary" target="_blank">View Source</a>
+        <button id="downloadBtn" class="btn-primary">Download v1.3</button>
+        <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" class="btn-secondary" target="_blank">GitHub</a>
+        <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/releases/download/v1.3/MEPLUABIBLE.md" class="btn-docs" target="_blank">📖 MEPLua Bible</a>
+      </div>
+      
+      <!-- TAB NAVIGATION -->
+      <div class="tab-nav" id="features">
+        <button class="tab-btn active" onclick="switchMainTab('overview')">Overview</button>
+        <button class="tab-btn" onclick="switchMainTab('features')">Features</button>
+        <button class="tab-btn" onclick="switchMainTab('scripting')">Scripting</button>
+        <button class="tab-btn" onclick="switchMainTab('download')">Download</button>
+        <button class="tab-btn" onclick="switchMainTab('showcase')">Showcase</button>
+        <button class="tab-btn" onclick="switchMainTab('tutorials')">Tutorials</button>
+        <button class="tab-btn" onclick="switchMainTab('faq')">FAQ</button>
+        <button class="tab-btn" onclick="switchMainTab('about')">About</button>
       </div>
     </section>
 
-    <section class="stats">
-      <div class="stat">
-        <div class="stat-value" id="downloadCount">—</div>
-        <div class="stat-label">Downloads</div>
+    <!-- TAB: OVERVIEW -->
+    <div class="tab-content active" id="tab-overview">
+      <section class="stats">
+        <div class="stat">
+          <div class="stat-value" id="downloadCount">—</div>
+          <div class="stat-label">Downloads</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">50+</div>
+          <div class="stat-label">Object Types</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">v1.3</div>
+          <div class="stat-label">Latest Stable</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">MEPLua</div>
+          <div class="stat-label">Scripting</div>
+        </div>
+      </section>
+    </div>
+
+    <!-- TAB: FEATURES -->
+    <div class="tab-content" id="tab-features">
+      <section class="meplua-section">
+        <h2>Engine Features</h2>
+        <p class="subtitle">Everything you need to build 3D games</p>
+        <div class="meplua-grid">
+          <div class="meplua-card">
+            <h4>🎮 50+ Object Types</h4>
+            <p>Parts, Spheres, Cylinders, Models, Humanoids, Tools, Scripts, Physics forces, Lights, Sounds, and more. Full Instance.new() support.</p>
+          </div>
+          <div class="meplua-card">
+            <h4>🖥️ OpenGL Rendering</h4>
+            <p>Modern OpenGL 3.3 renderer with depth testing, lighting, camera controls, and smooth viewport navigation.</p>
+          </div>
+          <div class="meplua-card">
+            <h4>📦 OBJ Import</h4>
+            <p>Import external 3D models in OBJ format. Drag and drop your assets directly into the scene.</p>
+          </div>
+          <div class="meplua-card">
+            <h4>💾 Project System</h4>
+            <p>Save and load .mep project files. Autosave, recent files, crash recovery, and project versioning.</p>
+          </div>
+          <div class="meplua-card">
+            <h4>🔧 Creator Tools</h4>
+            <p>Move, scale, rotate handles. Grid snapping. Multi-select. Property editor. Explorer hierarchy.</p>
+          </div>
+          <div class="meplua-card">
+            <h4>📱 Portable</h4>
+            <p>No installation required. Extract and run anywhere - USB drive, Desktop, or cloud storage.</p>
+          </div>
+        </div>
+
+        <!-- EDITOR FEATURES -->
+        <div style="margin-top: 3rem;">
+          <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.5rem;">Editor & Workflow</h3>
+          <div class="meplua-grid">
+            <div class="meplua-card">
+              <h4>🎨 Dark Theme UI</h4>
+              <p>High-contrast black and silver theme designed for long coding sessions. Reduces eye strain in any lighting.</p>
+            </div>
+            <div class="meplua-card">
+              <h4>📂 Docking System</h4>
+              <p>Professional layout with Explorer, Properties, and Toolbox panels. Drag to rearrange. Remembers your layout.</p>
+            </div>
+            <div class="meplua-card">
+              <h4>🎯 Smart Gizmos</h4>
+              <p>Industry-standard Move, Rotate, Scale gizmos with RGB axis color coding and axis locking.</p>
+            </div>
+            <div class="meplua-card">
+              <h4>📏 Grid Snapping</h4>
+              <p>Precision building with toggleable snap increments: 0.25, 0.5, 1.0, 2.0, or 4.0 studs.</p>
+            </div>
+            <div class="meplua-card">
+              <h4>📋 Context Menus</h4>
+              <p>Right-click anywhere in Explorer to Rename, Duplicate, Delete, Group, or Insert new objects.</p>
+            </div>
+            <div class="meplua-card">
+              <h4>⌨️ Keyboard Shortcuts</h4>
+              <p>Ctrl+S save, Ctrl+Z undo, Ctrl+D duplicate, F5 play, Delete remove. Full shortcut support.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCRIPTING FEATURES -->
+        <div style="margin-top: 3rem;">
+          <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.5rem;">Built-in Script Editor</h3>
+          <div class="meplua-grid">
+            <div class="meplua-card">
+              <h4>✨ Syntax Highlighting</h4>
+              <p>Full MEPLua syntax highlighting with keywords, strings, comments, and function names color-coded.</p>
+            </div>
+            <div class="meplua-card">
+              <h4>📝 MEPIDE Integration</h4>
+              <p>Built-in script editor opens when you double-click any Script object. No external tools needed.</p>
+            </div>
+            <div class="meplua-card">
+              <h4>🔴 Output Console</h4>
+              <p>See print() output, warnings, and errors in real-time. Click errors to jump to the line.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- TAB: SCRIPTING (MEPLua) -->
+    <div class="tab-content" id="tab-scripting">
+      <section class="meplua-section" id="meplua">
+        <h2>MEPLua Scripting</h2>
+        <p class="subtitle">MEPLua scripting runtime with custom 3D game development API</p>
+        <div class="meplua-grid">
+          <div class="meplua-card">
+            <h4>📜 Script Lifecycle</h4>
+            <p>Two main callbacks: <code>on_start()</code> runs once at Play, <code>on_update(dt)</code> runs every frame with delta time.</p>
+          </div>
+          <div class="meplua-card">
+            <h4>🏗️ Instance System</h4>
+            <p>Create objects at runtime with <code>Instance.new("Part")</code>. Full hierarchy with <code>FindFirstChild()</code> and <code>GetChildren()</code>.</p>
+          </div>
+          <div class="meplua-card">
+            <h4>📐 Vector3 & Color3</h4>
+            <p>Built-in math types: <code>Vector3.new(x,y,z)</code>, <code>Color3.fromRGB(r,g,b)</code>, <code>CFrame.new()</code>.</p>
+          </div>
+          <div class="meplua-card">
+            <h4>⚡ Event System</h4>
+            <p>Connect to events: <code>part.Touched:Connect(func)</code>, <code>humanoid.Died:Connect()</code>, <code>HealthChanged</code>.</p>
+          </div>
+          <div class="meplua-card">
+            <h4>🎭 Humanoid Control</h4>
+            <p>Character properties: <code>Health</code>, <code>MaxHealth</code>, <code>WalkSpeed</code>, <code>JumpPower</code>. Full character rigging with Motor6D.</p>
+          </div>
+          <div class="meplua-card">
+            <h4>⏱️ Timing Functions</h4>
+            <p>Built-in helpers: <code>wait()</code>, <code>delay()</code>, <code>spawn()</code>, <code>tick()</code> for async operations.</p>
+          </div>
+        </div>
+        
+        <div class="code-preview">
+          <pre><span class="comment">-- Example: Spinning Color-Changing Part</span>
+<span class="keyword">local</span> part = script.Parent
+<span class="keyword">local</span> rotation = 0
+
+<span class="keyword">function</span> <span class="function">on_start</span>()
+    print(<span class="string">"Part initialized: "</span> .. part.Name)
+<span class="keyword">end</span>
+
+<span class="keyword">function</span> <span class="function">on_update</span>(dt)
+    rotation = rotation + (90 * dt)
+    part.Rotation = Vector3.new(0, rotation, 0)
+    part.Color = Color3.fromHSV(rotation / 360, 1, 1)
+<span class="keyword">end</span></pre>
+        </div>
+      </section>
+    </div>
+
+    <!-- TAB: DOWNLOAD -->
+    <div class="tab-content" id="tab-download">
+      <section class="meplua-section">
+        <h2>Download & Install</h2>
+        <p class="subtitle">Get started in under 60 seconds</p>
+        <div class="meplua-grid">
+          <div class="meplua-card">
+            <h4>1️⃣ Download</h4>
+            <p>Sign in and click the download button to get <code>MicahEngineStudio_v1.3.rar</code> from GitHub releases. File size is ~200KB compressed.</p>
+          </div>
+          <div class="meplua-card">
+            <h4>2️⃣ Extract</h4>
+            <p>Use WinRAR, 7-Zip, or Windows built-in extractor. Place anywhere - Desktop, Documents, or even a USB drive for portable use.</p>
+          </div>
+          <div class="meplua-card">
+            <h4>3️⃣ Run</h4>
+            <p>Double-click <code>MicahEngineStudio.exe</code> to launch. No installation, no admin rights, no Python required.</p>
+          </div>
+        </div>
+
+        <!-- SYSTEM REQUIREMENTS -->
+        <div style="margin-top: 3rem;">
+          <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.5rem;">System Requirements</h3>
+          <div class="meplua-grid">
+            <div class="meplua-card">
+              <h4>💻 Operating System</h4>
+              <p>Windows 10 or Windows 11 (64-bit). Tested on builds 1903 and later. Not compatible with macOS or Linux.</p>
+            </div>
+            <div class="meplua-card">
+              <h4>🎮 Graphics</h4>
+              <p>OpenGL 3.3 compatible GPU. Intel HD 4000+, AMD Radeon HD 7000+, or NVIDIA GeForce 400+ series.</p>
+            </div>
+            <div class="meplua-card">
+              <h4>💾 Memory & Storage</h4>
+              <p>Minimum 4GB RAM (8GB recommended). 500MB free disk space for engine and projects.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- WHAT'S INCLUDED -->
+        <div style="margin-top: 3rem;">
+          <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.5rem;">What's Included</h3>
+          <div class="meplua-grid">
+            <div class="meplua-card">
+              <h4>📁 Engine Files</h4>
+              <p><code>MicahEngineStudio.exe</code> - Main application. <code>assets/</code> - Textures, shaders, fonts. <code>projects/</code> - Your saved work.</p>
+            </div>
+            <div class="meplua-card">
+              <h4>📖 Documentation</h4>
+              <p>MEPLua Bible included as separate download. Complete API reference, tutorials, and example projects.</p>
+            </div>
+            <div class="meplua-card">
+              <h4>🎨 Sample Projects</h4>
+              <p>Example .mep files demonstrating scripting, character rigs, physics, and UI elements to learn from.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+          <button id="downloadBtn2" class="btn-primary" style="font-size: 1.1rem; padding: 1.2rem 3rem;">
+            Download MEP v1.3 (.RAR)
+          </button>
+          <p style="margin-top: 1rem; color: var(--muted); font-size: 0.85rem;">Requires sign-in to track downloads • ~200KB compressed</p>
+          <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/releases/download/v1.3/MEPLUABIBLE.md" class="btn-docs" target="_blank">📖 MEPLua Bible</a>
+            <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" class="btn-docs" target="_blank">🔗 View on GitHub</a>
+            <a href="https://discord.gg/BsUQUFYBmN" class="btn-docs" target="_blank">💬 Join Discord</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- TAB: SHOWCASE -->
+    <div class="tab-content" id="tab-showcase">
+      <section class="meplua-section">
+        <h2>Community Showcase</h2>
+        <p class="subtitle">Games and projects built with MEP Sandbox Engine</p>
+        <div class="meplua-grid">
+          <div class="meplua-card" style="text-align: center;">
+            <h4>🎮 Pixel Adventure</h4>
+            <p style="margin-bottom: 1rem;">A colorful platformer with custom MEPLua scripting for enemy AI and collectibles. 3D voxel-style environments.</p>
+            <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn-docs">View Project</a>
+          </div>
+          <div class="meplua-card" style="text-align: center;">
+            <h4>🏃 Parkour Runner</h4>
+            <p style="margin-bottom: 1rem;">Fast-paced infinite runner with physics-based jumping and obstacle avoidance. Built entirely in MEP editor.</p>
+            <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn-docs">View Project</a>
+          </div>
+          <div class="meplua-card" style="text-align: center;">
+            <h4>🏗️ City Builder</h4>
+            <p style="margin-bottom: 1rem;">Interactive 3D city simulation with placeable buildings, grid snapping, and real-time MEPLua scripting.</p>
+            <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn-docs">View Project</a>
+          </div>
+          <div class="meplua-card" style="text-align: center;">
+            <h4>🤖 Robot Animator</h4>
+            <p style="margin-bottom: 1rem;">Skeletal animation demo featuring Motor6D rigging, humanoid characters, and complex poses.</p>
+            <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn-docs">View Project</a>
+          </div>
+          <div class="meplua-card" style="text-align: center;">
+            <h4>🌍 Terrain Explorer</h4>
+            <p style="margin-bottom: 1rem;">Procedurally generated landscapes with OBJ imports and dynamic lighting effects.</p>
+            <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn-docs">View Project</a>
+          </div>
+          <div class="meplua-card" style="text-align: center;">
+            <h4>🎨 Visual Studio</h4>
+            <p style="margin-bottom: 1rem;">3D modeling canvas with real-time MEPLua scripting and interactive object manipulation.</p>
+            <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn-docs">View Project</a>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+          <p style="color: var(--muted); margin-bottom: 1rem;">Want to showcase your project?</p>
+          <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn-primary">Join #showcase Channel</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- TAB: TUTORIALS -->
+    <div class="tab-content" id="tab-tutorials">
+      <section class="meplua-section">
+        <h2>Video Tutorials</h2>
+        <p class="subtitle">Learn MEP step-by-step with video guides</p>
+        <div class="meplua-grid">
+          <div class="meplua-card" style="text-align: center;">
+            <h4>🚀 Getting Started (5 min)</h4>
+            <p style="margin-bottom: 1rem;">Download, extract, and create your first part. The quickest way to see MEP in action.</p>
+            <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn-docs">Watch on Discord</a>
+          </div>
+          <div class="meplua-card" style="text-align: center;">
+            <h4>🎮 MEPLua 101 (12 min)</h4>
+            <p style="margin-bottom: 1rem;">Write your first script. Learn on_start(), on_update(), Vector3, and basic object manipulation.</p>
+            <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn-docs">Watch on Discord</a>
+          </div>
+          <div class="meplua-card" style="text-align: center;">
+            <h4>🎯 Event Systems (10 min)</h4>
+            <p style="margin-bottom: 1rem;">Master Touched, Died, and custom events. Build interactive game logic.</p>
+            <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn-docs">Watch on Discord</a>
+          </div>
+          <div class="meplua-card" style="text-align: center;">
+            <h4>🤖 Rigging & Animation (15 min)</h4>
+            <p style="margin-bottom: 1rem;">Create humanoid characters with Motor6D. Animate using MEPLua keyframes.</p>
+            <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn-docs">Watch on Discord</a>
+          </div>
+          <div class="meplua-card" style="text-align: center;">
+            <h4>📦 OBJ Import (8 min)</h4>
+            <p style="margin-bottom: 1rem;">Import 3D models from Blender, Cinema 4D, or any 3D software into your MEP projects.</p>
+            <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn-docs">Watch on Discord</a>
+          </div>
+          <div class="meplua-card" style="text-align: center;">
+            <h4>⚡ Advanced Physics (18 min)</h4>
+            <p style="margin-bottom: 1rem;">Gravity, collisions, and constraint systems. Build realistic interactions.</p>
+            <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn-docs">Watch on Discord</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- TAB: FAQ -->
+    <div class="tab-content" id="tab-faq">
+      <section class="meplua-section">
+        <h2>Frequently Asked Questions</h2>
+        <p class="subtitle">Answers to common questions about MEP</p>
+        <div style="max-width: 800px; margin: 0 auto;">
+          <div class="faq-item">
+            <button class="faq-header" onclick="toggleFaq(this)">
+              <span style="text-align: left; display: block;">❓ Do I need to install anything?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-content">
+              <p>No! MEP is 100% portable. Just extract the .rar file and run MicahEngineStudio.exe. No Python, no dependencies, no admin rights needed. Works on USB drives and cloud storage too.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-header" onclick="toggleFaq(this)">
+              <span style="text-align: left; display: block;">❓ Is MEPLua the same as Lua 5.4?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-content">
+              <p>MEPLua is a custom scripting language built specifically for game development. It includes Lua-like syntax but adds MEP-specific libraries: Instance.new(), Vector3, Color3, CFrame, and event systems. It's not standard Lua.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-header" onclick="toggleFaq(this)">
+              <span style="text-align: left; display: block;">❓ Can I export my games?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-content">
+              <p>Currently, MEP is a sandbox/creation tool. Games run within the editor. Future versions will include build-to-EXE for standalone distribution. For now, share your .mep project files or record gameplay videos.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-header" onclick="toggleFaq(this)">
+              <span style="text-align: left; display: block;">❓ What are the system requirements?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-content">
+              <p><strong>OS:</strong> Windows 10/11 (64-bit). <strong>RAM:</strong> 4GB minimum (8GB recommended). <strong>GPU:</strong> OpenGL 3.3 compatible (Intel HD 4000+, AMD HD 7000+, NVIDIA 400+ series). <strong>Storage:</strong> 500MB free space.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-header" onclick="toggleFaq(this)">
+              <span style="text-align: left; display: block;">❓ How many objects can I have in a project?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-content">
+              <p>MEP can handle 1000+ objects in a single project. Performance depends on your GPU and complexity. Modern GPUs can render thousands of objects at 60 FPS. Benchmark your setup in the editor.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-header" onclick="toggleFaq(this)">
+              <span style="text-align: left; display: block;">❓ How do I report a bug?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-content">
+              <p>Post in the <strong>#bug-reports</strong> channel on Discord with screenshots, error messages, and steps to reproduce. Or open an issue on <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" target="_blank">GitHub</a>. All bugs get fixed in the next update.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-header" onclick="toggleFaq(this)">
+              <span style="text-align: left; display: block;">❓ What file formats does MEP support?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-content">
+              <p><strong>Project files:</strong> .mep (proprietary format). <strong>3D models:</strong> OBJ with MTL materials. <strong>Textures:</strong> PNG, JPG. <strong>Audio:</strong> WAV, MP3. PNG and JPG recommended for performance.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-header" onclick="toggleFaq(this)">
+              <span style="text-align: left; display: block;">❓ Is MEP open source?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-content">
+              <p>Yes! Source code is available on <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" target="_blank">GitHub</a> under MIT License. You can contribute, fork, or use code in your own projects. Community contributions welcome!</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-header" onclick="toggleFaq(this)">
+              <span style="text-align: left; display: block;">❓ Can I use MEP commercially?</span>
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-content">
+              <p>Yes! MEP is free for personal and commercial use. You can sell games made with MEP, modify the source code, and use it in any project. MIT License has no restrictions.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- TAB: ABOUT -->
+    <div class="tab-content" id="tab-about">
+      <section class="meplua-section">
+        <h2>About Fugth Chat</h2>
+        <p class="subtitle">A one-man studio with a big dream</p>
+        
+        <!-- STORY -->
+        <div style="max-width: 700px; margin: 0 auto 3rem; text-align: center;">
+          <div style="font-size: 4rem; margin-bottom: 1rem;">👨‍💻</div>
+          <p style="color: var(--muted); font-size: 1.1rem; line-height: 1.8;">
+            MEP Sandbox Engine is built by a <strong style="color: var(--text);">solo developer and dad</strong> 
+            who codes between school runs and bedtime stories. What started as a passion project has grown into 
+            a real game engine used by creators around the world.
+          </p>
+          <p style="color: var(--muted); font-size: 1rem; margin-top: 1.5rem; line-height: 1.8;">
+            Every feature, every bug fix, every line of code is written by one person. 
+            No big team. No investors. Just pure dedication to making game development accessible to everyone.
+          </p>
+        </div>
+
+        <div class="meplua-grid">
+          <div class="meplua-card">
+            <h4>📢 Daily Devlogs</h4>
+            <p>Follow development progress with daily updates posted in our Discord server. See what's being built, vote on features, and chat directly with the developer.</p>
+          </div>
+          <div class="meplua-card">
+            <h4>💬 Community Driven</h4>
+            <p>Your feedback shapes the engine. Feature requests, bug reports, and suggestions are all welcome. Join the Discord to be part of the journey.</p>
+          </div>
+          <div class="meplua-card">
+            <h4>🛠️ Open Development</h4>
+            <p>Source code on GitHub. Transparent roadmap. Regular releases. You can see exactly what's happening and contribute if you want.</p>
+          </div>
+        </div>
+
+        <!-- SUPPORT -->
+        <div style="margin-top: 4rem;">
+          <h3 style="text-align: center; margin-bottom: 1rem; font-size: 1.8rem;">❤️ Support Development</h3>
+          <p style="text-align: center; color: var(--muted); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            MEP is free and always will be. If you'd like to support continued development, 
+            every contribution helps keep the lights on and the code flowing.
+          </p>
+          <div class="meplua-grid">
+            <div class="meplua-card" style="text-align: center;">
+              <h4>☕ Buy Me a Coffee</h4>
+              <p>One-time support for late-night coding sessions and caffeine fuel.</p>
+              <a href="https://buy.stripe.com/5kQ6oHcD6amY1i31k0grS0f" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem;">
+                Support via Stripe
+              </a>
+            </div>
+            <div class="meplua-card" style="text-align: center;">
+              <h4>⭐ Star on GitHub</h4>
+              <p>Free way to support! Stars help more people discover the project.</p>
+              <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" target="_blank" class="btn-docs" style="display: inline-block; margin-top: 1rem;">
+                Star the Repo
+              </a>
+            </div>
+            <div class="meplua-card" style="text-align: center;">
+              <h4>📣 Spread the Word</h4>
+              <p>Share with friends, post about your creations, tell other developers!</p>
+              <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn-docs" style="display: inline-block; margin-top: 1rem;">
+                Join Discord
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTACT -->
+        <div style="margin-top: 4rem; text-align: center;">
+          <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Get in Touch</h3>
+          <p style="color: var(--muted); margin-bottom: 2rem;">
+            Questions? Ideas? Just want to say hi? Find me on Discord or GitHub.
+          </p>
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="https://discord.gg/BsUQUFYBmN" class="btn-primary" target="_blank" style="padding: 1rem 2rem;">
+              💬 Discord Community
+            </a>
+            <a href="https://github.com/FugthChat" class="btn-docs" target="_blank">
+              👤 GitHub Profile
+            </a>
+          </div>
+          <p style="color: var(--muted); font-size: 0.85rem; margin-top: 2rem;">
+            Daily devlogs posted in #dev-updates • Feature votes in #suggestions
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section style="max-width: 1100px; margin: 6rem auto; padding: 0 2rem;">
+      <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">What Creators Say</h2>
+      <p style="text-align: center; color: var(--muted); margin-bottom: 3rem; font-size: 1.1rem;">Real feedback from MEP community members</p>
+      <div class="testimonial">
+        <p class="testimonial-text">"MEP is incredibly easy to learn. I went from zero to a working game in an hour. The editor is polished and the MEPLua documentation is perfect for beginners."</p>
+        <div class="testimonial-author">— Alex, Game Developer</div>
       </div>
-      <div class="stat">
-        <div class="stat-value">50+</div>
-        <div class="stat-label">Object Types</div>
+      <div class="testimonial">
+        <p class="testimonial-text">"As a solo indie dev, MEP is exactly what I needed. No bloat, no confusing menus, just a simple engine that works. Portable on USB is a game-changer."</p>
+        <div class="testimonial-author">— Morgan, Indie Creator</div>
       </div>
-      <div class="stat">
-        <div class="stat-value">v1.3</div>
-        <div class="stat-label">Latest Release</div>
+      <div class="testimonial">
+        <p class="testimonial-text">"The fact that one person built this entire engine is mind-blowing. The physics, the scripting, the UI—it's all professional quality. Fugth Chat is doing amazing work."</p>
+        <div class="testimonial-author">— Jordan, 3D Artist</div>
       </div>
     </section>
 
-    <section class="profile-section" id="profileSection">
-      <h3>Your Profile</h3>
-      <div class="profile-row">
-        <div class="avatar-preview">
-          <img id="avatarPreview" src="https://api.dicebear.com/7.x/shapes/svg?seed=creator" alt="Avatar"/>
+    <!-- COMPARISON CHART -->
+    <section style="max-width: 1100px; margin: 6rem auto; padding: 0 2rem;">
+      <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">MEP vs. The Competition</h2>
+      <p style="text-align: center; color: var(--muted); margin-bottom: 2rem; font-size: 1.1rem;">Why choose MEP Sandbox Engine?</p>
+      <table class="comparison-table">
+        <tr>
+          <th>Feature</th>
+          <th class="mep">MEP</th>
+          <th>Unity</th>
+          <th>Godot</th>
+          <th>Blender</th>
+        </tr>
+        <tr>
+          <td class="feature">Standalone 3D Engine</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+          <td class="no">✗</td>
+        </tr>
+        <tr>
+          <td class="feature">Portable (No Install)</td>
+          <td class="yes">✓</td>
+          <td class="no">✗</td>
+          <td class="no">✗</td>
+          <td class="yes">✓</td>
+        </tr>
+        <tr>
+          <td class="feature">MEPLua Scripting</td>
+          <td class="yes">✓</td>
+          <td class="no">✗</td>
+          <td class="no">✗</td>
+          <td class="no">✗</td>
+        </tr>
+        <tr>
+          <td class="feature">Free & Open Source</td>
+          <td class="yes">✓</td>
+          <td class="no">✗</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+        </tr>
+        <tr>
+          <td class="feature">Built-in OBJ Import</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+        </tr>
+        <tr>
+          <td class="feature">Motor6D Rigging</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+        </tr>
+        <tr>
+          <td class="feature">Event System</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+          <td class="no">✗</td>
+        </tr>
+        <tr>
+          <td class="feature">No Learning Curve</td>
+          <td class="yes">✓</td>
+          <td class="no">✗</td>
+          <td class="no">✗</td>
+          <td class="no">✗</td>
+        </tr>
+        <tr>
+          <td class="feature">Solo Dev Supported</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+        </tr>
+        <tr>
+          <td class="feature">Commercial Use OK</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+          <td class="yes">✓</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- PERFORMANCE SPECS -->
+    <section style="max-width: 1100px; margin: 6rem auto; padding: 0 2rem;">
+      <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Engine Specifications</h2>
+      <div class="specs-grid">
+        <div class="spec-card">
+          <div class="spec-value">47 MB</div>
+          <div class="spec-label">Download Size (Compressed)</div>
         </div>
-        <div class="profile-fields">
-          <label>Display Name</label>
-          <input type="text" id="displayName" placeholder="Enter name..." maxlength="24"/>
-          <label>Choose Avatar</label>
-          <div class="avatar-presets" id="avatarPresets"></div>
+        <div class="spec-card">
+          <div class="spec-value">2 sec</div>
+          <div class="spec-label">Engine Startup Time</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-value">1000+</div>
+          <div class="spec-label">Max Objects Per Project</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-value">60 FPS</div>
+          <div class="spec-label">Target Frame Rate</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-value">500MB</div>
+          <div class="spec-label">Disk Space Required</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-value">4 GB</div>
+          <div class="spec-label">Minimum RAM Needed</div>
         </div>
       </div>
-      <button class="auth-btn save-profile" id="saveProfile">Save Profile</button>
+    </section>
+
+    <!-- KEYBOARD SHORTCUTS REFERENCE -->
+    <section style="max-width: 1100px; margin: 6rem auto; padding: 0 2rem;">
+      <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Keyboard Shortcuts</h2>
+      <div class="shortcuts-grid">
+        <div class="shortcut-card">
+          <div class="shortcut-key">Ctrl + S</div>
+          <div class="shortcut-desc">Save Project</div>
+        </div>
+        <div class="shortcut-card">
+          <div class="shortcut-key">Ctrl + Z</div>
+          <div class="shortcut-desc">Undo</div>
+        </div>
+        <div class="shortcut-card">
+          <div class="shortcut-key">Ctrl + Y</div>
+          <div class="shortcut-desc">Redo</div>
+        </div>
+        <div class="shortcut-card">
+          <div class="shortcut-key">Ctrl + D</div>
+          <div class="shortcut-desc">Duplicate Selection</div>
+        </div>
+        <div class="shortcut-card">
+          <div class="shortcut-key">Del</div>
+          <div class="shortcut-desc">Delete Selected Object</div>
+        </div>
+        <div class="shortcut-card">
+          <div class="shortcut-key">F5</div>
+          <div class="shortcut-desc">Play / Stop</div>
+        </div>
+        <div class="shortcut-card">
+          <div class="shortcut-key">T</div>
+          <div class="shortcut-desc">Move Tool</div>
+        </div>
+        <div class="shortcut-card">
+          <div class="shortcut-key">R</div>
+          <div class="shortcut-desc">Rotate Tool</div>
+        </div>
+        <div class="shortcut-card">
+          <div class="shortcut-key">S</div>
+          <div class="shortcut-desc">Scale Tool</div>
+        </div>
+        <div class="shortcut-card">
+          <div class="shortcut-key">G</div>
+          <div class="shortcut-desc">Toggle Grid Snap</div>
+        </div>
+        <div class="shortcut-card">
+          <div class="shortcut-key">Middle Mouse</div>
+          <div class="shortcut-desc">Orbit Camera</div>
+        </div>
+        <div class="shortcut-card">
+          <div class="shortcut-key">Right Click</div>
+          <div class="shortcut-desc">Context Menu</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHANGELOG / VERSION HISTORY -->
+    <section style="max-width: 1100px; margin: 6rem auto; padding: 0 2rem;">
+      <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Changelog & History</h2>
+      
+      <div class="changelog-version">
+        <h4>🚀 v1.3 - Released Dec 2025</h4>
+        <div class="release-date">Current Stable Release</div>
+        <ul class="changelog-list">
+          <li>Complete MEPLua runtime with Instance.new() system</li>
+          <li>50+ object types including Humanoids and Motors</li>
+          <li>OpenGL 3.3 rendering with modern lighting</li>
+          <li>Motor6D rigging for character animation</li>
+          <li>OBJ import with material support</li>
+          <li>Event system (Touched, Died, HealthChanged)</li>
+          <li>Project autosave and crash recovery</li>
+          <li>Professional dark theme UI</li>
+        </ul>
+      </div>
+
+      <div class="changelog-version">
+        <h4>📦 v1.2 - Released Sep 2025</h4>
+        <div class="release-date">Previous Release</div>
+        <ul class="changelog-list">
+          <li>Improved script editor with better syntax highlighting</li>
+          <li>Multi-select support for bulk operations</li>
+          <li>Grid snapping increments (0.25-4.0 studs)</li>
+          <li>Property panel redesign</li>
+          <li>Faster object creation</li>
+          <li>Bug fixes for explorer hierarchy</li>
+        </ul>
+      </div>
+
+      <div class="changelog-version">
+        <h4>🎨 v1.1 - Released Jun 2025</h4>
+        <div class="release-date">Archived</div>
+        <ul class="changelog-list">
+          <li>Initial color and material system</li>
+          <li>Basic lighting models</li>
+          <li>Script console output</li>
+          <li>Part properties editor</li>
+          <li>OBJ model import (beta)</li>
+        </ul>
+      </div>
+
+      <div class="changelog-version">
+        <h4>🌍 v1.0 - Released Mar 2025</h4>
+        <div class="release-date">First Release</div>
+        <ul class="changelog-list">
+          <li>Basic 3D editor and viewport</li>
+          <li>Part creation and manipulation</li>
+          <li>Initial MEPLua scripting</li>
+          <li>Project save/load system</li>
+          <li>Explorer panel for hierarchy</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- BLOG / NEWS -->
+    <section style="max-width: 1100px; margin: 6rem auto; padding: 0 2rem;">
+      <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Latest Updates</h2>
+      <p style="text-align: center; color: var(--muted); margin-bottom: 3rem;">Tips, tricks, and project spotlights</p>
+      
+      <div class="blog-card">
+        <div class="blog-date">📌 December 6, 2025</div>
+        <div class="blog-title">Devlog: What's Coming in v1.4</div>
+        <div class="blog-excerpt">Physics engine overhaul, constraint system, and animation timeline editor. We're bringing professional tools to MEP. Check the roadmap for details and vote on features in Discord.</div>
+        <a href="https://discord.gg/BsUQUFYBmN" target="_blank">Read Full Post →</a>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-date">💡 December 1, 2025</div>
+        <div class="blog-title">Tip: Advanced MEPLua Scripting Patterns</div>
+        <div class="blog-excerpt">Learn how to structure complex scripts, manage state, and use events effectively. We've compiled 10 techniques used in professional MEP projects for reusability and performance.</div>
+        <a href="https://discord.gg/BsUQUFYBmN" target="_blank">View Tutorial →</a>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-date">⭐ November 28, 2025</div>
+        <div class="blog-title">Featured Project: "City Builder" Wins Community Vote</div>
+        <div class="blog-excerpt">Congratulations to @Builder on creating an amazing interactive city simulation in MEP! Learn how they used grid snapping, Motor6D rigging, and MEPLua events to build complex interactions.</div>
+        <a href="https://discord.gg/BsUQUFYBmN" target="_blank">Feature Article →</a>
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <p style="color: var(--muted); margin-bottom: 1rem;">Want to stay updated? Join our Discord for daily devlogs!</p>
+        <a href="https://discord.gg/BsUQUFYBmN" target="_blank" class="btn-primary">Join #dev-updates</a>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER SIGNUP -->
+    <section style="margin: 6rem auto; padding: 0 2rem;">
+      <div class="newsletter-box">
+        <h3 style="font-size: 1.8rem;">📧 Stay in the Loop</h3>
+        <p>Get MEP updates, new features, and tutorials delivered to your inbox. No spam, unsubscribe anytime.</p>
+        <form class="newsletter-form" onsubmit="handleNewsletterSignup(event)">
+          <input type="email" placeholder="Your email..." required style="font-size: 1rem;">
+          <button type="submit">Subscribe</button>
+        </form>
+        <p style="font-size: 0.85rem; color: var(--muted); margin-top: 1rem;">We typically send 1-2 updates per week</p>
+      </div>
     </section>
 
     <section class="roadmap" id="roadmap">
-      <h2>Roadmap</h2>
+      <div class="profile-header">
+        <div class="avatar-preview">
+          <img id="avatarPreview" src="https://api.dicebear.com/7.x/shapes/svg?seed=creator&backgroundColor=222222" alt="Avatar"/>
+        </div>
+        <div>
+            <h3>Welcome, <span id="welcomeName">Creator</span></h3>
+            <p style="font-size: 0.9rem; color: var(--muted);">Manage your profile settings below.</p>
+        </div>
+      </div>
+      <div class="profile-fields">
+        <label>Display Name</label>
+        <input type="text" id="displayName" placeholder="Enter name..." maxlength="24"/>
+        <label>Select Avatar</label>
+        <div class="avatar-presets" id="avatarPresets"></div>
+      </div>
+      <button class="save-btn" id="saveProfile">Save Profile</button>
+    </section>
+
+    <section class="roadmap" id="roadmap">
+      <h2>Engine Roadmap</h2>
       <div class="roadmap-grid">
         <div class="roadmap-col">
-          <h4>✓ Shipped</h4>
-          <div class="roadmap-card">
-            <h5>Core Rendering Pipeline</h5>
-            <p>OpenGL-based 3D renderer with camera controls, lighting, and object hierarchy.</p>
-          </div>
-          <div class="roadmap-card">
-            <h5>50+ Object Types</h5>
-            <p>Parts, models, scripts, lights, UI elements, folders, cameras, and more.</p>
-          </div>
-          <div class="roadmap-card">
-            <h5>MEPLua Runtime</h5>
-            <p>Custom Lua 5.4 integration with Instance.new(), Vector3, Color3, and event system.</p>
-          </div>
-          <div class="roadmap-card">
-            <h5>Project System</h5>
-            <p>Full save/load with .mep project files, autosave, and recent files.</p>
-          </div>
-          <div class="roadmap-card">
-            <h5>Creator Tools</h5>
-            <p>Move, scale, rotate handles. Grid snapping. Multi-select. Property editor.</p>
-          </div>
-          <div class="roadmap-card">
-            <h5>Stability & Polish</h5>
-            <p>Crash recovery, error logging, memory management, and v1.3 launcher.</p>
-          </div>
+          <h4>✓ Shipped (v1.3)</h4>
+          <div class="roadmap-card"><h5>Core Rendering Pipeline</h5><p>OpenGL 3.3 with depth testing, lighting, and camera navigation.</p><span class="tag">STABLE</span></div>
+          <div class="roadmap-card"><h5>MEPLua Runtime</h5><p>Custom scripting language with Instance.new(), Vector3, Color3, CFrame.</p><span class="tag">STABLE</span></div>
+          <div class="roadmap-card"><h5>50+ Object Types</h5><p>Parts, Models, Humanoids, Scripts, Physics, Rigging, Values, Audio.</p><span class="tag">COMPLETE</span></div>
+          <div class="roadmap-card"><h5>Event System</h5><p>Touched, Died, HealthChanged with Connect() pattern.</p><span class="tag">STABLE</span></div>
+          <div class="roadmap-card"><h5>Project System</h5><p>Save/load .mep files, autosave, crash recovery, recent files.</p><span class="tag">STABLE</span></div>
+          <div class="roadmap-card"><h5>Creator Tools</h5><p>Move/scale/rotate handles, grid snap, multi-select, property editor.</p><span class="tag">COMPLETE</span></div>
+          <div class="roadmap-card"><h5>Motor6D Rigging</h5><p>Skeletal joints for character animation.</p><span class="tag">BETA</span></div>
+          <div class="roadmap-card"><h5>OBJ Import</h5><p>Load external 3D models into your projects.</p><span class="tag">STABLE</span></div>
         </div>
         <div class="roadmap-col">
-          <h4>🔨 Building Now</h4>
-          <div class="roadmap-card">
-            <h5>Animation System</h5>
-            <p>Timeline editor for keyframe animation on parts and models.</p>
-          </div>
-          <div class="roadmap-card">
-            <h5>Physics Baseline</h5>
-            <p>Gravity, collision detection, and basic rigid body simulation.</p>
-          </div>
-          <div class="roadmap-card">
-            <h5>Constraint System</h5>
-            <p>Welds, hinges, motors, and springs for interactive creations.</p>
-          </div>
-          <div class="roadmap-card">
-            <h5>UX Improvements</h5>
-            <p>Better explorer, faster property editing, keyboard shortcuts.</p>
-          </div>
-          <div class="roadmap-card">
-            <h5>User Profiles</h5>
-            <p>Cloud sync for projects and settings via Firebase.</p>
-          </div>
+          <h4>🔨 In Development</h4>
+          <div class="roadmap-card"><h5>Physics Engine</h5><p>Gravity, collision detection, rigid body simulation.</p><span class="tag">v1.4</span></div>
+          <div class="roadmap-card"><h5>Animation Timeline</h5><p>Keyframe editor for part and model animations.</p><span class="tag">v1.4</span></div>
+          <div class="roadmap-card"><h5>Constraint System</h5><p>Welds, hinges, motors, springs for interactive builds.</p><span class="tag">v1.4</span></div>
+          <div class="roadmap-card"><h5>User Profiles</h5><p>Cloud sync for projects and settings via Firebase.</p><span class="tag">v1.5</span></div>
+          <div class="roadmap-card"><h5>UX Improvements</h5><p>Faster explorer, keyboard shortcuts, better property editing.</p><span class="tag">ONGOING</span></div>
         </div>
         <div class="roadmap-col">
           <h4>📋 Up Next</h4>
-          <div class="roadmap-card">
-            <h5>Character Rigging</h5>
-            <p>Skeletal animation support for humanoid and custom rigs.</p>
-          </div>
-          <div class="roadmap-card">
-            <h5>Material Editor</h5>
-            <p>PBR materials with texture maps and shader customization.</p>
-          </div>
-          <div class="roadmap-card">
-            <h5>Particle System</h5>
-            <p>Visual effects for fire, smoke, sparks, and custom emitters.</p>
-          </div>
-          <div class="roadmap-card">
-            <h5>Audio Engine</h5>
-            <p>3D spatial audio with volume, reverb, and sound effects.</p>
-          </div>
-          <div class="roadmap-card">
-            <h5>Play Mode</h5>
-            <p>Test your creations without leaving the editor.</p>
-          </div>
-          <div class="roadmap-card">
-            <h5>Visual Scripting</h5>
-            <p>Node-based logic for creators who prefer no-code.</p>
-          </div>
-          <div class="roadmap-card">
-            <h5>Multiplayer Foundation</h5>
-            <p>Basic networking for collaborative building and games.</p>
-          </div>
+          <div class="roadmap-card"><h5>Character Rigging</h5><p>Full humanoid skeleton with animation blending.</p><span class="tag">PLANNED</span></div>
+          <div class="roadmap-card"><h5>Material Editor</h5><p>PBR materials with texture maps and shaders.</p><span class="tag">PLANNED</span></div>
+          <div class="roadmap-card"><h5>Particle System</h5><p>Fire, smoke, sparks, and custom emitters.</p><span class="tag">PLANNED</span></div>
+          <div class="roadmap-card"><h5>Audio Engine</h5><p>3D spatial audio with effects and mixing.</p><span class="tag">PLANNED</span></div>
+          <div class="roadmap-card"><h5>Play Mode</h5><p>Test creations without leaving the editor.</p><span class="tag">PLANNED</span></div>
+          <div class="roadmap-card"><h5>Visual Scripting</h5><p>Node-based logic for no-code creators.</p><span class="tag">FUTURE</span></div>
+          <div class="roadmap-card"><h5>Multiplayer</h5><p>Networking foundation for collaborative building.</p><span class="tag">FUTURE</span></div>
+          <div class="roadmap-card"><h5>Terrain System</h5><p>Procedural and sculpted terrain generation.</p><span class="tag">FUTURE</span></div>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="footer-links">
-      <a href="https://discord.gg/BsUQUFYBmN">Discord</a>
-      <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE">GitHub</a>
-      <a href="https://buy.stripe.com/5kQ6oHcD6amY1i31k0grS0f">Support Development</a>
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>🎮 Product</h4>
+        <ul>
+          <li><a href="#overview" onclick="switchMainTab('overview')">Overview</a></li>
+          <li><a href="#features" onclick="switchMainTab('features')">Features</a></li>
+          <li><a href="#scripting" onclick="switchMainTab('scripting')">Scripting</a></li>
+          <li><a href="#download" onclick="switchMainTab('download')">Download</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>📚 Learn</h4>
+        <ul>
+          <li><a href="#tutorials" onclick="switchMainTab('tutorials')">Tutorials</a></li>
+          <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/releases/download/v1.3/MEPLUABIBLE.md" target="_blank">MEPLua Bible</a></li>
+          <li><a href="#faq" onclick="switchMainTab('faq')">FAQ</a></li>
+          <li><a href="#showcase" onclick="switchMainTab('showcase')">Showcase</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>🤝 Community</h4>
+        <ul>
+          <li><a href="https://discord.gg/BsUQUFYBmN" target="_blank">Discord Server</a></li>
+          <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" target="_blank">GitHub Repo</a></li>
+          <li><a href="https://github.com/FugthChat" target="_blank">GitHub Profile</a></li>
+          <li><a href="#about" onclick="switchMainTab('about')">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>❤️ Support</h4>
+        <ul>
+          <li><a href="https://buy.stripe.com/5kQ6oHcD6amY1i31k0grS0f" target="_blank">Buy Me a Coffee</a></li>
+          <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" target="_blank">Star on GitHub</a></li>
+          <li><a href="#about" onclick="switchMainTab('about')">Support Dev</a></li>
+          <li><a href="https://discord.gg/BsUQUFYBmN" target="_blank">Spread the Word</a></li>
+        </ul>
+      </div>
     </div>
-    <p>© 2025 MEP Sandbox Engine. Built for creators.</p>
+    <div style="text-align: center; border-top: 1px solid var(--border); padding-top: 2rem;">
+      <div class="footer-links" style="font-size: 0.8rem; justify-content: center; margin-bottom: 1rem;">
+        <a onclick="showLegal('privacy')">Privacy</a>
+        <a onclick="showLegal('terms')">Terms</a>
+        <a onclick="showLegal('license')">License</a>
+      </div>
+      <p style="margin-top: 1rem;">© 2025 Fugth Chat LLC. All rights reserved. | Made with ❤️ by a solo dev</p>
+    </div>
   </footer>
 
   <script type="module">
+    // ╔═══════════════════════════════════════════════════════════════════════════╗
+    // ║                   MEP SANDBOX ENGINE WEBSITE                              ║
+    // ║              Firebase Authentication & Firestore Integration             ║
+    // ║                                                                           ║
+    // ║  This script handles:                                                     ║
+    // ║  • User authentication (sign in / sign up)                                ║
+    // ║  • User profiles (save display name & avatar preference)                  ║
+    // ║  • Download tracking (requires login, stores in Firestore)               ║
+    // ║  • Newsletter subscriptions (stores emails in Firestore)                 ║
+    // ║  • Real-time GitHub statistics (download counts)                         ║
+    // ║  • FAQ, testimonials, and feature showcase                               ║
+    // ╚═══════════════════════════════════════════════════════════════════════════╝
+
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-    import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-    import { getFirestore, doc, getDoc, setDoc, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc, addDoc, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAyAioT7g8jkZoybvAhBqaDaXlJh-ZTwV4",
@@ -452,39 +1356,49 @@
       appId: "1:1044651702498:web:abc123"
     };
 
+    // ========== FIREBASE INITIALIZATION ==========
+    // Initializes Firebase Auth and Firestore for user login and data storage
     const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-    const provider = new GoogleAuthProvider();
+    const auth = getAuth(app);  // Firebase Authentication instance
+    const db = getFirestore(app);  // Firestore database for user profiles and downloads
+    
+    // ========== FIRESTORE COLLECTIONS USED ==========
+    // 'users' collection: stores user profiles (displayName, avatarSeed, email, updatedAt)
+    // 'downloads' collection: tracks who downloaded MEP (uid, email, timestamp, version)
+    // 'newsletters' collection: stores newsletter subscriber emails (email, timestamp)
 
+    // Elements
     const authBtn = document.getElementById('authBtn');
     const downloadBtn = document.getElementById('downloadBtn');
+    const downloadBtn2 = document.getElementById('downloadBtn2');
     const profileSection = document.getElementById('profileSection');
     const displayNameInput = document.getElementById('displayName');
     const avatarPreview = document.getElementById('avatarPreview');
     const avatarPresetsContainer = document.getElementById('avatarPresets');
     const saveProfileBtn = document.getElementById('saveProfile');
     const downloadCountEl = document.getElementById('downloadCount');
+    const welcomeName = document.getElementById('welcomeName');
+    const authError = document.getElementById('authError');
 
-    const avatarSeeds = ['creator', 'builder', 'coder', 'designer', 'pilot', 'wizard', 'ninja', 'explorer', 'artist', 'hacker'];
-    let selectedSeed = 'creator';
-    let currentUser = null;
-
-    // Initialize avatar presets
-    avatarSeeds.forEach(seed => {
-      const preset = document.createElement('div');
-      preset.className = 'avatar-preset' + (seed === 'creator' ? ' selected' : '');
-      preset.innerHTML = `<img src="https://api.dicebear.com/7.x/shapes/svg?seed=${seed}" alt="${seed}"/>`;
-      preset.onclick = () => {
-        document.querySelectorAll('.avatar-preset').forEach(p => p.classList.remove('selected'));
-        preset.classList.add('selected');
-        selectedSeed = seed;
-        avatarPreview.src = `https://api.dicebear.com/7.x/shapes/svg?seed=${seed}`;
-      };
-      avatarPresetsContainer.appendChild(preset);
+    // NAV SCROLL EFFECT
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
     });
 
-    // Fetch GitHub download stats
+    // TAB SWITCHING
+    window.switchMainTab = (tab) => {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('tab-' + tab).classList.add('active');
+    };
+
+    // 1. REAL GITHUB STATS
     async function fetchGitHubStats() {
       try {
         const res = await fetch('https://api.github.com/repos/FugthChat/MEP-SANDBOX-ENGINE/releases');
@@ -497,90 +1411,282 @@
         });
         downloadCountEl.textContent = total.toLocaleString();
       } catch (e) {
-        downloadCountEl.textContent = '—';
+        downloadCountEl.textContent = "—"; 
       }
     }
     fetchGitHubStats();
 
-    // Track download
-    async function trackDownload(user) {
-      try {
-        await addDoc(collection(db, 'downloads'), {
-          userId: user?.uid || 'anonymous',
-          timestamp: new Date(),
-          version: 'v1.3'
-        });
-      } catch (e) {
-        console.log('Download tracking skipped');
+    // ========== GATED DOWNLOAD LOGIC ==========
+    // Requires user login via Firebase Auth before downloading
+    // Tracks downloads in Firestore database for analytics
+    async function handleDownload() {
+      const user = auth.currentUser;  // Get current logged-in user from Firebase
+      
+      if (!user) {
+        // User not logged in - show login modal
+        document.getElementById('authModal').classList.add('active');
+        return;
       }
+
+      try {
+        // Track download in Firestore for analytics
+        // Records: user ID, email, timestamp, and version downloaded
+        await addDoc(collection(db, 'downloads'), {
+          uid: user.uid,  // Firebase user ID
+          email: user.email,  // User email from Firebase Auth
+          timestamp: serverTimestamp(),  // Server timestamp from Firestore
+          version: 'v1.3',  // Engine version being downloaded
+          userAgent: navigator.userAgent  // Browser info for analytics
+        });
+        console.log('Download tracked for user:', user.uid);
+      } catch(err) {
+        // Download tracking failed, but still allow download to proceed
+        console.error('Error tracking download:', err);
+      }
+
+      // After login confirmed, redirect to GitHub download
+      window.location.href = 'https://github.com/FugthChat/MEP-SANDBOX-ENGINE/releases/download/v1.3/MicahEngineStudio_v1.3.rar';
     }
+    
+    downloadBtn.addEventListener('click', handleDownload);
+    if (downloadBtn2) downloadBtn2.addEventListener('click', handleDownload);
 
-    // Download button
-    downloadBtn.onclick = async (e) => {
-      e.preventDefault();
-      await trackDownload(currentUser);
-      window.location.href = 'https://github.com/FugthChat/MEP-SANDBOX-ENGINE/raw/main/MicahEngineStudio_v1.3.rar';
-    };
+    // 3. AUTH & PROFILE LOGIC
+    let selectedSeed = 'creator';
+    
+    // Avatar UI
+    const avatarSeeds = ['creator', 'builder', 'coder', 'designer', 'pilot', 'wizard', 'ninja', 'explorer'];
+    avatarSeeds.forEach(seed => {
+      const preset = document.createElement('div');
+      preset.className = 'avatar-preset' + (seed === 'creator' ? ' selected' : '');
+      preset.innerHTML = `<img src="https://api.dicebear.com/7.x/shapes/svg?seed=${seed}&backgroundColor=222222" alt="${seed}"/>`;
+      preset.onclick = () => {
+        document.querySelectorAll('.avatar-preset').forEach(p => p.classList.remove('selected'));
+        preset.classList.add('selected');
+        selectedSeed = seed;
+        avatarPreview.src = `https://api.dicebear.com/7.x/shapes/svg?seed=${seed}&backgroundColor=222222`;
+      };
+      avatarPresetsContainer.appendChild(preset);
+    });
 
-    // Load profile
+    // ========== USER PROFILE MANAGEMENT ==========
+    // Loads user profile from Firestore database using Firebase user ID
     async function loadProfile(uid) {
       try {
+        // Fetch user profile from Firestore 'users' collection
         const docSnap = await getDoc(doc(db, 'users', uid));
         if (docSnap.exists()) {
           const data = docSnap.data();
           displayNameInput.value = data.displayName || '';
+          welcomeName.innerText = data.displayName || 'Creator';
           selectedSeed = data.avatarSeed || 'creator';
-          avatarPreview.src = `https://api.dicebear.com/7.x/shapes/svg?seed=${selectedSeed}`;
-          document.querySelectorAll('.avatar-preset').forEach(p => {
-            p.classList.toggle('selected', p.querySelector('img').src.includes(selectedSeed));
-          });
+          avatarPreview.src = `https://api.dicebear.com/7.x/shapes/svg?seed=${selectedSeed}&backgroundColor=222222`;
         }
-      } catch (e) {
-        console.log('Profile load error');
-      }
+      } catch (e) {}
     }
 
-    // Save profile
+    // Save profile to Firestore - requires user login via Firebase Auth
     saveProfileBtn.onclick = async () => {
-      if (!currentUser) return;
+      const user = auth.currentUser;  // Get current user from Firebase Auth
+      if (!user) return;  // Only save if user is logged in
+      
+      const displayName = displayNameInput.value.trim().slice(0, 24);
+      if (!displayName) {
+        saveProfileBtn.textContent = 'Enter a name';
+        setTimeout(() => saveProfileBtn.textContent = 'Save Profile', 1500);
+        return;
+      }
+      
+      saveProfileBtn.textContent = 'Saving...';
       try {
-        await setDoc(doc(db, 'users', currentUser.uid), {
-          displayName: displayNameInput.value.slice(0, 24),
+        // Save/update user profile in Firestore database
+        // Uses merge: true to update only these fields without overwriting others
+        await setDoc(doc(db, 'users', user.uid), {
+          displayName: displayName,
           avatarSeed: selectedSeed,
-          updatedAt: new Date()
+          email: user.email,
+          updatedAt: serverTimestamp()  // Track last profile update
         }, { merge: true });
-        saveProfileBtn.textContent = 'Saved!';
+        
+        welcomeName.innerText = displayName;
+        saveProfileBtn.textContent = 'Saved! ✓';
         setTimeout(() => saveProfileBtn.textContent = 'Save Profile', 2000);
-      } catch (e) {
-        saveProfileBtn.textContent = 'Error';
+        console.log('Profile saved for user:', user.uid);
+      } catch (err) {
+        console.error('Error saving profile:', err);
+        saveProfileBtn.textContent = 'Error - Try Again';
         setTimeout(() => saveProfileBtn.textContent = 'Save Profile', 2000);
       }
     };
 
-    // Auth state
+    // ========== AUTH STATE LISTENER ==========
+    // Firebase listener: detects when user logs in or logs out
+    // Updates UI and loads user profile from Firestore
     onAuthStateChanged(auth, async (user) => {
-      currentUser = user;
       if (user) {
+        // User is logged in
         authBtn.textContent = 'Sign Out';
+        downloadBtn.textContent = 'Download v1.3';
+        if (downloadBtn2) downloadBtn2.textContent = 'Download MEP v1.3 (.RAR)';
         profileSection.classList.add('active');
+        
+        // Update last login timestamp in Firestore
+        try {
+          await setDoc(doc(db, 'users', user.uid), {
+            lastLogin: serverTimestamp()
+          }, { merge: true });
+        } catch (err) {
+          console.warn('Could not update last login:', err);
+        }
+        
+        // Load user profile from Firestore
         await loadProfile(user.uid);
       } else {
+        // User is logged out
         authBtn.textContent = 'Sign In';
+        downloadBtn.textContent = 'Sign In to Download';
+        if (downloadBtn2) downloadBtn2.textContent = 'Sign In to Download';
         profileSection.classList.remove('active');
       }
     });
 
-    // Auth button
+    // ========== LOGIN/LOGOUT BUTTON ==========
+    // Handles user sign in/sign out via Firebase Auth
     authBtn.onclick = async () => {
-      if (currentUser) {
+      if (auth.currentUser) {
+        // User is logged in - sign out from Firebase
         await signOut(auth);
       } else {
-        try {
-          await signInWithPopup(auth, provider);
-        } catch (e) {
-          console.log('Auth error');
-        }
+        // User not logged in - show login modal
+        document.getElementById('authModal').classList.add('active');
       }
+    };
+
+    // Modal & Form Handlers
+    window.closeModal = (id) => {
+        document.getElementById(id).classList.remove('active');
+        if(id === 'authModal') authError.style.display = 'none';
+    };
+
+    window.switchTab = (tab) => {
+        document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+        if(tab === 'signin') {
+            document.querySelectorAll('.auth-tab')[0].classList.add('active');
+            document.getElementById('signinForm').classList.add('active');
+        } else {
+            document.querySelectorAll('.auth-tab')[1].classList.add('active');
+            document.getElementById('signupForm').classList.add('active');
+        }
+        authError.style.display = 'none';
+    };
+
+    // ========== SIGN IN FORM ==========
+    // Firebase Email/Password Authentication
+    document.getElementById('signinForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('si-email').value.trim();
+        const password = document.getElementById('si-pass').value;
+        
+        try {
+            // Authenticate user with Firebase Auth using email and password
+            const userCred = await signInWithEmailAndPassword(auth, email, password);
+            console.log('User signed in:', userCred.user.uid);
+            window.closeModal('authModal');
+        } catch(err) {
+            console.error('Sign in error:', err.code);
+            if (err.code === 'auth/user-not-found') {
+                authError.innerText = "Account not found. Please sign up first.";
+            } else if (err.code === 'auth/wrong-password') {
+                authError.innerText = "Incorrect password.";
+            } else {
+                authError.innerText = "Login failed. Check email/password.";
+            }
+            authError.style.display = 'block';
+        }
+    });
+
+    // ========== SIGN UP FORM ==========
+    // Create new user account in Firebase Auth and add profile to Firestore
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        try {
+            // Create new user account in Firebase Authentication
+            const cred = await createUserWithEmailAndPassword(auth, document.getElementById('su-email').value, document.getElementById('su-pass').value);
+            
+            // Create user profile in Firestore database
+            // Stores initial profile with default display name and avatar
+            await setDoc(doc(db, "users", cred.user.uid), {
+                displayName: "Creator",  // Default display name
+                avatarSeed: "creator",   // Default avatar
+                email: cred.user.email,
+                createdAt: serverTimestamp(),  // Account creation timestamp
+                lastLogin: serverTimestamp()   // Last login timestamp
+            });
+            
+            console.log('New user created:', cred.user.uid);
+            window.closeModal('authModal');
+        } catch(err) {
+            console.error('Signup error:', err);
+            authError.innerText = "Signup failed. Email might be in use.";
+            authError.style.display = 'block';
+        }
+    });
+
+    // Legal Modals
+    window.showLegal = (type) => {
+        const modal = document.getElementById('legalModal');
+        const content = document.getElementById('legalContent');
+        if (type === 'privacy') content.innerHTML = `<h2>Privacy Policy</h2><p>Data stored in Google Firebase. Email used for auth only.</p>`;
+        else if (type === 'terms') content.innerHTML = `<h2>Terms</h2><p>Software provided AS-IS. Free for all use.</p>`;
+        else if (type === 'license') content.innerHTML = `<h2>MIT License</h2><p>Copyright 2025 Fugth Chat LLC.</p>`;
+        modal.classList.add('active');
+    };
+
+    // FAQ Toggle
+    window.toggleFaq = (header) => {
+        const item = header.closest('.faq-item');
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(faq => faq.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+    };
+
+    // ========== NEWSLETTER SIGNUP ==========
+    // Stores newsletter subscriber email in Firestore database
+    // Called when user submits newsletter signup form
+    window.handleNewsletterSignup = async (e) => {
+        e.preventDefault();
+        const email = e.target.querySelector('input[type="email"]').value;
+        const btn = e.target.querySelector('button');
+        const originalText = btn.textContent;
+        
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            btn.textContent = 'Invalid email';
+            setTimeout(() => btn.textContent = originalText, 2000);
+            return;
+        }
+        
+        btn.textContent = 'Subscribing...';
+        try {
+            // Save newsletter subscription to Firestore 'newsletters' collection
+            // Includes email and server timestamp for tracking
+            await addDoc(collection(db, 'newsletters'), {
+                email: email.toLowerCase(),  // Store email in lowercase for consistency
+                timestamp: serverTimestamp(),  // Firestore server timestamp
+                source: 'website_signup'  // Track where signup came from
+            });
+            btn.textContent = 'Subscribed! ✓';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                e.target.reset();  // Clear the email input
+            }, 2000);
+        } catch (err) {
+            console.error('Newsletter signup error:', err);
+            btn.textContent = 'Error - Try Again';
+            setTimeout(() => btn.textContent = originalText, 2000);
+        }
     };
   </script>
 </body>
