@@ -6,7 +6,7 @@
   <meta name="description" content="MEP Sandbox Engine - Professional 3D Game Development Tool with MEPLua Scripting.">
   <meta name="keywords" content="game engine, 3D, MEPLua, Lua scripting, Windows, portable, game development">
   <title>MEP Sandbox Engine | Professional 3D Dev</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   
   <!-- MICROSOFT CLARITY -->
   <script type="text/javascript">
@@ -28,6 +28,10 @@
       --text: #fff;
       --muted: #888;
       --accent: #fff;
+      --gold: #FFD700;
+      --silver: #C0C0C0;
+      --bronze: #CD7F32;
+      --error: #ff4444;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
     body {
@@ -166,6 +170,7 @@
       max-width: 700px; margin: 0 auto 6rem; padding: 3rem;
       background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
       display: none; 
+      scroll-margin-top: 96px;
     }
     .profile-section.active { display: block; animation: fadeIn 0.5s ease; }
     .profile-header { display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem; }
@@ -183,6 +188,14 @@
     .avatar-preset.selected { border-color: var(--text); transform: scale(1.1); }
     .avatar-preset img { width: 100%; height: 100%; }
     .save-btn { width: 100%; padding: 1rem; margin-top: 1rem; background: var(--text); color: var(--bg); border: none; border-radius: 6px; font-weight: 700; cursor: pointer; }
+
+    @media (max-width: 980px) {
+      .profile-section {
+        margin: 1.5rem auto 4rem; padding: 2rem 1.5rem; scroll-margin-top: 72px;
+      }
+      .profile-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .profile-section .tab-btn { padding: 0.65rem 1.1rem !important; font-size: 0.95rem; }
+    }
 
     /* ROADMAP */
     .roadmap { max-width: 1200px; margin: 0 auto; padding: 0 2rem 6rem; }
@@ -347,6 +360,79 @@
         .stats { grid-template-columns: 1fr; gap: 2rem; }
         .nav-links { display: none; }
     }
+
+    /* FOUNDER FEATURES */
+    .badge { 
+        display: inline-block; padding: 6px 12px; border-radius: 20px; 
+        font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+        background: rgba(255, 255, 255, 0.05); border: 1px solid #333; color: #888;
+        font-family: 'JetBrains Mono', monospace;
+        margin: 4px 4px 4px 0;
+    }
+    .badge.gold { border-color: var(--gold); color: var(--gold); background: rgba(255, 215, 0, 0.1); box-shadow: 0 0 10px rgba(255, 215, 0, 0.1); }
+    .badge.silver { border-color: var(--silver); color: var(--silver); background: rgba(192, 192, 192, 0.08); box-shadow: 0 0 8px rgba(192, 192, 192, 0.1); }
+    .badge.bronze { border-color: var(--bronze); color: var(--bronze); background: rgba(205, 127, 50, 0.08); }
+    .badge.user { border-color: #444; color: #666; background: transparent; }
+    
+    .user-id { 
+        font-family: 'JetBrains Mono', monospace; 
+        font-size: 0.85rem; color: var(--muted); 
+        background: rgba(0,0,0,0.3); padding: 4px 8px; 
+        border-radius: 4px; display: inline-block; margin-top: 5px;
+    }
+
+    .avatar-grid { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
+    .avatar-option { 
+        width: 45px; height: 45px; border-radius: 50%; cursor: pointer; 
+        border: 2px solid transparent; opacity: 0.6; transition: 0.3s; overflow: hidden;
+        background: #1a1a1a;
+    }
+    .avatar-option:hover { opacity: 1; transform: scale(1.15); }
+    .avatar-option.selected { border-color: var(--accent); opacity: 1; box-shadow: 0 0 10px rgba(255,255,255,0.3); }
+    .avatar-option img { width: 100%; height: 100%; object-fit: cover; }
+
+    .redeem-box { background: rgba(0,0,0,0.5); padding: 25px; border-radius: 8px; border: 1px solid var(--border); margin-top: 30px; }
+    .redeem-box h3 { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; margin-bottom: 10px; }
+    .redeem-input-group { display: flex; gap: 10px; margin-top: 15px; }
+    
+    .redeem-input-group input { 
+        background: rgba(0, 0, 0, 0.8); border: 1px solid var(--border); color: white; 
+        padding: 12px; flex: 1; outline: none; border-radius: 4px;
+        font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; text-transform: uppercase;
+    }
+    .redeem-input-group input:focus { border-color: var(--text); }
+    .redeem-input-group button { white-space: nowrap; height: 48px; }
+
+    .tier-info { font-size: 0.8rem; color: var(--muted); margin-top: 12px; padding: 12px; background: rgba(0,0,0,0.3); border-radius: 4px; }
+    .tier-info span { font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+
+    #statusMsg { 
+        margin-top: 15px; font-weight: 600; font-family: 'JetBrains Mono', monospace; 
+        min-height: 20px; display: block;
+    }
+    .success { color: var(--accent); }
+    .error { color: var(--error); }
+    .loading { color: var(--muted); }
+
+    .profile-header { display: flex; align-items: center; gap: 25px; margin-bottom: 20px; }
+    .avatar { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--border); background: #1a1a1a; object-fit: cover; }
+    .user-info h2 { font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; margin-bottom: 8px; letter-spacing: -1px; }
+    
+    .founder-box {
+        background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(0, 255, 65, 0.05) 100%);
+        border: 1px solid #FFD700; border-radius: 12px; padding: 2rem; margin-top: 2rem;
+        text-align: center;
+    }
+    .founder-box h3 { color: #FFD700; margin-bottom: 1rem; font-size: 1.3rem; }
+    .founder-box p { color: var(--muted); margin-bottom: 1.5rem; }
+    .founder-box a { 
+        display: inline-block; color: #FFD700; text-decoration: none; 
+        font-weight: 600; padding: 0.75rem 1.5rem; border: 1px solid #FFD700;
+        border-radius: 6px; transition: all 0.3s ease;
+    }
+    .founder-box a:hover { background: #FFD700; color: black; }
+    .hidden { display: none !important; }
+    
   </style>
 </head>
 <body>
@@ -407,7 +493,10 @@
       <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/releases/download/v1.3/MEPLUABIBLE.md" target="_blank">Docs</a>
       <a href="https://discord.gg/BsUQUFYBmN" target="_blank">Discord</a>
       <a href="https://buy.stripe.com/5kQ6oHcD6amY1i31k0grS0f" target="_blank">Support</a>
+      <a href="https://fugthchat.itch.io/mep-sandbox-engine/purchase" target="_blank" style="color: #FFD700; font-weight: 600;">🏆 Founder</a>
+      <a href="#profileSection" onclick="focusProfileTab();" style="color: var(--text); font-weight: 600;">👤 Profile</a>
       <button class="auth-btn" id="authBtn">Sign In</button>
+      <img id="navAvatar" alt="Profile" style="display:none; width:32px; height:32px; border-radius:50%; border:1px solid var(--border); object-fit:cover; background:#222;" />
     </div>
   </nav>
 
@@ -417,20 +506,21 @@
       <p>A professional, standalone 3D engine for Windows. No installation required. Script with MEPLua, import OBJ, and build worlds instantly.</p>
       <div class="hero-buttons">
         <button id="downloadBtn" class="btn-primary">Download v1.3</button>
+        <a href="https://fugthchat.itch.io/mep-sandbox-engine/purchase" class="btn-primary" style="background: var(--gold); color: var(--bg);" target="_blank">⭐ Get Founder Access</a>
         <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" class="btn-secondary" target="_blank">GitHub</a>
         <a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/releases/download/v1.3/MEPLUABIBLE.md" class="btn-docs" target="_blank">📖 MEPLua Bible</a>
       </div>
       
       <!-- TAB NAVIGATION -->
       <div class="tab-nav" id="features">
-        <button class="tab-btn active" onclick="switchMainTab('overview')">Overview</button>
-        <button class="tab-btn" onclick="switchMainTab('features')">Features</button>
-        <button class="tab-btn" onclick="switchMainTab('scripting')">Scripting</button>
-        <button class="tab-btn" onclick="switchMainTab('download')">Download</button>
-        <button class="tab-btn" onclick="switchMainTab('showcase')">Showcase</button>
-        <button class="tab-btn" onclick="switchMainTab('tutorials')">Tutorials</button>
-        <button class="tab-btn" onclick="switchMainTab('faq')">FAQ</button>
-        <button class="tab-btn" onclick="switchMainTab('about')">About</button>
+        <button class="tab-btn active" onclick="switchMainTab('overview', event)">Overview</button>
+        <button class="tab-btn" onclick="switchMainTab('features', event)">Features</button>
+        <button class="tab-btn" onclick="switchMainTab('scripting', event)">Scripting</button>
+        <button class="tab-btn" onclick="switchMainTab('download', event)">Download</button>
+        <button class="tab-btn" onclick="switchMainTab('showcase', event)">Showcase</button>
+        <button class="tab-btn" onclick="switchMainTab('tutorials', event)">Tutorials</button>
+        <button class="tab-btn" onclick="switchMainTab('faq', event)">FAQ</button>
+        <button class="tab-btn" onclick="switchMainTab('about', event)">About</button>
       </div>
     </section>
 
@@ -933,6 +1023,27 @@
       </section>
     </div>
 
+    <!-- FOUNDER SECTION - Hidden when not logged in -->
+    <section style="max-width: 1100px; margin: 0 auto 6rem; padding: 0 2rem; display: none;" id="founderPublicSection">
+      <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(0, 255, 65, 0.05) 100%); border: 1px solid #FFD700; border-radius: 16px; padding: 3rem; text-align: center;">
+        <h2 style="border: none; color: #FFD700; margin-bottom: 1rem; font-size: 2rem;">🏆 BECOME A FOUNDER</h2>
+        <p style="color: var(--muted); margin-bottom: 1.5rem; font-size: 1.05rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+          Support early development and get permanent access to nightly builds, source code, and exclusive founder benefits.
+        </p>
+        <div id="founderStatus" style="margin-bottom: 2rem;">
+          <a href="https://fugthchat.itch.io/mep-sandbox-engine/purchase" target="_blank" class="btn-primary" style="background: #FFD700; color: black; text-decoration: none; padding: 1rem 2.5rem; display: inline-block;">
+            🎁 GET FOUNDER ACCESS ($5) →
+          </a>
+        </div>
+        <p style="font-size: 0.9rem; color: #888;">Enter your access key below to unlock founder benefits</p>
+        <div style="margin-top: 2rem; max-width: 400px; margin-left: auto; margin-right: auto;">
+          <input type="text" id="founderKeyInput" placeholder="FUGTH-EARLY-..." style="text-transform: uppercase; background: var(--bg); border: 1px solid #FFD700; color: white; padding: 0.75rem; border-radius: 6px; width: 100%; margin-bottom: 1rem; outline: none; font-weight: 600;" />
+          <button onclick="redeemFounderKey()" class="btn-primary" style="background: #FFD700; color: black; border: none; width: 100%; padding: 0.75rem;">UNLOCK FOUNDER</button>
+        </div>
+        <div id="founderMsg" style="margin-top: 1rem; font-weight: 600;"></div>
+      </div>
+    </section>
+
     <!-- TESTIMONIALS SECTION -->
     <section style="max-width: 1100px; margin: 6rem auto; padding: 0 2rem;">
       <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">What Creators Say</h2>
@@ -1224,23 +1335,64 @@
       </div>
     </section>
 
-    <section class="roadmap" id="roadmap">
-      <div class="profile-header">
-        <div class="avatar-preview">
-          <img id="avatarPreview" src="https://api.dicebear.com/7.x/shapes/svg?seed=creator&backgroundColor=222222" alt="Avatar"/>
+    <!-- PROFILE & FOUNDER PORTAL - Tab-based navigation -->
+    <section class="profile-section" id="profileSection">
+      <!-- TAB NAVIGATION -->
+      <div style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
+        <button class="tab-btn active" onclick="switchProfileTab('profile', event)" style="padding: 0.75rem 1.5rem; background: transparent; border: none; color: var(--text); cursor: pointer; font-weight: 600; border-bottom: 2px solid var(--gold); margin-bottom: -1rem;">👤 Profile</button>
+        <button class="tab-btn" id="founderTabBtn" onclick="switchProfileTab('founder', event)" style="padding: 0.75rem 1.5rem; background: transparent; border: none; color: var(--muted); cursor: pointer; font-weight: 600; display: none;">🏆 Founder</button>
+      </div>
+
+      <!-- PROFILE TAB -->
+      <div id="profileTab" class="profile-tab-content">
+        <div class="profile-header">
+          <div class="avatar-preview">
+            <img id="avatarPreview" src="https://api.dicebear.com/7.x/shapes/svg?seed=creator&backgroundColor=222222" alt="Avatar"/>
+          </div>
+          <div>
+              <h3>Welcome, <span id="welcomeName">Creator</span></h3>
+              <div id="tierBadgeDisplay" style="margin-top: 0.5rem;"></div>
+              <p style="font-size: 0.9rem; color: var(--muted); margin-top: 0.5rem;">Manage your profile settings below.</p>
+          </div>
         </div>
-        <div>
-            <h3>Welcome, <span id="welcomeName">Creator</span></h3>
-            <p style="font-size: 0.9rem; color: var(--muted);">Manage your profile settings below.</p>
+        <div class="profile-fields">
+          <label>Display Name</label>
+          <input type="text" id="displayName" placeholder="Enter name..." maxlength="24"/>
+          <label>Select Avatar</label>
+          <div class="avatar-presets" id="avatarPresets"></div>
+        </div>
+        <button class="save-btn" id="saveProfile">Save Profile</button>
+      </div>
+
+      <!-- FOUNDER TAB -->
+      <div id="founderTab" class="profile-tab-content" style="display: none;">
+        <h3 style="margin-bottom: 1.5rem;">🏆 Founder Portal</h3>
+        
+        <!-- Google Drive Access -->
+        <div id="founderAccessBox" style="display:none; padding: 2rem; background: rgba(255,215,0,0.1); border: 2px solid var(--gold); border-radius: 12px; margin-bottom: 2rem; text-align: center;">
+          <h4 style="color: var(--gold); margin-bottom: 1rem;">✅ Access Granted</h4>
+          <p style="color: var(--muted); margin-bottom: 1.5rem;">You have permanent access to nightly builds, source code, and exclusive resources.</p>
+          <a href="https://drive.google.com/drive/folders/149mxmqq7cWpHl7QfDCH5394Xr-Wrp3hx?usp=sharing" target="_blank" style="display: inline-block; background: var(--gold); color: var(--bg); text-decoration: none; font-weight: 600; padding: 1rem 2rem; border-radius: 6px; cursor: pointer;">
+            📂 OPEN GOOGLE DRIVE →
+          </a>
+        </div>
+
+        <!-- Redemption Info -->
+        <div style="padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+          <h4 style="margin-bottom: 1rem;">Your Founder Status</h4>
+          <div id="founderInfo" style="color: var(--muted);">Loading...</div>
+          <div id="founderLockedInfo" style="color: var(--muted); margin-top: 0.75rem;">Redeem a founder key to unlock.</div>
+          <div id="founderRedeemContainer" style="margin-top: 1.5rem; display: none;">
+            <p style="color: var(--muted); margin-bottom: 0.75rem;">Enter your founder access key to unlock benefits:</p>
+            <div class="redeem-input-group" style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <input type="text" id="accessKeyInput" placeholder="FUGTH-EARLY-..." style="flex: 1; min-width: 200px; text-transform: uppercase;" />
+              <button id="redeemBtn" class="btn-primary" style="background: var(--gold); color: #000; border: none;">Redeem</button>
+            </div>
+            <div id="redemptionStatus" style="display:none; margin-top: 0.75rem; font-weight: 600; padding: 0.65rem 0.85rem; border-radius: 6px;"></div>
+          </div>
         </div>
       </div>
-      <div class="profile-fields">
-        <label>Display Name</label>
-        <input type="text" id="displayName" placeholder="Enter name..." maxlength="24"/>
-        <label>Select Avatar</label>
-        <div class="avatar-presets" id="avatarPresets"></div>
-      </div>
-      <button class="save-btn" id="saveProfile">Save Profile</button>
+    </section>
     </section>
 
     <section class="roadmap" id="roadmap">
@@ -1285,19 +1437,21 @@
       <div class="footer-section">
         <h4>🎮 Product</h4>
         <ul>
-          <li><a href="#overview" onclick="switchMainTab('overview')">Overview</a></li>
-          <li><a href="#features" onclick="switchMainTab('features')">Features</a></li>
-          <li><a href="#scripting" onclick="switchMainTab('scripting')">Scripting</a></li>
-          <li><a href="#download" onclick="switchMainTab('download')">Download</a></li>
+          <li><a href="#overview" onclick="switchMainTab('overview', event)">Overview</a></li>
+          <li><a href="#features" onclick="switchMainTab('features', event)">Features</a></li>
+          <li><a href="#scripting" onclick="switchMainTab('scripting', event)">Scripting</a></li>
+          <li><a href="#download" onclick="switchMainTab('download', event)">Download</a></li>
+          <li><a href="https://fugthchat.itch.io/mep-sandbox-engine" target="_blank">Play on Itch.io</a></li>
+          <li><a href="https://fugthchat.itch.io/mep-sandbox-engine/purchase" target="_blank">⭐ Founder Access</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>📚 Learn</h4>
         <ul>
-          <li><a href="#tutorials" onclick="switchMainTab('tutorials')">Tutorials</a></li>
+          <li><a href="#tutorials" onclick="switchMainTab('tutorials', event)">Tutorials</a></li>
           <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE/releases/download/v1.3/MEPLUABIBLE.md" target="_blank">MEPLua Bible</a></li>
-          <li><a href="#faq" onclick="switchMainTab('faq')">FAQ</a></li>
-          <li><a href="#showcase" onclick="switchMainTab('showcase')">Showcase</a></li>
+          <li><a href="#faq" onclick="switchMainTab('faq', event)">FAQ</a></li>
+          <li><a href="#showcase" onclick="switchMainTab('showcase', event)">Showcase</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -1306,15 +1460,16 @@
           <li><a href="https://discord.gg/BsUQUFYBmN" target="_blank">Discord Server</a></li>
           <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" target="_blank">GitHub Repo</a></li>
           <li><a href="https://github.com/FugthChat" target="_blank">GitHub Profile</a></li>
-          <li><a href="#about" onclick="switchMainTab('about')">About Us</a></li>
+          <li><a href="#about" onclick="switchMainTab('about', event)">About Us</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>❤️ Support</h4>
         <ul>
           <li><a href="https://buy.stripe.com/5kQ6oHcD6amY1i31k0grS0f" target="_blank">Buy Me a Coffee</a></li>
+          <li><a href="https://fugthchat.itch.io/mep-sandbox-engine/purchase" target="_blank">Purchase on Itch.io</a></li>
           <li><a href="https://github.com/FugthChat/MEP-SANDBOX-ENGINE" target="_blank">Star on GitHub</a></li>
-          <li><a href="#about" onclick="switchMainTab('about')">Support Dev</a></li>
+          <li><a href="#about" onclick="switchMainTab('about', event)">Support Dev</a></li>
           <li><a href="https://discord.gg/BsUQUFYBmN" target="_blank">Spread the Word</a></li>
         </ul>
       </div>
@@ -1345,7 +1500,7 @@
 
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
     import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
-    import { getFirestore, doc, getDoc, setDoc, addDoc, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+    import { getFirestore, doc, getDoc, setDoc, addDoc, collection, serverTimestamp, arrayUnion, runTransaction, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAyAioT7g8jkZoybvAhBqaDaXlJh-ZTwV4",
@@ -1363,9 +1518,10 @@
     const db = getFirestore(app);  // Firestore database for user profiles and downloads
     
     // ========== FIRESTORE COLLECTIONS USED ==========
-    // 'users' collection: stores user profiles (displayName, avatarSeed, email, updatedAt)
+    // 'users' collection: stores user profiles (displayName, avatarSeed, email, founder, inventory, etc)
     // 'downloads' collection: tracks who downloaded MEP (uid, email, timestamp, version)
     // 'newsletters' collection: stores newsletter subscriber emails (email, timestamp)
+    // 'access_keys' collection: founder access keys from Itch.io purchases (valid: boolean)
 
     // Elements
     const authBtn = document.getElementById('authBtn');
@@ -1379,6 +1535,9 @@
     const downloadCountEl = document.getElementById('downloadCount');
     const welcomeName = document.getElementById('welcomeName');
     const authError = document.getElementById('authError');
+    const redeemBtn = document.getElementById('redeemBtn');
+    const accessKeyInput = document.getElementById('accessKeyInput');
+    const redemptionStatus = document.getElementById('redemptionStatus');
 
     // NAV SCROLL EFFECT
     window.addEventListener('scroll', () => {
@@ -1391,11 +1550,13 @@
     });
 
     // TAB SWITCHING
-    window.switchMainTab = (tab) => {
+    window.switchMainTab = (tab, evt) => {
+      const target = evt?.target || window.event?.target;
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
       document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-      event.target.classList.add('active');
-      document.getElementById('tab-' + tab).classList.add('active');
+      if (target && target.classList) target.classList.add('active');
+      const tabEl = document.getElementById('tab-' + tab);
+      if (tabEl) tabEl.classList.add('active');
     };
 
     // 1. REAL GITHUB STATS
@@ -1428,6 +1589,14 @@
         return;
       }
 
+      // Disable buttons while downloading
+      if (downloadBtn) downloadBtn.disabled = true;
+      if (downloadBtn2) downloadBtn2.disabled = true;
+      const originalText1 = downloadBtn ? downloadBtn.textContent : '';
+      const originalText2 = downloadBtn2 ? downloadBtn2.textContent : '';
+      if (downloadBtn) downloadBtn.textContent = 'Starting download...';
+      if (downloadBtn2) downloadBtn2.textContent = 'Starting download...';
+
       try {
         // Track download in Firestore for analytics
         // Records: user ID, email, timestamp, and version downloaded
@@ -1444,18 +1613,243 @@
         console.error('Error tracking download:', err);
       }
 
-      // After login confirmed, redirect to GitHub download
+      // After tracking confirmed, redirect to GitHub download
       window.location.href = 'https://github.com/FugthChat/MEP-SANDBOX-ENGINE/releases/download/v1.3/MicahEngineStudio_v1.3.rar';
+      
+      // Re-enable buttons after 3 seconds (in case download doesn't start)
+      setTimeout(() => {
+        if (downloadBtn) {
+          downloadBtn.disabled = false;
+          downloadBtn.textContent = originalText1;
+        }
+        if (downloadBtn2) {
+          downloadBtn2.disabled = false;
+          downloadBtn2.textContent = originalText2;
+        }
+      }, 3000);
     }
     
-    downloadBtn.addEventListener('click', handleDownload);
-    if (downloadBtn2) downloadBtn2.addEventListener('click', handleDownload);
+    // Attach download handlers to both download buttons
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            handleDownload();
+        });
+    }
+    if (downloadBtn2) {
+        downloadBtn2.addEventListener('click', (e) => {
+            e.preventDefault();
+            handleDownload();
+        });
+    }
+
+    // ========== FOUNDER KEY REDEMPTION ==========
+    // Handles founder access key redemption with transaction-based tier ranking
+    // Prevents double-redemptions using Firestore atomic operations
+    if (redeemBtn && accessKeyInput && redemptionStatus) {
+    redeemBtn.addEventListener('click', async () => {
+      const user = auth.currentUser;
+      if (!user) {
+        setRedemptionStatus('❌ Sign in first to redeem a key', 'error');
+        return;
+      }
+
+      const accessKey = accessKeyInput.value.trim().toUpperCase();
+      if (!accessKey) {
+        setRedemptionStatus('❌ Enter an access key', 'error');
+        return;
+      }
+
+      redeemBtn.disabled = true;
+      redeemBtn.textContent = 'Verifying...';
+      setRedemptionStatus('Verifying with server...', 'info');
+
+      try {
+        // Step 1: Check if key exists and is valid
+        const keyRef = doc(db, 'access_keys', accessKey);
+        const keySnap = await getDoc(keyRef);
+
+        if (!keySnap.exists()) {
+          setRedemptionStatus('❌ Access key not found', 'error');
+          redeemBtn.disabled = false;
+          redeemBtn.textContent = 'Redeem';
+          return;
+        }
+
+        const keyData = keySnap.data();
+        // Check if key is valid (not already redeemed) - accept if valid is true or if usedBy doesn't exist
+        if (keyData.valid === false || keyData.usedBy) {
+          setRedemptionStatus('❌ This access key has already been redeemed', 'error');
+          redeemBtn.disabled = false;
+          redeemBtn.textContent = 'Redeem';
+          return;
+        }
+
+        // Step 2: Atomic transaction to prevent double-redemptions
+        // This ensures only one user can claim each key and gets unique rank
+        // NOTE: We do NOT write to access_keys (it's now read-only per security rules)
+        let newRank = 0;
+        let tier = 'BRONZE';
+        
+        await runTransaction(db, async (transaction) => {
+          // 1. Verify key exists and is valid (READ ONLY)
+          const keyRef = doc(db, 'access_keys', accessKey);
+          const keySnap = await transaction.get(keyRef);
+          if (!keySnap.exists() || !keySnap.data().valid) {
+            throw new Error('Invalid or expired key');
+          }
+
+          // 2. Check if user already redeemed (READ ONLY)
+          const userRef = doc(db, 'users', user.uid);
+          const userSnap = await transaction.get(userRef);
+          if (userSnap.exists() && userSnap.data().inventory) {
+            const inventory = userSnap.data().inventory;
+            if (['DIAMOND','GOLD','SILVER','BRONZE','FOUNDER_BADGE','FOUNDER','ALPHA','BETA'].some(item => inventory.includes(item))) {
+              throw new Error('Already redeemed');
+            }
+          }
+
+          // 3. Get system stats for current redemption count
+          const statsRef = doc(db, 'system', 'stats');
+          const statsDoc = await transaction.get(statsRef);
+          const currentCount = statsDoc.exists() ? (statsDoc.data().redemption_count || 0) : 0;
+          newRank = currentCount + 1;
+
+          // 4. Determine tier based on redemption order (small-batch caps)
+          // 1-3: DIAMOND, 4-5: GOLD, 6-8: SILVER, else BRONZE
+          if (newRank <= 3) tier = 'DIAMOND';
+          else if (newRank <= 5) tier = 'GOLD';
+          else if (newRank <= 8) tier = 'SILVER';
+
+          // 5. Update system stats (WRITE - allowed)
+          transaction.set(statsRef, {
+            redemption_count: newRank,
+            last_redemption: serverTimestamp()
+          }, { merge: true });
+
+          // 6. Grant founder status to user (WRITE - allowed)
+          transaction.set(userRef, {
+            displayName: user.displayName || user.email.split('@')[0],
+            email: user.email,
+            founder: true,
+            founder_tier: tier,
+            redeem_rank: newRank,
+            inventory: [tier, 'FOUNDER_BADGE'],
+            founderGrantedAt: serverTimestamp()
+          }, { merge: true });
+
+          // NOTE: We do NOT update keyRef here to comply with private security rules
+        });
+
+        // Success!
+        setRedemptionStatus(`✅ Success! You are ${tier} #${newRank}!`, 'success');
+        accessKeyInput.value = '';
+        
+        // Update global counter
+        updateRedemptionCounter();
+        
+        // Reload profile to show new tier
+        setTimeout(() => {
+          loadProfile(user.uid);
+          redeemBtn.disabled = false;
+          redeemBtn.textContent = 'Redeem';
+        }, 1500);
+
+      } catch (err) {
+        console.error('Redemption error:', err.message, err.code);
+        let errorMsg = 'Error verifying key. Try again later.';
+        if (err.message === 'Invalid or expired key') {
+          errorMsg = '❌ Invalid or expired access key';
+        } else if (err.message === 'Already redeemed') {
+          errorMsg = '⚠️ You already redeemed a key';
+        }
+        setRedemptionStatus(errorMsg, 'error');
+        redeemBtn.disabled = false;
+        redeemBtn.textContent = 'Redeem';
+      }
+    });
+    }
+
+    // Helper function to display redemption status
+    function setRedemptionStatus(message, type) {
+      redemptionStatus.style.display = 'block';
+      redemptionStatus.innerText = message;
+      redemptionStatus.style.backgroundColor = type === 'success' ? 'rgba(16,185,129,0.2)' : 
+                                                type === 'error' ? 'rgba(255,68,68,0.2)' : 'rgba(100,100,100,0.2)';
+      redemptionStatus.style.color = type === 'success' ? '#10b981' : 
+                                     type === 'error' ? '#ff4444' : 'var(--muted)';
+    }
+
+    // Fetch and display global redemption counter
+    async function updateRedemptionCounter() {
+      try {
+        const statsRef = doc(db, 'system', 'stats');
+        const statsDoc = await getDoc(statsRef);
+        const count = statsDoc.exists() ? (statsDoc.data().redemption_count || 0) : 0;
+        const counterEl = document.getElementById('redemptionCounter');
+        if (counterEl) {
+          counterEl.innerText = `${count} / 2500`;
+          // Change color based on tier scarcity
+          if (count <= 500) {
+            counterEl.style.color = 'var(--gold)';
+          } else if (count <= 1000) {
+            counterEl.style.color = 'var(--silver)';
+          } else {
+            counterEl.style.color = 'var(--bronze)';
+          }
+        }
+      } catch (err) {
+        console.warn('Could not fetch redemption counter:', err);
+      }
+    }
+    
+    // Update counter on page load and periodically
+    updateRedemptionCounter();
+    setInterval(updateRedemptionCounter, 30000); // Update every 30 seconds
+
+    // ========== PROFILE TAB SWITCHING ==========
+    window.focusProfileTab = () => {
+      const profileSectionEl = document.getElementById('profileSection');
+      if (profileSectionEl) profileSectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const profileTabBtn = document.querySelector('.profile-section .tab-btn:first-child');
+      if (profileTabBtn) profileTabBtn.click();
+    };
+
+    window.switchProfileTab = (tabName, evt) => {
+      const target = evt?.target || window.event?.target;
+      // Hide all tabs
+      document.querySelectorAll('.profile-tab-content').forEach(tab => tab.style.display = 'none');
+      document.querySelectorAll('.profile-section .tab-btn').forEach(btn => {
+        btn.style.color = 'var(--muted)';
+        btn.style.borderBottom = 'none';
+        btn.style.marginBottom = '0';
+      });
+      
+      const tabEl = document.getElementById(tabName + 'Tab');
+      if (tabEl) tabEl.style.display = 'block';
+      if (target && target.style) {
+        target.style.color = 'var(--text)';
+        target.style.borderBottom = '2px solid var(--gold)';
+        target.style.marginBottom = '-1rem';
+      }
+    };
 
     // 3. AUTH & PROFILE LOGIC
     let selectedSeed = 'creator';
+    const updateNavAvatar = (seedOverride) => {
+      const navAvatar = document.getElementById('navAvatar');
+      if (!navAvatar) return;
+      if (!auth.currentUser) {
+        navAvatar.style.display = 'none';
+        return;
+      }
+      const seed = seedOverride || selectedSeed || 'creator';
+      navAvatar.src = `https://api.dicebear.com/7.x/shapes/svg?seed=${seed}&backgroundColor=222222`;
+      navAvatar.style.display = 'inline-block';
+    };
     
-    // Avatar UI
-    const avatarSeeds = ['creator', 'builder', 'coder', 'designer', 'pilot', 'wizard', 'ninja', 'explorer'];
+    // Avatar UI - 6 preset options
+    const avatarSeeds = ['creator', 'builder', 'coder', 'robot', 'artist', 'security'];
     avatarSeeds.forEach(seed => {
       const preset = document.createElement('div');
       preset.className = 'avatar-preset' + (seed === 'creator' ? ' selected' : '');
@@ -1465,6 +1859,7 @@
         preset.classList.add('selected');
         selectedSeed = seed;
         avatarPreview.src = `https://api.dicebear.com/7.x/shapes/svg?seed=${seed}&backgroundColor=222222`;
+        updateNavAvatar(seed);
       };
       avatarPresetsContainer.appendChild(preset);
     });
@@ -1481,8 +1876,74 @@
           welcomeName.innerText = data.displayName || 'Creator';
           selectedSeed = data.avatarSeed || 'creator';
           avatarPreview.src = `https://api.dicebear.com/7.x/shapes/svg?seed=${selectedSeed}&backgroundColor=222222`;
+          updateNavAvatar(selectedSeed);
+          
+          // Display tier badge and founder tab if user is a founder
+          const tierBadgeDisplay = document.getElementById('tierBadgeDisplay');
+          const founderTabBtn = document.getElementById('founderTabBtn');
+          const founderTab = document.getElementById('founderTab');
+          const founderInfo = document.getElementById('founderInfo');
+          const founderRedeemContainer = document.getElementById('founderRedeemContainer');
+          const founderAccessBox = document.getElementById('founderAccessBox');
+          const founderLockedInfo = document.getElementById('founderLockedInfo');
+
+          // Reset defaults
+          if (tierBadgeDisplay) tierBadgeDisplay.innerHTML = '';
+          if (founderTabBtn) founderTabBtn.style.display = 'inline-block';
+          if (founderTab) founderTab.style.display = 'none';
+          if (founderInfo) founderInfo.innerHTML = '<p style="color: var(--muted);">Redeem a founder key to unlock.</p>';
+          if (founderRedeemContainer) founderRedeemContainer.style.display = 'block';
+          if (founderLockedInfo) founderLockedInfo.style.display = 'block';
+          if (founderAccessBox) founderAccessBox.style.display = 'none';
+          if (redemptionStatus) {
+            redemptionStatus.style.display = 'none';
+            redemptionStatus.innerText = '';
+          }
+
+          if (data.inventory && (data.inventory.includes('DIAMOND') || data.inventory.includes('GOLD') || data.inventory.includes('SILVER') || data.inventory.includes('BRONZE'))) {
+            let tierColor = '#b87333'; // bronze default
+            let tierName = 'BRONZE';
+            let tierRank = data.redeem_rank || '?';
+            
+            if (data.inventory.includes('DIAMOND')) {
+              tierColor = '#9be7ff';
+              tierName = 'DIAMOND';
+            } else if (data.inventory.includes('GOLD')) {
+              tierColor = '#f5d46b';
+              tierName = 'GOLD';
+            } else if (data.inventory.includes('SILVER')) {
+              tierColor = '#dcdcdc';
+              tierName = 'SILVER';
+            }
+            
+            // Show badge in profile header
+            if (tierBadgeDisplay) {
+              const rgb = tierColor === '#9be7ff' ? '155,231,255' : tierColor === '#f5d46b' ? '245,212,107' : tierColor === '#dcdcdc' ? '220,220,220' : '184,115,51';
+              tierBadgeDisplay.innerHTML = `<span style="display: inline-block; padding: 0.5rem 1rem; background: rgba(${rgb},0.15); border: 1px solid ${tierColor}; border-radius: 6px; color: ${tierColor}; font-weight: 700; font-family: 'JetBrains Mono';">⭐ ${tierName} #${tierRank}</span>`;
+            }
+            
+            // Show founder tab and hide redeem UI once unlocked
+            if (founderTabBtn) founderTabBtn.style.display = 'inline-block';
+            if (founderTab) founderTab.style.display = 'none';
+            if (founderRedeemContainer) founderRedeemContainer.style.display = 'none';
+            if (founderLockedInfo) founderLockedInfo.style.display = 'none';
+            if (founderAccessBox) founderAccessBox.style.display = 'block';
+            
+            // Update founder info in founder tab
+            if (founderInfo) {
+              founderInfo.innerHTML = `
+                <div style="line-height: 1.8;">
+                  <strong style="color: var(--text);">Tier:</strong> <span style="color: ${tierColor};">${tierName}</span><br>
+                  <strong style="color: var(--text);">Rank:</strong> <span>#${tierRank}</span><br>
+                  <strong style="color: var(--text);">Status:</strong> <span style="color: var(--accent);">✓ Active Founder</span>
+                </div>
+              `;
+            }
+          }
         }
-      } catch (e) {}
+      } catch (e) {
+        console.error('Error loading profile:', e);
+      }
     }
 
     // Save profile to Firestore - requires user login via Firebase Auth
@@ -1509,6 +1970,7 @@
         }, { merge: true });
         
         welcomeName.innerText = displayName;
+        updateNavAvatar(selectedSeed);
         saveProfileBtn.textContent = 'Saved! ✓';
         setTimeout(() => saveProfileBtn.textContent = 'Save Profile', 2000);
         console.log('Profile saved for user:', user.uid);
@@ -1541,12 +2003,26 @@
         
         // Load user profile from Firestore
         await loadProfile(user.uid);
+        updateNavAvatar(selectedSeed);
       } else {
         // User is logged out
         authBtn.textContent = 'Sign In';
         downloadBtn.textContent = 'Sign In to Download';
         if (downloadBtn2) downloadBtn2.textContent = 'Sign In to Download';
         profileSection.classList.remove('active');
+        const navAvatar = document.getElementById('navAvatar');
+        if (navAvatar) {
+          navAvatar.style.display = 'none';
+          navAvatar.removeAttribute('src');
+        }
+        const founderTabBtn = document.getElementById('founderTabBtn');
+        const founderTab = document.getElementById('founderTab');
+        const founderInfo = document.getElementById('founderInfo');
+        const founderRedeemContainer = document.getElementById('founderRedeemContainer');
+        if (founderTabBtn) founderTabBtn.style.display = 'none';
+        if (founderTab) founderTab.style.display = 'none';
+        if (founderInfo) founderInfo.innerHTML = '<p style="color: var(--muted);">Sign in to redeem.</p>';
+        if (founderRedeemContainer) founderRedeemContainer.style.display = 'none';
       }
     });
 
@@ -1583,55 +2059,112 @@
 
     // ========== SIGN IN FORM ==========
     // Firebase Email/Password Authentication
-    document.getElementById('signinForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const email = document.getElementById('si-email').value.trim();
-        const password = document.getElementById('si-pass').value;
-        
-        try {
-            // Authenticate user with Firebase Auth using email and password
-            const userCred = await signInWithEmailAndPassword(auth, email, password);
-            console.log('User signed in:', userCred.user.uid);
-            window.closeModal('authModal');
-        } catch(err) {
-            console.error('Sign in error:', err.code);
-            if (err.code === 'auth/user-not-found') {
-                authError.innerText = "Account not found. Please sign up first.";
-            } else if (err.code === 'auth/wrong-password') {
-                authError.innerText = "Incorrect password.";
-            } else {
-                authError.innerText = "Login failed. Check email/password.";
+    const signinForm = document.getElementById('signinForm');
+    if (signinForm) {
+        signinForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('si-email').value.trim();
+            const password = document.getElementById('si-pass').value;
+            const submitBtn = signinForm.querySelector('button[type="submit"]');
+            
+            if (!email || !password) {
+                authError.innerText = "Please enter email and password.";
+                authError.style.display = 'block';
+                return;
             }
-            authError.style.display = 'block';
-        }
-    });
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Signing in...';
+            
+            try {
+                // Authenticate user with Firebase Auth using email and password
+                const userCred = await signInWithEmailAndPassword(auth, email, password);
+                console.log('User signed in:', userCred.user.uid);
+                authError.style.display = 'none';
+                signinForm.reset();
+                setTimeout(() => window.closeModal('authModal'), 500);
+            } catch(err) {
+                console.error('Sign in error:', err.code, err.message);
+                if (err.code === 'auth/user-not-found') {
+                    authError.innerText = "❌ Account not found. Please sign up first.";
+                } else if (err.code === 'auth/wrong-password') {
+                    authError.innerText = "❌ Incorrect password.";
+                } else if (err.code === 'auth/invalid-email') {
+                    authError.innerText = "❌ Invalid email format.";
+                } else if (err.code === 'auth/too-many-requests') {
+                    authError.innerText = "❌ Too many failed attempts. Try again later.";
+                } else {
+                    authError.innerText = "❌ Login failed: " + err.message;
+                }
+                authError.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Sign In';
+            }
+        });
+    }
 
     // ========== SIGN UP FORM ==========
     // Create new user account in Firebase Auth and add profile to Firestore
-    document.getElementById('signupForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        try {
-            // Create new user account in Firebase Authentication
-            const cred = await createUserWithEmailAndPassword(auth, document.getElementById('su-email').value, document.getElementById('su-pass').value);
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('su-email').value.trim();
+            const password = document.getElementById('su-pass').value;
+            const submitBtn = signupForm.querySelector('button[type="submit"]');
             
-            // Create user profile in Firestore database
-            // Stores initial profile with default display name and avatar
-            await setDoc(doc(db, "users", cred.user.uid), {
-                displayName: "Creator",  // Default display name
-                avatarSeed: "creator",   // Default avatar
-                email: cred.user.email,
-                createdAt: serverTimestamp(),  // Account creation timestamp
-                lastLogin: serverTimestamp()   // Last login timestamp
-            });
+            if (!email || !password) {
+                authError.innerText = "Please enter email and password (6+ characters).";
+                authError.style.display = 'block';
+                return;
+            }
             
-            console.log('New user created:', cred.user.uid);
-            window.closeModal('authModal');
-        } catch(err) {
-            console.error('Signup error:', err);
-            authError.innerText = "Signup failed. Email might be in use.";
-            authError.style.display = 'block';
-        }
-    });
+            if (password.length < 6) {
+                authError.innerText = "Password must be at least 6 characters.";
+                authError.style.display = 'block';
+                return;
+            }
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Creating Account...';
+            
+            try {
+                // Create new user account in Firebase Authentication
+                const cred = await createUserWithEmailAndPassword(auth, email, password);
+                
+                // Create user profile in Firestore database
+                // Stores initial profile with default display name and avatar
+                await setDoc(doc(db, "users", cred.user.uid), {
+                    displayName: "Creator",  // Default display name
+                    avatarSeed: "creator",   // Default avatar
+                    email: cred.user.email,
+                    createdAt: serverTimestamp(),  // Account creation timestamp
+                    lastLogin: serverTimestamp()   // Last login timestamp
+                });
+                
+                console.log('New user created:', cred.user.uid);
+                authError.style.display = 'none';
+                signupForm.reset();
+                setTimeout(() => window.closeModal('authModal'), 500);
+            } catch(err) {
+                console.error('Signup error:', err.code, err.message);
+                if (err.code === 'auth/email-already-in-use') {
+                    authError.innerText = "❌ This email is already registered.";
+                } else if (err.code === 'auth/invalid-email') {
+                    authError.innerText = "❌ Invalid email format.";
+                } else if (err.code === 'auth/weak-password') {
+                    authError.innerText = "❌ Password is too weak. Use 6+ characters.";
+                } else {
+                    authError.innerText = "❌ Signup failed: " + err.message;
+                }
+                authError.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Create Account';
+            }
+        });
+    }
 
     // Legal Modals
     window.showLegal = (type) => {
@@ -1672,11 +2205,14 @@
         try {
             // Save newsletter subscription to Firestore 'newsletters' collection
             // Includes email and server timestamp for tracking
-            await addDoc(collection(db, 'newsletters'), {
-                email: email.toLowerCase(),  // Store email in lowercase for consistency
-                timestamp: serverTimestamp(),  // Firestore server timestamp
-                source: 'website_signup'  // Track where signup came from
-            });
+          const user = auth.currentUser;
+          await addDoc(collection(db, 'newsletters'), {
+            email: email.toLowerCase(),  // Store email in lowercase for consistency
+            timestamp: serverTimestamp(),  // Firestore server timestamp
+            source: 'website_signup',  // Track where signup came from
+            uid: user?.uid || null,
+            displayName: user?.displayName || null
+          });
             btn.textContent = 'Subscribed! ✓';
             setTimeout(() => {
                 btn.textContent = originalText;
@@ -1688,6 +2224,83 @@
             setTimeout(() => btn.textContent = originalText, 2000);
         }
     };
+
+    // ========== FOUNDER KEY REDEMPTION ==========
+    // Validates access keys from Itch.io purchases
+    // Grants founder status and unlocks source code access
+    window.redeemFounderKey = async function() {
+        const input = document.getElementById('founderKeyInput');
+        const msg = document.getElementById('founderMsg');
+        const code = input.value.trim().toUpperCase();
+
+        if (!code) {
+            msg.innerText = "Enter a founder key";
+            msg.style.color = "#ff4444";
+            return;
+        }
+
+        msg.innerText = "Verifying with server...";
+        msg.style.color = "var(--muted)";
+
+        // Must be logged in to redeem
+        const user = auth.currentUser;
+        if (!user) {
+            msg.innerText = "❌ Sign in first to redeem a key";
+            msg.style.color = "#ff4444";
+            return;
+        }
+
+        try {
+            // Check if access key exists in 'access_keys' collection
+            const keyRef = doc(db, "access_keys", code);
+            const keySnap = await getDoc(keyRef);
+
+            if (keySnap.exists() && keySnap.data().valid === true) {
+                // Key is valid! Grant founder status
+                const userRef = doc(db, "users", user.uid);
+                
+                // Update user document with founder status
+                await setDoc(userRef, {
+                    founder: true,
+                    founderCode: code,
+                    founderGrantedAt: serverTimestamp(),
+                    inventory: ["FOUNDER", "SOURCE_CODE_ACCESS"]
+                }, { merge: true });
+
+                msg.innerText = "✅ SUCCESS! Founder access unlocked!";
+                msg.style.color = "#10b981";
+                input.value = "";
+                
+                // Show founder content
+                document.getElementById('founderContent').classList.remove('hidden');
+                
+                console.log('Founder access granted to:', user.uid);
+            } else {
+                msg.innerText = "❌ Invalid founder key. Check it and try again.";
+                msg.style.color = "#ff4444";
+            }
+        } catch (err) {
+            console.error('Founder key error:', err);
+            msg.innerText = "❌ Error verifying key. Try again later.";
+            msg.style.color = "#ff4444";
+        }
+    };
+
+    // Check if user has founder status on login
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        // Check for founder status
+        try {
+          const userRef = doc(db, "users", user.uid);
+          const userSnap = await getDoc(userRef);
+          if (userSnap.exists() && userSnap.data().founder === true) {
+            document.getElementById('founderContent').classList.remove('hidden');
+          }
+        } catch (err) {
+          console.warn('Could not check founder status:', err);
+        }
+      }
+    });
   </script>
 </body>
 </html>
